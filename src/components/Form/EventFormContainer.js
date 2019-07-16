@@ -8,8 +8,9 @@ class EventFormContainer extends Component {
     name: '',
     description: '',
     image: '',
-    
-    avg_price: 10
+    start: '',
+    end: '',
+    avg_price: ''
 
 
   }
@@ -27,11 +28,11 @@ class EventFormContainer extends Component {
       name: '',
       description: '',
       image: '',
-      
-      avg_price: 10
+      start: '',
+      end: '',
+      avg_price: ''
     })
-
-
+    this.props.history.push('/events')
   }
 
   render() {

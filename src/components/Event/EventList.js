@@ -6,13 +6,14 @@ export default function EventsList(props) {
   if(!props.events) {
     return 'loading...'
     }
-  const events  = props.events
+  const { events}  = props
+ 
   
   const listOfEvents = 
   events
     .map(event => 
       <li className='nobull' key={event.id}>
-        <Link to={`/events/${event.id}`}>
+        <Link to={`/events/${event.id}/tickets`}>
           <div>
             <div>
               <h2>{event.name}</h2>
@@ -26,7 +27,9 @@ export default function EventsList(props) {
   
     return (
     <div>
+     
      {listOfEvents}
+     <Link to={`/eventform`}>Add an Event</Link>
     </div>
   )
 }

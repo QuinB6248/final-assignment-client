@@ -1,14 +1,11 @@
-import { EVENTS_FETCHED, EVENTS_COUNT, EVENT_CREATED } from '../actions/events'
+import { TICKETS_FETCHED, TICKET_CREATED  } from '../actions/tickets'
   
 
 const reducer = (state = null, action) => {
   switch(action.type) {
-    case EVENTS_FETCHED :
+    case TICKETS_FETCHED :
       return action.payload
-    case EVENTS_COUNT:
-      return action.payload
-    
-    case EVENT_CREATED:
+    case TICKET_CREATED:
       return [...state, action.payload]
     
     default: 

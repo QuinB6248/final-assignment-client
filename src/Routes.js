@@ -8,6 +8,7 @@ import LoginFormContainer from './components/Login/LoginFormContainer'
 import SignUpFormContainer from './components/SignUp/SignUpFormContainer'
 import EventListContainer from './components/Event/EventListContainer'
 import EventFormContainer from './components/Form/EventFormContainer'
+import TicketListContainer from './components/Ticket/TicketListContainer'
 
 
 function Routes(props) {
@@ -17,7 +18,10 @@ function Routes(props) {
 {!props.authenticated &&
   <Switch>
     <Route path="/events" exact component={EventListContainer} />
+    <Route path="/login" exact component={LoginFormContainer} />
+    <Route path="/events/:id/tickets" component={TicketListContainer} />
     
+   
     {/* <Route path="/login" component={LoginFormContainer}/>
     <Route path="" render={() => <Redirect to="/login"/>}/> */}
   </Switch> }
@@ -25,8 +29,9 @@ function Routes(props) {
   <Switch>
     <Route path="/events" exact component={EventListContainer} />
     <Route path="/eventform" exact component={EventFormContainer} />
+    <Route path="/events/:id/tickets" component={TicketListContainer} />
     {/* <Route path="/events/:id" component={EventDetailsContainer} /> */}
-    <Route path="" render={() => <Redirect to="/events" />} />
+    {/* <Route path="" render={() => <Redirect to="/events" />} /> */}
   </Switch>}
 
 

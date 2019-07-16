@@ -2,9 +2,13 @@ import {combineReducers} from 'redux'
 import authUser from './authUser'
 import signUpUser from './signUpUser'
 import events from './events'
+import count from './count'
+import tickets from './tickets'
 
 export default combineReducers({
   authUser,
   signUpUser,
-  events
+  events,
+  count,
+  tickets
 })
