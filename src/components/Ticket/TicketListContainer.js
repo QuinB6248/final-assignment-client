@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TicketList from './TicketList'
-import { fetchTickets, createTicket, updateTicket, deleteTicket } from '../../actions/tickets'
-
+import { fetchTickets, createTicket} from '../../actions/tickets'
 
 
 class EventListContainer extends Component {
@@ -13,20 +12,7 @@ class EventListContainer extends Component {
   componentDidMount() {
     this.props.fetchTickets(this.props.match.params.id)
   }
-  onDelete = () => {
-    this.props.deleteEvent(this.props.event.id)
-    this.props.history.push('/tickets')
-  }
-  onEdit = () => {
-   this.setState({
-     editMode: true,
-     formValues: {
-       picture: this.props.ticket.picture, 
-       price: this.props.ticket.price,
-       description: this.props.ticket.description
-       }
-    })
-  }
+  
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
@@ -55,18 +41,14 @@ class EventListContainer extends Component {
         [event.target.name]: event.target.value
       }
     })
-    console.log('ChangeState', this.state)
   }
-
+  
 
   render() {
     return (
       <div>
         <TicketList 
-          authenticated={this.props.authenticated}
           tickets={this.props.tickets}
-          onDelete={this.onDelete}
-          onEdit={this.onEdit}
           onAdd={this.onAdd} 
           onChange={this.onChange}
           onSubmit={this.onSubmit}

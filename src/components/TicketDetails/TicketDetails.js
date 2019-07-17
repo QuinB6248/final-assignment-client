@@ -2,15 +2,19 @@ import React from 'react'
 import '../component.css'
 import { Link } from 'react-router-dom'
 import CommentForm from './CommentForm'
+import TicketForm from '../Ticket/TicketForm'
 
 export default function TicketDetails(props) {
   if(!props.ticket) {
     return 'loading...'
     }
-  const { ticket, onAdd, onChange, onSubmit, values } = props
+  const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values } = props
   const {editMode} = values
-  const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmit} values={values}/>
-  const form = editMode && commentForm
+  const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
+  const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
+  const commentform = editMode && commentForm
+  const editform = editMode && editForm
+
 
   
 
@@ -19,7 +23,6 @@ export default function TicketDetails(props) {
     <li className='nobull' key={comment.id}>
       <div>
         <p>comment made by {comment.user.name}: {comment.comment}</p>
-      
       </div>
     </li>)
   
@@ -31,12 +34,15 @@ export default function TicketDetails(props) {
       <img src={ticket.ticket.image}/>
       <p>€{ticket.ticket.price}</p>
 
+      <button onClick={onEdit}>EDIT TICKET</button>
+      {editform} 
+
       <h4>COMMENTS</h4>
       <div>
        {commentList}
       </div>
       <button onClick={onAdd}>ADD COMMENT</button>
-      {form} 
+      {commentform} 
 
     </div>
   )

@@ -8,7 +8,7 @@ export default function TicketsList(props) {
   if(!props.tickets) {
     return 'loading...'
     }
-  const { tickets, onDelete, onEdit, onAdd, onChange, onSubmit, values, authenticated }  = props
+  const { tickets, onAdd, onChange, onSubmit, values }  = props
   
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
@@ -38,8 +38,6 @@ export default function TicketsList(props) {
      {listOfTickets}
     
      {form}
-      <button onClick={onDelete}>DELETE</button>
-      <button onClick={onEdit}>EDIT</button>
       <button onClick={onAdd}>ADD</button>
     </div>
   )

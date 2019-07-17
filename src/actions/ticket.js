@@ -40,9 +40,12 @@ const ticketUpdated = ticket => ({
 })
 
 export const updateTicket = (id, ticketId, data) => (dispatch, getState) => {
+  console.log('IDDATA', data)
   const jwt = getState().currentUser
-  request.patch(`${baseUrl}/events/${id}/tickets/${ticketId}`)
+  request
+    .patch(`${baseUrl}/events/${id}/tickets/${ticketId}`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
-    .then(response => dispatch(ticketUpdated(response.body)))
+    .then(dispatch(ticketUpdated(data)))
+    .catch(console.error)
 }

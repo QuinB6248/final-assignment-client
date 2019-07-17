@@ -5,9 +5,11 @@ const reducer = (state = null, action) => {
   switch(action.type) {
     case TICKET_FETCHED :
       return action.payload
-    case TICKET_UPDATED :
-      return action.payload
+    // case TICKET_UPDATED :
+    //   console.log('Action', state.ticket)
+    //   return {...state, ...state.ticket.event, ticket: action.payload}
     case COMMENT_CREATED:
+        console.log('ActionCOMM', action.payload)
       return [...state, action.payload]
    
     

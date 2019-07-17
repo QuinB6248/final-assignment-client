@@ -28,16 +28,19 @@ class TicketDetailsContainer extends Component {
     })
   }
   onEdit = () => {
+    if(!this.props.authenticated) {
+      return this.props.history.push('/login')
+    }
     this.setState({
       editMode: true,
       formValues: {
-        picture: this.props.ticket.picture, 
-        price: this.props.ticket.price,
-        description: this.props.ticket.description
+        picture: this.props.ticket.ticket.picture, 
+        price: this.props.ticket.ticket.price,
+        description: this.props.ticket.ticket.description
         }
      })
   }
-  onSubmit = (event) => {
+  onSubmitComment = (event) => {
     const id = this.props.tickets.map(ticket=> ticket.eventId)[0]
     const ticketId = this.props.ticket.ticket.id
     event.preventDefault()
@@ -64,16 +67,18 @@ class TicketDetailsContainer extends Component {
       return 'loading...'
       }
     
-    
-    console.log('DETAILTICKETS', this.props.ticket.ticket.id)
+    const commentArray = Object.values(this.props.ticket.comments)
+    console.log('DETAILTICKETS', commentArray)
     return (
      <div>
         <TicketDetails
           authenticated={this.props.authenticated}
           ticket={this.props.ticket}
           onAdd={this.onAdd} 
+          onEdit={this.onEdit}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
+          onSubmitComment={this.onSubmitComment}
           values={this.state}  
         />
       </div>
