@@ -2,19 +2,18 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TicketList from './TicketList'
 import { fetchTickets, createTicket, updateTicket, deleteTicket } from '../../actions/tickets'
-import {Route, Redirect, Switch} from 'react-router-dom'
-import LoginFormContainer from '../Login/LoginFormContainer'
+
 
 
 class EventListContainer extends Component {
-  componentDidMount() {
-    this.props.fetchTickets(this.props.match.params.id)
-  }
   state = {
     editMode: false
     
   }
-  
+
+  componentDidMount() {
+    this.props.fetchTickets(this.props.match.params.id)
+  }
   onDelete = () => {
     this.props.deleteEvent(this.props.event.id)
     this.props.history.push('/tickets')
@@ -54,7 +53,8 @@ class EventListContainer extends Component {
     this.setState({
       editMode: false
     })
-    this.props.createTicket(this.props.match.params.id, this.state.formValues)
+   
+    this.props.createTicket(Number(this.props.match.params.id), this.state.formValues)
   }
 
    

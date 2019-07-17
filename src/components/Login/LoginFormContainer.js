@@ -2,7 +2,8 @@ import React from 'react'
 import LoginForm from './Loginform'
 import {connect} from 'react-redux'
 import {login} from '../../actions/auth'
-//import {Switch, Route, Redirect} from 'react-router-dom'
+
+
 
 class LoginFormContainer extends React.Component {
 state = {
@@ -13,8 +14,9 @@ state = {
 onSubmit = (event) => {
  event.preventDefault()
  this.props.login(this.state.email, this.state.password)
- this.props.history.push()
+ this.props.history.goBack()
 }
+
 onChange = (event) => {
  this.setState({
    [event.target.name]: event.target.value

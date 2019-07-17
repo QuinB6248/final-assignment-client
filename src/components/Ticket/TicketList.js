@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../component.css'
-import TicketForm from '../Form/TicketForm'
+import TicketForm from './TicketForm'
 
 export default function TicketsList(props) {
   if(!props.tickets) {
@@ -39,7 +39,6 @@ export default function TicketsList(props) {
       <button onClick={onDelete}>DELETE</button>
       <button onClick={onEdit}>EDIT</button>
       <button onClick={onAdd}>ADD</button>
-     {/* <Link to={`/ticketform`}>Add a Ticket</Link> */}
     </div>
   )
 }

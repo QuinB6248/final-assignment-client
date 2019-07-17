@@ -13,6 +13,7 @@ state = {
 onSubmit = (event) => {
  event.preventDefault()
  this.props.signup(this.state.name, this.state.email, this.state.password)
+ this.props.history.push('/events')
 }
 onChange = (event) => {
  this.setState({

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function LoginForm(props) {
   const { onChange, onSubmit, values} = props
@@ -18,6 +19,8 @@ export default function LoginForm(props) {
         </div>
           
       </form>
+      <h4>No account yet? Please Sign Up:</h4>
+      <Link to={`/signup`}>SIGN UP</Link>
     </div>
   )
 }

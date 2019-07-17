@@ -1,14 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../component.css'
+import EventForm from './EventForm'
 
 export default function EventsList(props) {
   if(!props.events) {
     return 'loading...'
     }
-  const { events}  = props
  
+  const { events, onAdd, onChange, onSubmit, values, authenticated }  = props
   
+  const {editMode} = values
+  const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
+  const form = editMode && eventForm
   const listOfEvents = 
   events
     .map(event => 
@@ -27,9 +31,15 @@ export default function EventsList(props) {
   
     return (
     <div>
+      {listOfEvents}
+      <div>
+        {form}
+      </div>
+      <div>
+        <button onClick={onAdd}>ADD AN EVENT</button>
+      </div>
+      
      
-     {listOfEvents}
-     <Link to={`/eventform`}>Add an Event</Link>
     </div>
   )
 }

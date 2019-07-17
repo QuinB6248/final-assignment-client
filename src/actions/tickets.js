@@ -3,26 +3,27 @@ const baseUrl = 'http://localhost:4000'
 
 
 export const TICKETS_FETCHED = 'TICKETS_FETCHED'
-const eventsFetched = (events) => ({
+const ticketsFetched = (tickets) => ({
   type: TICKETS_FETCHED,
-  payload: events
+  payload: tickets
 })
 export const fetchTickets = (id) => (dispatch, getState) => {
   if (getState().events) return
   request(`${baseUrl}/events/${id}/tickets`)
     .then(response => {
       console.log('RSBODY', response.body)
-      dispatch(eventsFetched(response.body))})
+      dispatch(ticketsFetched(response.body))})
     .catch(console.error)
 }
 
 
 export const TICKET_CREATED = 'EVENT_CREATED'
-const ticketCreated = event => ({
+const ticketCreated = ticket => ({
   type: TICKET_CREATED,
-  payload: event
+  payload: ticket
 })
 export const createTicket = (id, data) => (dispatch, getState) => {
+  console.log('IDDDD', id)
   const jwt = getState().authUser
   request
     .post(`${baseUrl}/events/${id}/tickets`)

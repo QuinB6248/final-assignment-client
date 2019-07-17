@@ -5,18 +5,21 @@ export default function TicketForm(props) {
   
   return (
     <div>
+      
       <form onSubmit={onSubmit}>
         
-       
         <div>
+          
           <div>
             <label>image</label>
             <input type='text' name={'image'} value={values.image} onChange={onChange} placeholder='image'/>
           </div>
+          
           <div>
             <label>description</label>
             <input type='text' name={'description'} value={values.description} onChange={onChange} placeholder='description'/>
           </div>
+          
           <div>
             <label>price</label>
             <input name={'price'} value={values.price} onChange={onChange} placeholder='price'/>
@@ -26,7 +29,6 @@ export default function TicketForm(props) {
             <button type='submit'>ADD</button>
           </div>
         
-         
         </div>
         
       </form>
