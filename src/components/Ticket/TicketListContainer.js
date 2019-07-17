@@ -10,7 +10,6 @@ class EventListContainer extends Component {
     editMode: false
     
   }
-
   componentDidMount() {
     this.props.fetchTickets(this.props.match.params.id)
   }
@@ -26,14 +25,11 @@ class EventListContainer extends Component {
        price: this.props.ticket.price,
        description: this.props.ticket.description
        }
-      
-   })
-   
+    })
   }
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
- 
     } 
     this.setState({
       editMode: true,
@@ -44,21 +40,14 @@ class EventListContainer extends Component {
         }
     })
     console.log('THISSTATE', this.props.tickets)
-   }
-
-   
-
-   onSubmit = (event) => {
+  }
+  onSubmit = (event) => {
     event.preventDefault()
     this.setState({
       editMode: false
     })
-   
     this.props.createTicket(Number(this.props.match.params.id), this.state.formValues)
   }
-
-   
-
   onChange = (event) => {
     this.setState({
       formValues: {
@@ -71,10 +60,8 @@ class EventListContainer extends Component {
 
 
   render() {
-    
-    
     return (
-     <div>
+      <div>
         <TicketList 
           authenticated={this.props.authenticated}
           tickets={this.props.tickets}
@@ -85,7 +72,6 @@ class EventListContainer extends Component {
           onSubmit={this.onSubmit}
           values={this.state}  
         />
-        
       </div>
     )
   }
@@ -95,7 +81,6 @@ class EventListContainer extends Component {
 const mapStateToProps = state => ({
   tickets: state.tickets,
   authenticated: !!state.authUser
-  
 })
 
 export default connect(mapStateToProps, {fetchTickets, createTicket})(EventListContainer)

@@ -1,30 +1,27 @@
 import React from 'react'
 import '../component.css'
 import { Link } from 'react-router-dom'
+import CommentForm from './CommentForm'
 
 export default function TicketDetails(props) {
   if(!props.ticket) {
     return 'loading...'
     }
-  const { ticket, onDelete, onEdit, onChange, onSubmit, values } = props
+  const { ticket, onAdd, onChange, onSubmit, values } = props
+  const {editMode} = values
+  const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmit} values={values}/>
+  const form = editMode && commentForm
 
-  // const {editMode} = values
-  // const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
-  // const form = editMode && eventForm
-  console.log('TICKETSSS', ticket.ticket.event.name)
+  
+
 
   const commentList = ticket.comments.map(comment => 
     <li className='nobull' key={comment.id}>
-       
-          <div>
-            <div>
-              
-              <p>comment made by {comment.user.name}: {comment.comment}</p>
-            
-            </div>
-          </div>
+      <div>
+        <p>comment made by {comment.user.name}: {comment.comment}</p>
       
-      </li>)
+      </div>
+    </li>)
   
   return (
     <div>
@@ -38,9 +35,8 @@ export default function TicketDetails(props) {
       <div>
        {commentList}
       </div>
-      <button onClick={onDelete}>DELETE</button>
-      <button onClick={onEdit}>EDIT</button>
-      {/* {form} */}
+      <button onClick={onAdd}>ADD COMMENT</button>
+      {form} 
 
     </div>
   )
