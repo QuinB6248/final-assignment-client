@@ -9,7 +9,7 @@ class TicketDetailsContainer extends Component {
   
 
   componentDidMount() {
-    this.props.fetchTicket(this.props.match.params.id, this.props.match.params.ticketId)
+    this.props.fetchTicket(this.props.tickets.map(ticket=> ticket.eventId)[0],this.props.match.params.ticketId)
   }
 
 
@@ -32,6 +32,7 @@ class TicketDetailsContainer extends Component {
 
 const mapStateToProps = state => ({
   ticket: state.ticket,
+  tickets: state.tickets,
   authenticated: !!state.authUser
   
 })

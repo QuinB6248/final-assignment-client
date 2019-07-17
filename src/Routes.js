@@ -18,8 +18,8 @@ function Routes(props) {
 {/* 
 {!props.authenticated && */}
   <Switch>
-    <Route path="/events/:id/tickets/:ticketId" exact component={TicketDetailsContainer} />
-    <Route path="/events/:id/tickets" exact component={TicketListContainer} /> 
+    <Route path="/tickets/:ticketId" exact component={TicketDetailsContainer} />
+    <Route path="/events/:id/tickets" exact component={TicketListContainer} />  
     <Route path="/events" exact component={EventListContainer} />
     <Route path="/login" exact component={LoginFormContainer} />
     <Route path="/signup" exact component={SignUpFormContainer} />

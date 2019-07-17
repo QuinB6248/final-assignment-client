@@ -9,7 +9,7 @@ const ticketFetched = (ticket) => ({
 })
 export const fetchTicket = (id, ticketId) => (dispatch, getState) => {
   if (getState().events) return
-  request(`${baseUrl}/events/${id}/tickets/${ticketId}`)
+  request(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
     .then(response => {
       console.log('RSBODY', response.body)
       dispatch(ticketFetched(response.body))})
