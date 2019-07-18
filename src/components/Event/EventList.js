@@ -18,15 +18,37 @@ export default function EventsList(props) {
   events
     .map(event => 
       <li className='nobull' key={event.id}>
+        <div className='headerSpace'>
         <Link to={`/events/${event.id}/tickets`}>
-          <div>
-            <div>
-              <h2>{event.name}</h2>
-              <h4>{event.description}€{event.avg_price}</h4>
-              <p>start:{event.start}</p><p>end:{event.end}</p>
-            </div>
+              <div >
+                <h2>{event.name}</h2>
+              </div>
+          </Link>
+        </div>
+        
+          <div className='eventSpace'>
+          
+              <div className='imageSpace'>
+                <img className='imgSize'src={event.image}/>
+              </div>
+              <div className='descriptionSpace'>
+                <h4>{event.description}</h4>
+              </div>
+              <div className='priceSpace'>
+                <h4>€{event.avg_price}</h4>
+              </div>
+              <div className='dateSpace'>
+                <p>start:{event.start}</p>
+              </div>
+              <div className='dateSpace'>
+                <p>end:{event.end}</p>
+              </div>
+
+             
+              
+          
           </div>
-        </Link>
+       
       </li>)
   
   
@@ -37,7 +59,7 @@ export default function EventsList(props) {
       <div>
         {form}
       </div>
-      <div>
+      <div className='headerSpace'>
         <button onClick={onAdd}>ADD AN EVENT</button>
       </div>
       

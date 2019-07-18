@@ -83,7 +83,7 @@ class TicketDetailsContainer extends Component {
       }
     
     //const commentArray = Object.values(this.props.ticket.comments)
-    console.log('DETAILTICKETS', this.props.tickets)
+    console.log('DETAILTICKETS', this.props.ticket)
     return (
      <div>
         <TicketDetails
