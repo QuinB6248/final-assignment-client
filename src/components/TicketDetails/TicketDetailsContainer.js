@@ -9,7 +9,7 @@ class TicketDetailsContainer extends Component {
  
   state = {
     editMode: false,
-    editCommentMode: false
+    editCommentMode: false,
   }
 
   componentDidMount() {

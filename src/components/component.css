@@ -112,3 +112,28 @@ input {
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+.green{
+  background-color: rgb(31, 145, 31);
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+.red{
+  background-color: red;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.yellow{
+  background-color: yellow;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+}

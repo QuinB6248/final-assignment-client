@@ -36,9 +36,12 @@ export default function TicketDetails(props) {
         <p>{ticket.ticket.description}</p>
         <div className='imageSpace'>
           <img className='imgSize' src={ticket.ticket.image}/>
-
         </div>
-        
+        <div>
+          <h4>fraud-risk:</h4>
+          <h4>{ticket.ticket.risk} %</h4>
+          
+        </div>
         <p>€{ticket.ticket.price}</p>
       </div>
       <div className='headerSpace'>

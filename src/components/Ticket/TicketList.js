@@ -37,6 +37,13 @@ export default function TicketsList(props) {
           <div>
             <h4>€{ticket.price}</h4>
           </div>
+          {ticket.risk < 50 ? 
+          <div className='green'></div> : 
+          ticket.risk > 75 ? 
+          <div className='red'></div> : 
+          <div className='yellow'></div>
+          }
+          
         </div>
         
       </li>)
