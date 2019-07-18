@@ -9,10 +9,10 @@ export default function TicketDetails(props) {
     return 'loading...'
     }
   const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values } = props
-  const {editMode} = values
+  const {editMode, editCommentMode} = values
   const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
   const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
-  const commentform = editMode && commentForm
+  const commentform = editCommentMode && commentForm
   const editform = editMode && editForm
 
 
@@ -29,7 +29,7 @@ export default function TicketDetails(props) {
   return (
     <div>
       <Link to= "/events">HOME</Link>
-      <h1>{ticket.ticket.event.name}</h1>
+      <h1>{ticket.event.name}</h1>
       <p>{ticket.ticket.description}</p>
       <img src={ticket.ticket.image}/>
       <p>€{ticket.ticket.price}</p>

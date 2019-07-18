@@ -9,10 +9,10 @@ class EventListContainer extends Component {
     editMode: false
     
   }
-  componentDidMount() {
-    this.props.fetchTickets(this.props.match.params.id)
-  }
   
+  componentWillMount() {
+    this.props.fetchTickets(Number(this.props.match.params.id))
+  }
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')

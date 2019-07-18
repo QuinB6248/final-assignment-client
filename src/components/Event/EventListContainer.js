@@ -4,6 +4,7 @@ import EventList from './EventList'
 import { fetchEvents, createEvent } from '../../actions/events'
 
 
+
 class EventListContainer extends Component {
   state = {
     editMode: false
@@ -11,7 +12,7 @@ class EventListContainer extends Component {
   }
   
   componentDidMount() {
-    this.props.fetchEvents(4)
+    this.props.fetchEvents(10)
   }
   
   onAdd = () => {
@@ -50,6 +51,7 @@ class EventListContainer extends Component {
     }
     
     render() {
+      console.log('EVENTS', this.props.events)
       return (
         <div>
           <EventList 
@@ -59,6 +61,7 @@ class EventListContainer extends Component {
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             values={this.state}    />
+             
         </div>
       )
     }

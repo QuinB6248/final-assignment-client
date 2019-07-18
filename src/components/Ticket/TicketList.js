@@ -20,7 +20,7 @@ export default function TicketsList(props) {
   tickets
     .map(ticket => 
       <li className='nobull' key={ticket.id}>
-        <Link to={`/tickets/${ticket.id}`}>
+        <Link to={`events/${ticket.event.id}/tickets/${ticket.id}`}>
           <div>
             <div>
               <h2>{ticket.event.name}</h2>

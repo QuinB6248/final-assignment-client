@@ -1,4 +1,4 @@
-import { TICKET_FETCHED, COMMENT_CREATED, TICKET_UPDATED  } from '../actions/ticket'
+import { TICKET_FETCHED, COMMENT_CREATED  } from '../actions/ticket'
   
 
 const reducer = (state = null, action) => {
@@ -8,9 +8,6 @@ const reducer = (state = null, action) => {
     case COMMENT_CREATED:
         console.log('ActionCOMM', action.payload)
       return [...state, action.payload]
-    case TICKET_UPDATED :
-      console.log('Action', state.comments)
-      return {...state, comments: state.comments, ticket:action.payload}
     
    
     

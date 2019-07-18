@@ -8,7 +8,7 @@ const reducer = (state = null, action) => {
     case EVENTS_COUNT:
       return action.payload
     
-    case EVENT_CREATED:
+    case EVENT_CREATED: 
       return [...state, action.payload]
     
     default: 

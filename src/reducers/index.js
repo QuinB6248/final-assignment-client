@@ -5,7 +5,7 @@ import events from './events'
 import count from './count'
 import tickets from './tickets'
 import ticket from './ticket'
-import updateTicket from './updateTicket'
+
 
 export default combineReducers({
   authUser,
@@ -14,5 +14,7 @@ export default combineReducers({
   count,
   tickets,
   ticket,
+  
+  
  
 })

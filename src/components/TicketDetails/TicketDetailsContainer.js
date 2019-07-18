@@ -8,11 +8,12 @@ import { fetchTicket, createComment, updateTicket } from '../../actions/ticket'
 class TicketDetailsContainer extends Component {
  
   state = {
-    editMode: false
+    editMode: false,
+    editCommentMode: false
   }
 
   componentDidMount() {
-    const id = this.props.tickets.map(ticket=> ticket.eventId)[0]
+    const id = Number(this.props.match.params.id)
     this.props.fetchTicket(id, this.props.match.params.ticketId)
   }
   
@@ -21,7 +22,8 @@ class TicketDetailsContainer extends Component {
       return this.props.history.push('/login')
     }
     this.setState({
-      editMode: true,
+      editMode: false,
+      editCommentMode: true,
       formValues: {
         comment: "", 
       }
@@ -41,13 +43,26 @@ class TicketDetailsContainer extends Component {
      })
   }
   onSubmitComment = (event) => {
-    const id = this.props.tickets.map(ticket=> ticket.eventId)[0]
+    //const id = this.props.tickets.map(ticket=> ticket.eventId)[0]
+    const id = this.props.ticket.event.id
     const ticketId = this.props.ticket.ticket.id
     event.preventDefault()
     this.setState({
-      editMode: false
+      editMode: false,
+      editCommentMode: false
     })
    this.props.createComment(id, ticketId, this.state.formValues)
+  }
+
+  onSubmit = (event) => {
+    const id = this.props.ticket.event.id
+    const ticketId = this.props.ticket.ticket.id
+    event.preventDefault()
+    this.setState({
+      editMode: false,
+      editCommentMode: false
+    })
+   this.props.updateTicket(id, ticketId, this.state.formValues)
   }
 
   onChange = (event) => {
@@ -67,8 +82,8 @@ class TicketDetailsContainer extends Component {
       return 'loading...'
       }
     
-    const commentArray = Object.values(this.props.ticket.comments)
-    console.log('DETAILTICKETS', commentArray)
+    //const commentArray = Object.values(this.props.ticket.comments)
+    console.log('DETAILTICKETS', this.props.tickets)
     return (
      <div>
         <TicketDetails

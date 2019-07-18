@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../component.css'
 import EventForm from './EventForm'
 
+
 export default function EventsList(props) {
   if(!props.events) {
     return 'loading...'
@@ -32,6 +33,7 @@ export default function EventsList(props) {
     return (
     <div>
       {listOfEvents}
+      
       <div>
         {form}
       </div>
