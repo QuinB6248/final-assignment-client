@@ -1,9 +1,10 @@
 import React from 'react'
+import '../component.css'
 
 export default function SignUpForm(props) {
   const { onChange, onSubmit, values} = props
   return (
-    <div>
+    <div className='eventSpace'>
       <form onSubmit={onSubmit}>
       <div>
           <label>USERNAME</label>

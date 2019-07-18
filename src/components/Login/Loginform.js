@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../component.css'
 
 export default function LoginForm(props) {
   const { onChange, onSubmit, values} = props
   return (
-    <div>
+    <div className='eventSpace'>
       <form onSubmit={onSubmit}>
         <div>
           <label>EMAIL</label>
@@ -22,5 +23,9 @@ export default function LoginForm(props) {
       <h4>No account yet? Please Sign Up:</h4>
       <Link to={`/signup`}>SIGN UP</Link>
     </div>
+
+    
+
+    
   )
 }

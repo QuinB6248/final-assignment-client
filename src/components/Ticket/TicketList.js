@@ -20,15 +20,25 @@ export default function TicketsList(props) {
   tickets
     .map(ticket => 
       <li className='nobull' key={ticket.id}>
-        <Link to={`events/${ticket.event.id}/tickets/${ticket.id}`}>
-          <div>
-            <div>
+        <div className='headerSpace'>
+          <Link to={`events/${ticket.event.id}/tickets/${ticket.id}`}>
+            <div >
               <h2>{ticket.event.name}</h2>
-              <h4>{ticket.description}€{ticket.price}</h4>
-             
             </div>
+          </Link>
+        </div >
+        <div className='eventSpace'>
+          <div className='imageSpace'>
+            <img className='imgSize'src={ticket.image}/>
           </div>
-        </Link>
+          <div>
+            <h4>{ticket.description}</h4>
+          </div>
+          <div>
+            <h4>€{ticket.price}</h4>
+          </div>
+        </div>
+        
       </li>)
   
   
@@ -38,7 +48,10 @@ export default function TicketsList(props) {
      {listOfTickets}
     
      {form}
-      <button onClick={onAdd}>ADD</button>
+     <div className='headerSpace'>
+     <button onClick={onAdd}>ADD A TICKET</button>
+      </div>
+      
     </div>
   )
 }

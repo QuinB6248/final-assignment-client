@@ -25,6 +25,20 @@ body {
   padding: 10px 10px;
   
 }
+
+.commentSpace {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(166, 235, 252);
+  width: 90%;
+  height: 50px;
+  margin: auto;
+  border-radius: 5px;
+  padding: 10px 10px;
+  
+}
 .headerSpace {
   display: flex;
   justify-content: center;
@@ -39,6 +53,19 @@ body {
   
 }
 
+.header2Space {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(167, 188, 193);
+  width: 90%;
+  height: 30px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 10px 10px;
+  
+}
 
 .imageSpace {
   width: 20%;
@@ -79,4 +106,9 @@ button {
 }
 
 
-
+input {
+  width: 120%;
+  padding: 6px 30px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}

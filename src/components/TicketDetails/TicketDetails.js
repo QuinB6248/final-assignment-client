@@ -21,27 +21,39 @@ export default function TicketDetails(props) {
 
   const commentList = ticket.comments.map(comment => 
     <li className='nobull' key={comment.id}>
-      <div>
+      <div >
         <p>comment made by {comment.user.name}: {comment.comment}</p>
       </div>
     </li>)
   
   return (
     <div>
-      <Link to= "/events">HOME</Link>
-      <h1>{ticket.event.name}</h1>
-      <p>{ticket.ticket.description}</p>
-      <img src={ticket.ticket.image}/>
-      <p>€{ticket.ticket.price}</p>
-
-      <button onClick={onEdit}>EDIT TICKET</button>
-      {editform} 
-
-      <h4>COMMENTS</h4>
-      <div>
-       {commentList}
+      <div className='headerSpace'>
+        <Link to= "/events">HOME</Link>
       </div>
-      <button onClick={onAdd}>ADD COMMENT</button>
+      <div className='eventSpace'> 
+        <h1>{ticket.event.name}</h1>
+        <p>{ticket.ticket.description}</p>
+        <div className='imageSpace'>
+          <img className='imgSize' src={ticket.ticket.image}/>
+
+        </div>
+        
+        <p>€{ticket.ticket.price}</p>
+      </div>
+      <div className='headerSpace'>
+        <button onClick={onEdit}>EDIT TICKET</button>
+      </div>
+      {editform}
+      <div >
+        <h4>COMMENTS</h4>
+        <div >
+          {commentList}
+        </div>
+      </div> 
+      <div  className='headerSpace'>
+        <button onClick={onAdd}>ADD COMMENT</button>
+      </div>
       {commentform} 
 
     </div>
