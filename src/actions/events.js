@@ -16,13 +16,15 @@ export const fetchEvents = (limit) => (dispatch, getState) => {
 
 
 export const EVENTS_COUNT = 'EVENTS_COUNT'
-const eventsCount = (events) => ({
+const eventsCount = (total, numOfPages) => ({
   type: EVENTS_COUNT,
-  payload: events
+  payload: [total, numOfPages]
 })
 export const countEvents = () => (dispatch) => {
   request(`${baseUrl}/events`)
-    .then(response => dispatch(eventsCount(response.body.total)))
+    .then(response => {
+      console.log('EVENTS', response.body.total)
+      dispatch(eventsCount(response.body.total, response.body.numOfPages))})
     .catch(console.error)
 }
 

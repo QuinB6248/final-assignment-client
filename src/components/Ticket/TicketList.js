@@ -6,7 +6,7 @@ import TicketForm from './TicketForm'
 
 export default function TicketsList(props) {
   if(!props.tickets) {
-    return 'loading...'
+    return 'Refresh Page!'
     }
 
   const { tickets, onAdd, onChange, onSubmit, values }  = props
@@ -34,9 +34,9 @@ export default function TicketsList(props) {
           <div>
             <h4>€{ticket.price}</h4>
           </div>
-          {ticket.risk < 10 ? 
+          {ticket.risk < 15 ? 
           <div className='green'></div> : 
-          ticket.risk > 75 ? 
+          ticket.risk > 70 ? 
           <div className='red'></div> : 
           <div className='yellow'></div>
           }
@@ -45,6 +45,9 @@ export default function TicketsList(props) {
   
     return (
       <div>
+        <div className='headerSpace'>
+          <Link to= "/events">HOME</Link>
+        </div>
         {listOfTickets}
         {form}
         <div className='headerSpace'>

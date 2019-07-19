@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import EventList from './EventList'
-import { fetchEvents, createEvent } from '../../actions/events'
+import { fetchEvents, createEvent, countEvents } from '../../actions/events'
 
 
 class EventListContainer extends Component {
   state = {
-    editMode: false
+    editMode: false,
+    allEvents: [1,2,3],
+    currentPage: 1,
+    eventsPerPage: 3
   }
-  
+
   componentDidMount() {
-    this.props.fetchEvents(10)
+    this.props.fetchEvents(this.state.eventsPerPage)
+  }
+
+  handleClick = (event) => {
+    this.setState({
+      currentPage: Number(event.target.id)
+    })
   }
   
   onAdd = () => {
@@ -46,9 +55,12 @@ class EventListContainer extends Component {
          }
       })
     }
-    
+
     render() {
-      console.log('EVENTS', this.props.events)
+      if(!this.props.events) {
+        return 'loading...'
+        }
+      console.log('STAAAT', this.state)
       return (
         <div>
           <EventList 
@@ -57,7 +69,9 @@ class EventListContainer extends Component {
             onAdd={this.onAdd} 
             onChange={this.onChange}
             onSubmit={this.onSubmit}
-            values={this.state}    />
+            values={this.state}
+            handleClick={this.handleClick}
+          />
         </div>
       )
     }
@@ -66,7 +80,8 @@ class EventListContainer extends Component {
 
 const mapStateToProps = state => ({
   events: state.events,
-  authenticated: !!state.authUser
+  authenticated: !!state.authUser,
+  count: state.count
 })
 
-export default connect(mapStateToProps, {fetchEvents, createEvent})(EventListContainer)
+export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents})(EventListContainer)

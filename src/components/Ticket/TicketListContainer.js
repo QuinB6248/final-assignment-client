@@ -9,7 +9,7 @@ class EventListContainer extends Component {
     editMode: false
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTickets(Number(this.props.match.params.id))
   }
   
@@ -45,6 +45,9 @@ class EventListContainer extends Component {
   }
   
   render() {
+    if(!this.props.tickets) {
+      return 'Refresh Page!'
+      }
     return (
       <div>
         <TicketList 

@@ -131,3 +131,15 @@ input {
   border-radius: 50%;
   display: inline-block;
 }
+
+.page-numbers {
+  list-style: none;
+  display: flex;
+}
+
+.page-numbers > li {
+  margin-right: 0.3em;
+  color: rgb(6, 60, 94);
+  user-select: none;
+  cursor: pointer;
+}
