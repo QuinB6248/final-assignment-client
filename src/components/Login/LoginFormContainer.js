@@ -3,8 +3,6 @@ import LoginForm from './Loginform'
 import {connect} from 'react-redux'
 import {login} from '../../actions/auth'
 
-
-
 class LoginFormContainer extends React.Component {
 state = {
     email: '',
@@ -22,6 +20,7 @@ onChange = (event) => {
    [event.target.name]: event.target.value
  })
 }
+
 render() {
  return (
   <div>

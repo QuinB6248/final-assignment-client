@@ -6,10 +6,9 @@ import { fetchTicket, createComment, updateTicket } from '../../actions/ticket'
 
 
 class TicketDetailsContainer extends Component {
- 
-  state = {
+ state = {
     editMode: false,
-    editCommentMode: false
+    editCommentMode: false,
   }
 
   componentDidMount() {
@@ -29,6 +28,7 @@ class TicketDetailsContainer extends Component {
       }
     })
   }
+
   onEdit = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
@@ -42,8 +42,8 @@ class TicketDetailsContainer extends Component {
         }
      })
   }
+
   onSubmitComment = (event) => {
-    //const id = this.props.tickets.map(ticket=> ticket.eventId)[0]
     const id = this.props.ticket.event.id
     const ticketId = this.props.ticket.ticket.id
     event.preventDefault()
@@ -73,17 +73,14 @@ class TicketDetailsContainer extends Component {
       }
     })
     console.log('ChangeState', this.state)
-
   }
 
   render() {
-
     if(!this.props.ticket) {
       return 'loading...'
       }
-    
-    //const commentArray = Object.values(this.props.ticket.comments)
     console.log('DETAILTICKETS', this.props.ticket)
+    
     return (
      <div>
         <TicketDetails

@@ -2,12 +2,10 @@ import request from 'superagent'
 const baseUrl = 'http://localhost:4000'
 
 export const LOGIN_SUCCES = 'LOGIN_SUCCES'
-
 const loginSucces = jwt => ({
   type: LOGIN_SUCCES,
   payload: jwt
 })
-
 export const login = (email, password) => (dispatch) => {
   
   request
@@ -21,13 +19,12 @@ export const login = (email, password) => (dispatch) => {
     .catch(console.error)
 }
 
-export const SIGNUP_SUCCES = 'SIGNUP_SUCCES'
 
+export const SIGNUP_SUCCES = 'SIGNUP_SUCCES'
 const signupSucces = event => ({
   type: SIGNUP_SUCCES,
   payload: event
 })
-
 export const signup = (name, email, password) => (dispatch) => {
   request
     .post(`${baseUrl}/signup`)

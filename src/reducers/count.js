@@ -5,10 +5,8 @@ const reducer = (state = null, action) => {
   switch(action.type) {
     case EVENTS_COUNT:
       return action.payload
-    
     default: 
       return state
-    
   }
 }
 

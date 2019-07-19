@@ -16,6 +16,7 @@ export const fetchTicket = (id, ticketId) => (dispatch, getState) => {
     .catch(console.error)
 }
 
+
 export const COMMENT_CREATED = 'COMMENT_CREATED'
 const commentCreated = comment => ({
   type: COMMENT_CREATED,
@@ -32,13 +33,12 @@ export const createComment = (id, ticketId, data) => (dispatch, getState) => {
     .catch(console.error)
 }
 
-export const TICKET_UPDATED = 'TICKET_UPDATED'
 
+export const TICKET_UPDATED = 'TICKET_UPDATED'
 const ticketUpdated = ticket => ({
   type: TICKET_UPDATED,
   payload: ticket
 })
-
 export const updateTicket = (id, ticketId, data) => (dispatch, getState) => {
   console.log('IDDATA', data)
   const jwt = getState().currentUser

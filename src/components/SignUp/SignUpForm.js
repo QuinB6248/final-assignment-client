@@ -3,6 +3,7 @@ import '../component.css'
 
 export default function SignUpForm(props) {
   const { onChange, onSubmit, values} = props
+  
   return (
     <div className='eventSpace'>
       <form onSubmit={onSubmit}>

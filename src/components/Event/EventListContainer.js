@@ -4,11 +4,9 @@ import EventList from './EventList'
 import { fetchEvents, createEvent } from '../../actions/events'
 
 
-
 class EventListContainer extends Component {
   state = {
     editMode: false
-    
   }
   
   componentDidMount() {
@@ -18,7 +16,6 @@ class EventListContainer extends Component {
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
- 
     } 
     this.setState({
       editMode: true,
@@ -61,7 +58,6 @@ class EventListContainer extends Component {
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             values={this.state}    />
-             
         </div>
       )
     }
