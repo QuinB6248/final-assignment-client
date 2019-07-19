@@ -8,13 +8,9 @@ const reducer = (state = null, action) => {
     case COMMENT_CREATED:
         console.log('ActionCOMM', action.payload)
       return [...state, action.payload]
-    
-   
-    
     default: 
       return state
-    
-  }
+    }
 }
 
 export default reducer

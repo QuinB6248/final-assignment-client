@@ -4,6 +4,7 @@ import '../component.css'
 
 export default function LoginForm(props) {
   const { onChange, onSubmit, values} = props
+  
   return (
     <div className='eventSpace'>
       <form onSubmit={onSubmit}>
@@ -18,14 +19,9 @@ export default function LoginForm(props) {
         <div>
           <button type='submit'>LOGIN</button>
         </div>
-          
       </form>
       <h4>No account yet? Please Sign Up:</h4>
       <Link to={`/signup`}>SIGN UP</Link>
     </div>
-
-    
-
-    
   )
 }

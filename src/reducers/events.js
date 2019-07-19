@@ -7,13 +7,10 @@ const reducer = (state = null, action) => {
       return action.payload
     case EVENTS_COUNT:
       return action.payload
-    
     case EVENT_CREATED: 
       return [...state, action.payload]
-    
     default: 
       return state
-    
   }
 }
 

@@ -15,11 +15,13 @@ onSubmit = (event) => {
  this.props.signup(this.state.name, this.state.email, this.state.password)
  this.props.history.push('/events')
 }
+
 onChange = (event) => {
  this.setState({
    [event.target.name]: event.target.value
  })
 }
+
 render() {
  return (
    <div>

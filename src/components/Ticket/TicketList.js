@@ -8,14 +8,11 @@ export default function TicketsList(props) {
   if(!props.tickets) {
     return 'loading...'
     }
+
   const { tickets, onAdd, onChange, onSubmit, values }  = props
-  
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && ticketForm
-  
- 
-  
   const listOfTickets = 
   tickets
     .map(ticket => 
@@ -37,28 +34,22 @@ export default function TicketsList(props) {
           <div>
             <h4>€{ticket.price}</h4>
           </div>
-          {ticket.risk < 50 ? 
+          {ticket.risk < 10 ? 
           <div className='green'></div> : 
           ticket.risk > 75 ? 
           <div className='red'></div> : 
           <div className='yellow'></div>
           }
-          
         </div>
-        
       </li>)
   
-  
     return (
-    <div>
-     
-     {listOfTickets}
-    
-     {form}
-     <div className='headerSpace'>
-     <button onClick={onAdd}>ADD A TICKET</button>
+      <div>
+        {listOfTickets}
+        {form}
+        <div className='headerSpace'>
+          <button onClick={onAdd}>ADD A TICKET</button>
+        </div>
       </div>
-      
-    </div>
   )
 }

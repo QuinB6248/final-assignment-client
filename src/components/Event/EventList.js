@@ -9,8 +9,7 @@ export default function EventsList(props) {
     return 'loading...'
     }
  
-  const { events, onAdd, onChange, onSubmit, values, authenticated }  = props
-  
+  const { events, onAdd, onChange, onSubmit, values}  = props
   const {editMode} = values
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && eventForm
@@ -47,17 +46,14 @@ export default function EventsList(props) {
   
   
     return (
-    <div>
-      {listOfEvents}
-      
       <div>
-        {form}
+        {listOfEvents}
+        <div>
+          {form}
+        </div>
+        <div className='headerSpace'>
+          <button onClick={onAdd}>ADD AN EVENT</button>
+        </div>
       </div>
-      <div className='headerSpace'>
-        <button onClick={onAdd}>ADD AN EVENT</button>
-      </div>
-      
-     
-    </div>
-  )
+    )
 }

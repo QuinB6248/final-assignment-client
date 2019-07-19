@@ -7,12 +7,12 @@ import { fetchTickets, createTicket} from '../../actions/tickets'
 class EventListContainer extends Component {
   state = {
     editMode: false
-    
   }
   
   componentWillMount() {
     this.props.fetchTickets(Number(this.props.match.params.id))
   }
+  
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
@@ -25,8 +25,8 @@ class EventListContainer extends Component {
         description: ""
         }
     })
-    console.log('THISSTATE', this.props.tickets)
   }
+
   onSubmit = (event) => {
     event.preventDefault()
     this.setState({
@@ -34,6 +34,7 @@ class EventListContainer extends Component {
     })
     this.props.createTicket(Number(this.props.match.params.id), this.state.formValues)
   }
+
   onChange = (event) => {
     this.setState({
       formValues: {
@@ -43,7 +44,6 @@ class EventListContainer extends Component {
     })
   }
   
-
   render() {
     return (
       <div>

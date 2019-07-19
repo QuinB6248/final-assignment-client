@@ -1,5 +1,4 @@
 import { TICKETS_FETCHED, TICKET_CREATED  } from '../actions/tickets'
-//import { TICKET_UPDATED} from '../actions/ticket'
   
 
 const reducer = (state = null, action) => {
@@ -8,10 +7,8 @@ const reducer = (state = null, action) => {
       return action.payload
     case TICKET_CREATED:
       return [...state, action.payload]
-  
     default: 
       return state
-    
   }
 }
 
