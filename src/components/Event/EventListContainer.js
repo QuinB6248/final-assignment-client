@@ -7,19 +7,26 @@ import { fetchEvents, createEvent, countEvents } from '../../actions/events'
 class EventListContainer extends Component {
   state = {
     editMode: false,
-    allEvents: [],
-    currentPage: 1,
-    eventsPerPage: 5
+    eventsPerPage: 3,
+    curOffset:0
   }
 
   componentDidMount() {
-    this.props.fetchEvents(this.state.eventsPerPage)
+    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
 
-  handleClick = (event) => {
+  clickNext = (event) => {
     this.setState({
-      currentPage: Number(event.target.id)
+      curOffset: this.state.curOffset+=3,
     })
+    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+  }
+
+  clickPrevious = (event) => {
+    this.setState({
+      curOffset: this.state.curOffset-=3,
+    })
+    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
   
   onAdd = () => {
@@ -60,7 +67,7 @@ class EventListContainer extends Component {
       if(!this.props.events) {
         return 'loading...'
         }
-      console.log('STAAAT', this.state)
+      console.log('STAAAT', this.props.events)
       return (
         <div>
           <EventList 
@@ -70,7 +77,8 @@ class EventListContainer extends Component {
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             values={this.state}
-            handleClick={this.handleClick}
+            clickNext={this.clickNext}
+            clickPrevious={this.clickPrevious}
             linkClick={this.linkClick}
           />
         </div>

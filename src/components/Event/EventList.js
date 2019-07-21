@@ -9,32 +9,14 @@ export default function EventsList(props) {
     return 'loading...'
     }
  
-  const { events, onAdd, onChange, onSubmit, values, handleClick, linkClick}  = props
+  const { events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick}  = props
   const {editMode} = values
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && eventForm
-  
-  const indexOfLastEvent = values.currentPage * values.eventsPerPage
-  const indexOfFirstEvent = values.indexOfLastEvent - values.eventsPerPage
-  const currentEvents = events.slice(indexOfFirstEvent, indexOfLastEvent)
-  const pageNumbers = []
-    for (let i = 1; i <= Math.ceil(events.length / values.eventsPerPage); i++) {
-      pageNumbers.push(i);
-    }
-  const renderPageNumbers = pageNumbers.map(number => {
-      return (
-        <li
-          key={number}
-          id={number}
-          onClick={handleClick}
-        > {number}
-        </li>
-      );
-    });
-  
+  console.log('EVENTS', Math.ceil(events.length / values.eventsPerPage))
   
   const listOfEvents = 
-  currentEvents
+  events
     .map((event, index) => 
       <li className='nobull' key={index}  onClick={linkClick}>
         <div className='headerSpace'>
@@ -71,9 +53,12 @@ export default function EventsList(props) {
         <div className='headerSpace'>
           <button onClick={onAdd}>ADD AN EVENT</button>
         </div>
-        <div className='page-numbers'>
-          {renderPageNumbers}
+        <div className='headerSpace'>
+         
+          <button onClick={clickPrevious}>PREVIOUS</button>
+          <button onClick={clickNext}>NEXT</button>
         </div>
+        
         
       </div>
     )

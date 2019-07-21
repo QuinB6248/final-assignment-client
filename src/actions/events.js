@@ -7,10 +7,11 @@ const eventsFetched = (events) => ({
   type: EVENTS_FETCHED,
   payload: events
 })
-export const fetchEvents = (limit) => (dispatch, getState) => {
-  if (getState().events) return
-  request(`${baseUrl}/events?limit=${limit}`)
-    .then(response => dispatch(eventsFetched(response.body.events)))
+export const fetchEvents = (limit, offset) => (dispatch) => {
+  request(`${baseUrl}/events?limit=${limit}&offset=${offset}`)
+    .then(response => {
+      dispatch(eventsFetched(response.body.events))
+    })
     .catch(console.error)
 }
 
