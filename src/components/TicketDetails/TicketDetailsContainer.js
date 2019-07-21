@@ -76,10 +76,10 @@ class TicketDetailsContainer extends Component {
   }
 
   render() {
-    // if(!this.props.ticket) {
-    //   return 'loading...'
-    //   }
-    console.log('DETAILTICKETS', this.props.ticket)
+    if(!this.props.ticket) {
+      return 'loading...'
+      }
+    console.log('DETAILTICKETS', this.props.authenticated)
     
     return (
      <div>

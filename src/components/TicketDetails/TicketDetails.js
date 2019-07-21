@@ -10,6 +10,7 @@ export default function TicketDetails(props) {
     }
 
   const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values } = props
+  
   const {editMode, editCommentMode} = values
   const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
   const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
