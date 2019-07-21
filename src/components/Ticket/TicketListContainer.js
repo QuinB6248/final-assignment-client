@@ -46,9 +46,9 @@ class EventListContainer extends Component {
   
   render() {
     if(!this.props.tickets) {
-      return 'Refresh Page!'
+      return 'Loading...'
       }
-    return (
+      return (
       <div>
         <TicketList 
           tickets={this.props.tickets}

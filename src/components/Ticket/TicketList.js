@@ -6,7 +6,7 @@ import TicketForm from './TicketForm'
 
 export default function TicketsList(props) {
   if(!props.tickets) {
-    return 'Refresh Page!'
+    return 'loading...'
     }
 
   const { tickets, onAdd, onChange, onSubmit, values }  = props
@@ -20,7 +20,7 @@ export default function TicketsList(props) {
         <div className='headerSpace'>
           
             <div >
-              <a  href={`events/${ticket.event.id}/tickets/${ticket.id}`}><h2>{ticket.event.name}</h2></a>
+              <a  href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{ticket.name}</h2></a>
               
             </div>
         

@@ -17,7 +17,7 @@ export const fetchTickets = (id) => (dispatch, getState) => {
 }
 
 
-export const TICKET_CREATED = 'EVENT_CREATED'
+export const TICKET_CREATED = 'TICKET_CREATED'
 const ticketCreated = ticket => ({
   type: TICKET_CREATED,
   payload: ticket

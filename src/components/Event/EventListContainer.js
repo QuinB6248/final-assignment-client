@@ -7,7 +7,7 @@ import { fetchEvents, createEvent, countEvents } from '../../actions/events'
 class EventListContainer extends Component {
   state = {
     editMode: false,
-    eventsPerPage: 3,
+    eventsPerPage: 15,
     curOffset:0
   }
 
