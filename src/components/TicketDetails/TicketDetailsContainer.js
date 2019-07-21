@@ -76,9 +76,9 @@ class TicketDetailsContainer extends Component {
   }
 
   render() {
-    if(!this.props.ticket) {
-      return 'loading...'
-      }
+    // if(!this.props.ticket) {
+    //   return 'loading...'
+    //   }
     console.log('DETAILTICKETS', this.props.ticket)
     
     return (

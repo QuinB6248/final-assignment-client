@@ -18,11 +18,12 @@ export default function TicketsList(props) {
     .map(ticket => 
       <li className='nobull' key={ticket.id}>
         <div className='headerSpace'>
-          <Link to={`events/${ticket.event.id}/tickets/${ticket.id}`}>
+          
             <div >
-              <h2>{ticket.event.name}</h2>
+              <a  href={`events/${ticket.event.id}/tickets/${ticket.id}`}><h2>{ticket.event.name}</h2></a>
+              
             </div>
-          </Link>
+        
         </div >
         <div className='eventSpace'>
           <div className='imageSpace'>
@@ -46,7 +47,7 @@ export default function TicketsList(props) {
     return (
       <div>
         <div className='headerSpace'>
-          <Link to= "/events">HOME</Link>
+        <a  href={`/events`}>HOME</a>
         </div>
         {listOfTickets}
         {form}

@@ -7,9 +7,9 @@ import { fetchEvents, createEvent, countEvents } from '../../actions/events'
 class EventListContainer extends Component {
   state = {
     editMode: false,
-    allEvents: [1,2,3],
+    allEvents: [],
     currentPage: 1,
-    eventsPerPage: 3
+    eventsPerPage: 5
   }
 
   componentDidMount() {
@@ -71,6 +71,7 @@ class EventListContainer extends Component {
             onSubmit={this.onSubmit}
             values={this.state}
             handleClick={this.handleClick}
+            linkClick={this.linkClick}
           />
         </div>
       )

@@ -9,7 +9,7 @@ export default function EventsList(props) {
     return 'loading...'
     }
  
-  const { events, onAdd, onChange, onSubmit, values, handleClick}  = props
+  const { events, onAdd, onChange, onSubmit, values, handleClick, linkClick}  = props
   const {editMode} = values
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && eventForm
@@ -36,13 +36,11 @@ export default function EventsList(props) {
   const listOfEvents = 
   currentEvents
     .map((event, index) => 
-      <li className='nobull' key={index}>
+      <li className='nobull' key={index}  onClick={linkClick}>
         <div className='headerSpace'>
-        <Link to={`/events/${event.id}/tickets`}>
-          <div >
-            <h2>{event.name}</h2>
+          <div>
+            <a  href={`/events/${event.id}/tickets`}><h2 >{event.name}</h2></a>
           </div>
-        </Link>
         </div>
         <div className='eventSpace'>
           <div className='imageSpace'>

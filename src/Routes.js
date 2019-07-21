@@ -15,12 +15,14 @@ function Routes() {
  
   return (<div>
     <Switch>
-      <Route path="/events/:id/events/:id/tickets/:ticketId" exact component={TicketDetailsContainer} />
-      <Route path="/events/:id/tickets" component={TicketListContainer} />  
       <Route path="/events" exact component={EventListContainer} />
+     
+      <Route path="/events/:id/tickets" component={TicketListContainer} />  
+      <Route path="/events/:id/events/:id/tickets/:ticketId" exact component={TicketDetailsContainer} />
+      
       <Route path="/login" exact component={LoginFormContainer} />
       <Route path="/signup" exact component={SignUpFormContainer} />
-      <Route path="" render={() => <Redirect to="/events" />} />
+      {/* <Route path="" render={() => <Redirect to="/events" />} /> */}
     </Switch> 
   </div>)
 }

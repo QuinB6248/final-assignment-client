@@ -27,7 +27,7 @@ export default function TicketDetails(props) {
   return (
     <div>
       <div className='headerSpace'>
-        <Link to= "/events">HOME</Link>
+      <a  href={`/events`}>HOME</a>
       </div>
       <div className='eventSpace'> 
         <h1>{ticket.event.name}</h1>
