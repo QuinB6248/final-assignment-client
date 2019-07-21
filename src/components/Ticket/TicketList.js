@@ -13,14 +13,15 @@ export default function TicketsList(props) {
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && ticketForm
+  
   const listOfTickets = 
   tickets
     .map(ticket => 
+     
       <li className='nobull' key={ticket.id}>
         <div className='headerSpace'>
-          
             <div >
-              <a  href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{ticket.event.name}</h2></a>
+              <a  href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{ticket.description}</h2></a>
               
             </div>
         

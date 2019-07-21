@@ -23,12 +23,14 @@ const ticketCreated = ticket => ({
   payload: ticket
 })
 export const createTicket = (id, data) => (dispatch, getState) => {
-  console.log('IDDDD', id)
+  console.log('IDDDD', data)
   const jwt = getState().authUser
   request
     .post(`${baseUrl}/events/${id}/tickets`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
-    .then(response => dispatch(ticketCreated(response.body)))
+    .then(response => {
+      console.log('RESPONSECREATE', response.body)
+      dispatch(ticketCreated(response.body))})
     .catch(console.error)
 }
