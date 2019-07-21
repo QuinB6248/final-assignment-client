@@ -13,7 +13,9 @@ export default function TicketsList(props) {
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && ticketForm
-  
+  const eventMap=tickets.map(ticket=> ticket.event)
+  const eventName=eventMap[0]
+  console.log('TICKETS', eventName.name)
   const listOfTickets = 
   tickets
     .map(ticket => 
@@ -21,7 +23,7 @@ export default function TicketsList(props) {
       <li className='nobull' key={ticket.id}>
         <div className='headerSpace'>
             <div >
-              <a  href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{ticket.description}</h2></a>
+              <a  href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></a>
               
             </div>
         
