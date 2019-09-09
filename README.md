@@ -116,15 +116,15 @@ Small progressive client-side HTTP request library, and Node.js module with the 
 
 ## File setup
 The root render App component wrapped in BrowserRouter:
-- **[index](./index.js)**
+- **[index](./src/index.js)**
 App.js render Routes component wrapped in Provider which gives access to the redux store 
-- **[App](./App.js)**
+- **[App](./src/App.js)**
 The store lives in:
-- **[store](./store.js)**
+- **[store](./src/store.js)**
 Renders components by going to given routes
-- **[Routes](./Routes.js)**
+- **[Routes](./src/Routes.js)**
 Combines reducers defines how the state of the store changes when an action is dispatched
-- **[reducers](./reducers/index.js)**
+- **[reducers](./src/reducers/index.js)**
 
 ## Reducers
 ## Actions
