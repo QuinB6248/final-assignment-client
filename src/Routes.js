@@ -1,6 +1,8 @@
 import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
+//The connect() function connects a React component to a Redux store.
 import {connect} from 'react-redux'
+//You can get access to the history object’s properties and the closest <Route>'s match via the withRouter higher-order component. withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
 import {withRouter} from 'react-router'
 
 
