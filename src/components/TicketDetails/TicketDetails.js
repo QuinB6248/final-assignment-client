@@ -18,7 +18,7 @@ export default function TicketDetails(props) {
   ticket.comments
     .map(comment => 
       <li className='nobull' key={comment.id}>
-        <div >
+        <div className='commentSpace'>
           <p>{comment.comment}</p>
         </div>
       </li>)

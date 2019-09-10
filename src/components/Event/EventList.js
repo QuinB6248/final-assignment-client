@@ -18,7 +18,7 @@ export default function EventsList(props) {
       <li className='nobull' key={index}  onClick={linkClick}>
         <div className='headerSpace'>
           <div>
-            <a href={`/events/${event.id}/tickets`}><h2 >{event.name}</h2></a>
+            <a  href={`/events/${event.id}/tickets`}><h2 >{event.name}</h2></a>
           </div>
         </div>
         <div className='eventSpace'>
