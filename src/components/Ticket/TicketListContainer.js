@@ -17,7 +17,6 @@ class EventListContainer extends Component {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
     } 
-   
     this.setState({
       editMode: true,
       formValues: {
@@ -49,8 +48,6 @@ class EventListContainer extends Component {
     if(!this.props.tickets) {
       return 'Loading...'
       }
-      const evv=this.props.tickets.map(ticket=> ticket)
-      console.log('EVVVV', evv)
       return (
       <div>
         <TicketList 

@@ -17,6 +17,7 @@ onSubmit = (event) => {
 }
 
 onChange = (event) => {
+  //event.target = <input name="name, email, password" placeholder="" value="typing">
  this.setState({
    [event.target.name]: event.target.value
  })

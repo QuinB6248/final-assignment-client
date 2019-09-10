@@ -44,51 +44,51 @@ class EventListContainer extends Component {
         avg_price: ''
       }
     })
-   }
+  }
 
-    onSubmit = (event) => {
-      event.preventDefault()
-      this.setState({
-        editMode: false
-      })
-      this.props.createEvent(this.state.formValues)
-    }
+  onSubmit = (event) => {
+    event.preventDefault()
+    this.setState({
+      editMode: false
+    })
+    this.props.createEvent(this.state.formValues)
+  }
     
-    onChange = (event) => {
-      this.setState({
-        formValues: {
-          ...this.state.formValues,
-          [event.target.name]: event.target.value
-         }
-      })
-    }
+  onChange = (event) => {
+    this.setState({
+      formValues: {
+        ...this.state.formValues,
+        [event.target.name]: event.target.value
+      }
+    })
+  }
 
-    render() {
-      if(!this.props.events) {
-        return 'loading...'
-        }
-      console.log('STAAAT', this.props.events)
-      return (
-        <div>
-          <EventList 
-            events={this.props.events}
-            authenticated={this.props.authenticated}
-            onAdd={this.onAdd} 
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-            values={this.state}
-            clickNext={this.clickNext}
-            clickPrevious={this.clickPrevious}
-            linkClick={this.linkClick}
-          />
-        </div>
-      )
+  render() {
+    if(!this.props.events) {
+      return 'loading...'
     }
+    return (
+      <div>
+        <EventList 
+          events={this.props.events}
+          authenticated={this.props.authenticated}
+          onAdd={this.onAdd} 
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+          values={this.state}
+          clickNext={this.clickNext}
+          clickPrevious={this.clickPrevious}
+          linkClick={this.linkClick}
+        />
+      </div>
+    )
+  }
 }
 
 
 const mapStateToProps = state => ({
   events: state.events,
+  //!!state.authUser gives a boolean false or true
   authenticated: !!state.authUser,
   count: state.count
 })

@@ -1,18 +1,17 @@
 import request from 'superagent'
 const baseUrl = 'http://localhost:4000'
 
+
 export const LOGIN_SUCCES = 'LOGIN_SUCCES'
 const loginSucces = jwt => ({
   type: LOGIN_SUCCES,
   payload: jwt
 })
 export const login = (email, password) => (dispatch) => {
-  
   request
     .post(`${baseUrl}/login`)
     .send({email, password})
     .then((response)=> {
-      console.log(response.body)
       dispatch(loginSucces(response.body.jwt))
       
     })
@@ -30,9 +29,8 @@ export const signup = (name, email, password) => (dispatch) => {
     .post(`${baseUrl}/signup`)
     .send({name, email, password})
     .then(response => {
-      console.log('RESPONSE', response.body)
+      //response.body{id:"", name: "", email: "", password: ""}
       dispatch(signupSucces(response.body))
-
     })
     .catch(console.error)
 }

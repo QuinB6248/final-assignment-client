@@ -1,6 +1,5 @@
 import React from 'react'
 import '../component.css'
-import { Link } from 'react-router-dom'
 import CommentForm from './CommentForm'
 import TicketForm from '../Ticket/TicketForm'
 
@@ -10,7 +9,6 @@ export default function TicketDetails(props) {
     }
 
   const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values } = props
-  
   const {editMode, editCommentMode} = values
   const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
   const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
@@ -21,7 +19,7 @@ export default function TicketDetails(props) {
     .map(comment => 
       <li className='nobull' key={comment.id}>
         <div >
-          <p>comment made by {comment.user.name}: {comment.comment}</p>
+          <p>{comment.comment}</p>
         </div>
       </li>)
   

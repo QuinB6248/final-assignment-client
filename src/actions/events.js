@@ -24,7 +24,6 @@ const eventsCount = (total, numOfPages) => ({
 export const countEvents = () => (dispatch) => {
   request(`${baseUrl}/events`)
     .then(response => {
-      console.log('EVENTS', response.body.total)
       dispatch(eventsCount(response.body.total, response.body.numOfPages))})
     .catch(console.error)
 }

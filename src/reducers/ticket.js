@@ -6,8 +6,8 @@ const reducer = (state = null, action) => {
     case TICKET_FETCHED :
       return action.payload
     case COMMENT_CREATED:
-        console.log('ActionCOMM', action.payload)
-      return [...state, action.payload]
+        console.log('ActionCOMM', state)
+      return {...state, comments: [...state.comments, action.payload]}
     case TICKET_UPDATED :
       console.log('Action', state.comments)
       return {...state, comments: state.comments, ticket:action.payload}
