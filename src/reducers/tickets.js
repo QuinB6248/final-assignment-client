@@ -6,7 +6,8 @@ const reducer = (state = null, action) => {
     case TICKETS_FETCHED :
       return action.payload
     case TICKET_CREATED:
-      return [...state, action.payload]
+      console.log('STAAT', state )
+      return  [...state, action.payload]
     default: 
       return state
   }

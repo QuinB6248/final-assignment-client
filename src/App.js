@@ -7,6 +7,7 @@ import Routes from './Routes'
 class App extends Component {
   render() {
     return (
+      //The <Provider /> makes the Redux store available to any nested components that have been wrapped in the connect() function.
       <Provider store={store}>
         <div>
           <Routes/>

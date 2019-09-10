@@ -9,7 +9,7 @@ class EventListContainer extends Component {
     editMode: false
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTickets(Number(this.props.match.params.id))
   }
   
@@ -45,7 +45,10 @@ class EventListContainer extends Component {
   }
   
   render() {
-    return (
+    if(!this.props.tickets) {
+      return 'Loading...'
+      }
+      return (
       <div>
         <TicketList 
           tickets={this.props.tickets}

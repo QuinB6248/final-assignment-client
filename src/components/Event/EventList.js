@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import '../component.css'
 import EventForm from './EventForm'
 
@@ -7,22 +6,20 @@ import EventForm from './EventForm'
 export default function EventsList(props) {
   if(!props.events) {
     return 'loading...'
-    }
+  }
  
-  const { events, onAdd, onChange, onSubmit, values}  = props
+  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick}  = props
   const {editMode} = values
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && eventForm
   const listOfEvents = 
   events
-    .map(event => 
-      <li className='nobull' key={event.id}>
+    .map((event, index) => 
+      <li className='nobull' key={index}  onClick={linkClick}>
         <div className='headerSpace'>
-        <Link to={`/events/${event.id}/tickets`}>
-          <div >
-            <h2>{event.name}</h2>
+          <div>
+            <a  href={`/events/${event.id}/tickets`}><h2 >{event.name}</h2></a>
           </div>
-        </Link>
         </div>
         <div className='eventSpace'>
           <div className='imageSpace'>
@@ -41,7 +38,6 @@ export default function EventsList(props) {
             <p>end:{event.end}</p>
           </div>
         </div>
-       
       </li>)
   
   
@@ -54,6 +50,12 @@ export default function EventsList(props) {
         <div className='headerSpace'>
           <button onClick={onAdd}>ADD AN EVENT</button>
         </div>
+        <div className='headerSpace'>
+          <button onClick={clickPrevious}>PREVIOUS</button>
+          <button onClick={clickNext}>NEXT</button>
+        </div>
+        
+        
       </div>
     )
 }

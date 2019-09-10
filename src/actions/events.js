@@ -7,22 +7,24 @@ const eventsFetched = (events) => ({
   type: EVENTS_FETCHED,
   payload: events
 })
-export const fetchEvents = (limit) => (dispatch, getState) => {
-  if (getState().events) return
-  request(`${baseUrl}/events?limit=${limit}`)
-    .then(response => dispatch(eventsFetched(response.body.events)))
+export const fetchEvents = (limit, offset) => (dispatch) => {
+  request(`${baseUrl}/events?limit=${limit}&offset=${offset}`)
+    .then(response => {
+      dispatch(eventsFetched(response.body.events))
+    })
     .catch(console.error)
 }
 
 
 export const EVENTS_COUNT = 'EVENTS_COUNT'
-const eventsCount = (events) => ({
+const eventsCount = (total, numOfPages) => ({
   type: EVENTS_COUNT,
-  payload: events
+  payload: [total, numOfPages]
 })
 export const countEvents = () => (dispatch) => {
   request(`${baseUrl}/events`)
-    .then(response => dispatch(eventsCount(response.body.total)))
+    .then(response => {
+      dispatch(eventsCount(response.body.total, response.body.numOfPages))})
     .catch(console.error)
 }
 

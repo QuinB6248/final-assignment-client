@@ -9,7 +9,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const enhancer = composeEnhancers(
   applyMiddleware(ReduxThunk)
 )
-
+//redux.createStore(reducer) creates a new store, with as argument the reducer that will initiate and update the state
 const store = createStore(reducer, enhancer)
 
 

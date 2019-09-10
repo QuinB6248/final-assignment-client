@@ -11,7 +11,6 @@ export const fetchTicket = (id, ticketId) => (dispatch, getState) => {
   if (getState().events) return
   request(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
     .then(response => {
-      console.log('RSBODY', response.body)
       dispatch(ticketFetched(response.body))})
     .catch(console.error)
 }
@@ -23,7 +22,6 @@ const commentCreated = comment => ({
   payload: comment
 })
 export const createComment = (id, ticketId, data) => (dispatch, getState) => {
-  console.log('IDDDD', id)
   const jwt = getState().authUser
   request
     .post(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
@@ -40,12 +38,13 @@ const ticketUpdated = ticket => ({
   payload: ticket
 })
 export const updateTicket = (id, ticketId, data) => (dispatch, getState) => {
-  console.log('IDDATA', data)
-  const jwt = getState().currentUser
+  const jwt = getState().authUser
   request
     .patch(`${baseUrl}/events/${id}/tickets/${ticketId}`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
-    .then(dispatch(ticketUpdated(data)))
+    .then(response => {
+      dispatch(ticketUpdated(response.body))
+    })
     .catch(console.error)
 }

@@ -11,24 +11,23 @@ export const fetchTickets = (id) => (dispatch, getState) => {
   if (getState().events) return
   request(`${baseUrl}/events/${id}/tickets`)
     .then(response => {
-      console.log('RSBODY', response.body)
       dispatch(ticketsFetched(response.body))})
     .catch(console.error)
 }
 
 
-export const TICKET_CREATED = 'EVENT_CREATED'
+export const TICKET_CREATED = 'TICKET_CREATED'
 const ticketCreated = ticket => ({
   type: TICKET_CREATED,
   payload: ticket
 })
 export const createTicket = (id, data) => (dispatch, getState) => {
-  console.log('IDDDD', id)
   const jwt = getState().authUser
   request
     .post(`${baseUrl}/events/${id}/tickets`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
-    .then(response => dispatch(ticketCreated(response.body)))
+    .then(response => {
+      dispatch(ticketCreated(response.body))})
     .catch(console.error)
 }

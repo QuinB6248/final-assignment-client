@@ -13,10 +13,11 @@ state = {
 onSubmit = (event) => {
  event.preventDefault()
  this.props.signup(this.state.name, this.state.email, this.state.password)
- this.props.history.push('/events')
+ this.props.history.goBack()
 }
 
 onChange = (event) => {
+  //event.target = <input name="name, email, password" placeholder="" value="typing">
  this.setState({
    [event.target.name]: event.target.value
  })

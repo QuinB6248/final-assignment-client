@@ -1,6 +1,5 @@
 import React from 'react'
 import '../component.css'
-import { Link } from 'react-router-dom'
 import CommentForm from './CommentForm'
 import TicketForm from '../Ticket/TicketForm'
 
@@ -19,15 +18,15 @@ export default function TicketDetails(props) {
   ticket.comments
     .map(comment => 
       <li className='nobull' key={comment.id}>
-        <div >
-          <p>comment made by {comment.user.name}: {comment.comment}</p>
+        <div className='commentSpace'>
+          <p>{comment.comment}</p>
         </div>
       </li>)
   
   return (
     <div>
       <div className='headerSpace'>
-        <Link to= "/events">HOME</Link>
+      <a  href={`/events`}>HOME</a>
       </div>
       <div className='eventSpace'> 
         <h1>{ticket.event.name}</h1>

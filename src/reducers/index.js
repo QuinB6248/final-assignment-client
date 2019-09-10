@@ -13,8 +13,5 @@ export default combineReducers({
   events,
   count,
   tickets,
-  ticket,
-  
-  
- 
+  ticket
 })

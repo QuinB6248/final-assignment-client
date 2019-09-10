@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import '../component.css'
 import TicketForm from './TicketForm'
 
@@ -13,16 +12,16 @@ export default function TicketsList(props) {
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && ticketForm
+  const eventMap=tickets.map(ticket=> ticket.event)
+  const eventName=eventMap[0]
   const listOfTickets = 
   tickets
     .map(ticket => 
       <li className='nobull' key={ticket.id}>
         <div className='headerSpace'>
-          <Link to={`events/${ticket.event.id}/tickets/${ticket.id}`}>
             <div >
-              <h2>{ticket.event.name}</h2>
+              <a href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></a>
             </div>
-          </Link>
         </div >
         <div className='eventSpace'>
           <div className='imageSpace'>
@@ -34,9 +33,9 @@ export default function TicketsList(props) {
           <div>
             <h4>€{ticket.price}</h4>
           </div>
-          {ticket.risk < 10 ? 
+          {ticket.risk < 15 ? 
           <div className='green'></div> : 
-          ticket.risk > 75 ? 
+          ticket.risk > 70 ? 
           <div className='red'></div> : 
           <div className='yellow'></div>
           }
@@ -45,6 +44,9 @@ export default function TicketsList(props) {
   
     return (
       <div>
+        <div className='headerSpace'>
+        <a  href={`/events`}>HOME</a>
+        </div>
         {listOfTickets}
         {form}
         <div className='headerSpace'>
