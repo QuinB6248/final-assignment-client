@@ -129,115 +129,128 @@ Combines reducers defines how the state of the store changes when an action is d
 - **[reducers](./src/reducers/index.js)**
 
 ## Reducers
-
 ##### authorization
-* authUser.js: actions: LOGIN_SUCCES-action.payload 
-* signUpUser.js: actions: SIGNUP_SUCCES-action.payload 
+* ###### authUser.js: 
+actions: LOGIN_SUCCES-action.payload 
+* ###### signUpUser.js: 
+actions: SIGNUP_SUCCES-action.payload 
 ##### events
-* events.js actions: EVENTS_FETCHED-action.payload, EVENTS_COUNT-action.payload, EVENT_CREATED-[...state, action.payload] 
-* count.js: actions: EVENTS_COUNT-action.payload
+* ###### events.js 
+actions: EVENTS_FETCHED-action.payload, EVENTS_COUNT-action.payload, EVENT_CREATED-[...state, action.payload] 
+* ###### count.js: 
+actions: EVENTS_COUNT-action.payload
 ##### tickets
-* tickets.js: actions: TICKETS_FETCHED-action.payload, TICKET_CREATED-[...state, action.payload]
-* ticket.js: actions: TICKET_FETCHED-action.payload, COMMENT_CREATED-[...state, action.payload], TICKET_UPDATED-{...state, comments: state.comments, ticket:action.payload}  
+* ###### tickets.js: 
+actions: TICKETS_FETCHED-action.payload, TICKET_CREATED-[...state, action.payload]
+* ###### ticket.js: 
+actions: TICKET_FETCHED-action.payload, COMMENT_CREATED-[...state, action.payload], TICKET_UPDATED-{...state, comments: state.comments, ticket:action.payload}  
 ##### tickets
-* comments.js: actions: TICKET_FETCHED-action.payload, COMMENT_CREATED-[...state, action.payload]
+* ###### comments.js: 
+actions: TICKET_FETCHED-action.payload, COMMENT_CREATED-[...state, action.payload]
 
 ## Actions
-
 #### action: thunk
 ##### authorization
-* LOGIN_SUCCES: login: request.post(/login) payload: jwt
-* SIGNUP_SUCCES: signup: request.post(/signup) payload: {id:"", name: "", email: "", password: ""}
+* ###### LOGIN_SUCCES: 
+login: request.post(/login) payload: jwt
+* ###### SIGNUP_SUCCES: 
+signup: request.post(/signup) payload: {id:"", name: "", email: "", password: ""}
 ##### events
-* EVENTS_FETCHED: fetchEvents: request(/events?limit=${limit}&offset=${offset}) payload: events
-* EVENTS_COUNT: countEvents : request(/events) payload: [total, numOfPages]
-* EVENT_CREATED: createEvent: request.post(/events) payload: event
+* ###### EVENTS_FETCHED: 
+fetchEvents: request(/events?limit=${limit}&offset=${offset}) payload: events
+* ###### EVENTS_COUNT: 
+countEvents : request(/events) payload: [total, numOfPages]
+* ###### EVENT_CREATED: 
+createEvent: request.post(/events) payload: event
 ##### tickets
-* TICKETS_FETCHED: fetchTickets: request(/events/:id/tickets) payload:
+* ###### TICKETS_FETCHED: 
+fetchTickets: request(/events/:id/tickets) payload:
 {id: "", image: "", price: "", description: "", event: {id: "", name: "", description: "", image: "", start: "", …}, eventId: "", risk: "", riskHour: "", userId: ""}
-* TICKET_CREATED: createTicket: request.post(/events/:id/tickets) payload: {id: "", price: "", description: "", image: ""}
+* ###### TICKET_CREATED: 
+createTicket: request.post(/events/:id/tickets) payload: {id: "", price: "", description: "", image: ""}
 ##### tickets
-* TICKET_FETCHED: fetchTicket: request(/events/:id/tickets/:ticketId/comments) payload: ticket, comments, event
-* COMMENT_CREATED: createComment: request.post(/events/:id/tickets/:ticketId/comments) payload: comment
-* TICKET_UPDATED: updateTicket: request(/events/:id/tickets/:ticketId) payload: ticket
+* ###### TICKET_FETCHED:
+fetchTicket: request(/events/:id/tickets/:ticketId/comments) payload: ticket, comments, event
+* ###### COMMENT_CREATED: 
+createComment: request.post(/events/:id/tickets/:ticketId/comments) payload: comment
+* ###### TICKET_UPDATED: 
+updateTicket: request(/events/:id/tickets/:ticketId) payload: ticket
 
 ## Components
 
 ### Events
-* EventListContainer
+* #### EventListContainer
 componentDidMount: fetchEvents with limit and offset
-* EventList
-Shows List of events with link, name, description, price, start- and end-date 
-Buttons: Add Event(if user is logged in: sets editMode in state to true which shows the EventForm, adds formValues object to state, if user is not logged in it redirects the user to /login), Previous and Next(fetchEvents will be called with new offset)
-* EventForm
+* #### EventList
+shows List of events with link, name, description, price, start- and end-date 
+* Buttons: Add Event(if user is logged in: sets editMode in state to true which shows the EventForm, adds formValues object to state, if user is not logged in it redirects the user to /login), Previous and Next(fetchEvents will be called with new offset)
+* #### EventForm
 form: inputfields:name, description, image, start, end, avg_price
 onChange puts values in the state with corresponding name
 onSubmit create new Event (values will be passed to createEvent(action))
-
-#### Actions
+##### Actions
 fetchEvents, createEvent
-#### Reducer
+##### Reducer
 const mapStateToProps = state => ({
   events: state.events,
   authenticated: !!state.authUser
 })
 ### Login
-* LoginFormContainer
-* LoginForm
+* #### LoginFormContainer
+* #### LoginForm
 form: inputfields: email, password
 onChange puts values in the state with corresponding name
 onSubmit passes values to login(action), jwt will be added to user, redirects to previous page with updated state(authUser:<token> )
-#### Actions
+##### Actions
 login
-#### Reducer
+##### Reducer
 const mapStateToProps = state => ({
   * authenticated: !!state.authUser
 })
 ### SignUp
-* SignUpFormContainer
-* SignUpForm
+* #### SignUpFormContainer
+* #### SignUpForm
 form: inputfields:name, email, password
 onChange puts values in the state with corresponding name
 onSubmit create new User (values will be passed to signup(action))
 redirects to /login
-#### Actions
+##### Actions
 signup
-#### Reducer
-
+##### Reducer
 ### Ticket
-* TicketListContainer
+* #### TicketListContainer
 componentDidMount: fetchTickets with id of event
-* TicketList
-Shows List of tickets with link, eventName, image, description, price and color of risk
-Buttons: Add Event(if user is logged in: sets editMode in state to true which shows the TicketForm, adds formValues object to state, if user is not logged in it redirects the user to /login)
-* TicketForm
+* #### TicketList
+shows List of tickets with link, eventName, image, description, price and color of risk
+* Buttons: 
+Add Event(if user is logged in: sets editMode in state to true which shows the TicketForm, adds formValues object to state, if user is not logged in it redirects the user to /login)
+* #### TicketForm
 form: inputfields: description, image, price
 onChange puts values in the state with corresponding name
 onSubmit create new Ticket (values and id will be passed to createTicket(action))
-
-#### Actions
+##### Actions
 fetchTickets, createTicket
-#### Reducer
+##### Reducer
 const mapStateToProps = state => ({
   * tickets: state.tickets,
   * authenticated: !!state.authUser
 })
 ### TicketDetails
-* TicketDetailsContainer
+* #### TicketDetailsContainer
 componentDidMount: fetchTicket with id of event and ticketId
-* TicketDetails
-Shows Ticket with name, image, description, price and risk
-Shows list of Comments
-Buttons: 
+* #### TicketDetails
+shows Ticket with name, image, description, price and risk
+shows list of Comments
+* Buttons: 
 Edit Ticket(if user is logged in: sets editMode in state to true which shows the TicketForm, adds formValues object to state, if user is not logged in it redirects the user to /login)
 Add Comment(if user is logged in: sets editMode in state to true which shows the CommentForm, adds comment object to state, if user is not logged in it redirects the user to /login)
-* CommentForm
+* #### CommentForm
 form: inputfield: comment
 onChange puts values in the state with corresponding name
 onSubmit create new Comment (values, id and ticketId will be passed to createComment(action))
-#### Actions
+##### Actions
 fetchTicket, createComment, updateTicket 
-#### Reducer
+##### Reducer
 const mapStateToProps = state => ({
   * ticket: state.ticket,
   * tickets: state.tickets,
