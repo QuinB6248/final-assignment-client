@@ -1,9 +1,10 @@
 import React from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 //The connect() function connects a React component to a Redux store.
 import {connect} from 'react-redux'
 //You can get access to the history object’s properties and the closest <Route>'s match via the withRouter higher-order component. withRouter will pass updated match, location, and history props to the wrapped component whenever it renders.
-import {withRouter} from 'react-router'
+
 
 
 import LoginFormContainer from './components/Login/LoginFormContainer'
@@ -18,7 +19,7 @@ function Routes() {
   return (<div>
     <Switch>
       <Route path="/events" exact component={EventListContainer} />
-      <Route path="/events/:id/tickets" component={TicketListContainer} />  
+      <Route path="/events/:id/tickets" exact component={TicketListContainer} />  
       <Route path="/events/:id/events/:id/tickets/:ticketId" exact component={TicketDetailsContainer} />
       <Route path="/login" exact component={LoginFormContainer} />
       <Route path="/signup" exact component={SignUpFormContainer} />
