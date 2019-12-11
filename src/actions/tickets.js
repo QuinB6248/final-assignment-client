@@ -11,6 +11,7 @@ export const fetchTickets = (id) => (dispatch, getState) => {
   if (getState().events) return
   request(`${baseUrl}/events/${id}/tickets`)
     .then(response => {
+      console.log('TICKETS', response.body)
       dispatch(ticketsFetched(response.body))})
     .catch(console.error)
 }

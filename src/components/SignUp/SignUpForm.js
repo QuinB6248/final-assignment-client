@@ -3,6 +3,9 @@ import '../component.css'
 
 export default function SignUpForm(props) {
   const { onChange, onSubmit, values} = props
+  const validTrue = values.validation
+  const warning =  <p style={{color: "red"}}>this is not a valid email-address</p>
+  const valid = !validTrue && warning
   
   return (
     <div className='eventSpace'>
@@ -13,6 +16,7 @@ export default function SignUpForm(props) {
           <input name={'name'} onChange={onChange} value={values.name} placeholder='username'/>
         <div>
           <label>EMAIL</label>
+          {valid}
         </div>
           <input name={'email'} onChange={onChange} value={values.email} placeholder='email'/>
         <div>
@@ -22,6 +26,8 @@ export default function SignUpForm(props) {
         <div>
           <button type='submit'>SIGNUP</button>
         </div>
+       
+       
       </form>
     </div>
   )

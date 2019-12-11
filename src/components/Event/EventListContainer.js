@@ -8,11 +8,13 @@ class EventListContainer extends Component {
   state = {
     editMode: false,
     eventsPerPage: 3,
-    curOffset:0
+    curOffset:0,
+   
   }
 
   componentDidMount() {
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+    
   }
 
   clickNext = (event) => {

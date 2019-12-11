@@ -10,6 +10,7 @@ const eventsFetched = (events) => ({
 export const fetchEvents = (limit, offset) => (dispatch) => {
   request(`${baseUrl}/events?limit=${limit}&offset=${offset}`)
     .then(response => {
+      console.log('TICKETS', response.body.events)
       dispatch(eventsFetched(response.body.events))
     })
     .catch(console.error)

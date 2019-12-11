@@ -4,15 +4,22 @@ import TicketList from './TicketList'
 import { fetchTickets, createTicket} from '../../actions/tickets'
 
 
-class EventListContainer extends Component {
+class TicketListContainer extends Component {
   state = {
-    editMode: false
+    editMode: false,
+    //hi: false
   }
   
   componentDidMount() {
-    this.props.fetchTickets(Number(this.props.match.params.id))
+   console.log('IS this oke')
+   this.props.fetchTickets(Number(this.props.match.params.id))
+    //this.bla()
   }
-  
+
+  // bla = () => {
+  //   return this.setState({hi: true})
+  // }
+
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
@@ -49,7 +56,7 @@ class EventListContainer extends Component {
     if(!this.props.tickets) {
       return 'Loading...'
       }
-      console.log('events', this.props.events)
+      console.log('WIAUW', this.props.tickets)
       return (
       <div>
         <TicketList 
@@ -66,9 +73,9 @@ class EventListContainer extends Component {
 
 
 const mapStateToProps = state => ({
-  events: state.events,
+  //events: state.events,
   tickets: state.tickets,
   authenticated: !!state.authUser
 })
 
-export default connect(mapStateToProps, {fetchTickets, createTicket})(EventListContainer)
+export default connect(mapStateToProps, {fetchTickets, createTicket})(TicketListContainer)
