@@ -1,13 +1,8 @@
 body {
-  
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  flex-direction: column;
-  min-height: 100vh;
-  background: rgb(218, 237, 242);
-  font-family: 'Nunito', sans-serif;
-  
+  background: #ecf0f1;
+  padding: 2.23em;
+  font-family: 'Raleway', sans-serif;
+
 }
 h4 {
   margin: 0;
@@ -20,21 +15,53 @@ p {
 .nobull {
   list-style: none;
 }
-
-.eventSpace {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  background: rgb(187, 216, 223);
-  width: 90%;
-  height: 200px;
-  margin: auto;
-  border-radius: 5px;
-  padding: 10px 10px;
+.containerSpace {
+  display: grid;   
+  grid-gap: 10px; 
+  grid-template-columns: repeat(1, 1fr);
+  background-color: red;
+  
 }
 
-.commentSpace {
+.eventSpace {
+  
+  background-color: rgb(255, 225, 0);
+  
+
+}
+
+.headerSpace {
+  
+  display: flex;
+  justify-content: center;
+}
+
+.footerSpace {
+  
+  background-color: rgb(0, 179, 255);
+}
+
+.buttonSpace {
+  display: flex;
+  justify-content: space-between;
+}
+
+.formSpace {
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+}
+
+.containerEventsSpace{
+  display: flex;
+ 
+}
+
+
+.eventContainerSpace{
+  display: flex;
+}
+/* .commentSpace {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -44,23 +71,12 @@ p {
   
   margin: 10px auto;
   border-radius: 5px;
+  background-color: rgb(0, 255, 72);
   
-}
+} */
 
-.headerSpace {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgb(130, 177, 189);
-  width: 90%;
-  height: 30px;
-  margin: auto;
-  margin-top: 20px;
-  border-radius: 5px;
-  padding: 10px 10px;
-}
 
-.header2Space {
+/* .header2Space {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,44 +87,72 @@ p {
   margin-top: 20px;
   border-radius: 5px;
   padding: 10px 10px;
-}
+  background-color: rgb(0, 0, 255);
+  
+} */
+.titleSpace {
+  display: flex;
+  justify-content: center;
 
+}
 .imageSpace {
   display: flex;
   justify-content: center;
   overflow: hidden;
+  height: 100px;
+  background-color: rgb(0, 0, 0);
+  
 }
 
 .imgSize{
-  height: auto;
-  width: 180px;
+  max-width: 200px;
+  height: 100px;
+  /* width: 100px;
+  object-fit:scale-down; */
+  background-color: rgb(129, 165, 140);
+  
 }
 
 .descriptionSpace {
+  
   padding:20px;
+  background-color: rgb(113, 137, 215);
+  
 }
 
 .priceSpace {
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+  font-size: 12px;
   padding:2px;
+  background-color: rgb(194, 61, 108);
+  
 }
 
 .dateSpace {
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+  font-size: 12px;
   padding:2px;
+  background-color: rgb(196, 178, 44);
+  
 }
 
-button {
-  
-  display: inline-block;
+.buttonSpace > button {
   border: none;
-  border-radius: 5px;
-  margin: 0;
-  text-decoration: none;
-  background: #05495e;
+  background: #1e2b2e;
   color: #ffffff;
-  font-family: sans-serif;
   font-size: 15px;
   cursor: pointer;
-  text-align: center;
+}
+
+.eventButtonSpace > button {
+  border: none;
+  background: #d1e6eb;
+  color: #131111;
+  font-size: 15px;
+  cursor: pointer;
+  margin: auto;
   
 }
 
@@ -154,3 +198,31 @@ input {
   user-select: none;
   cursor: pointer;
 }
+
+@media (min-width: 500px) {
+  .containerSpace {
+    display: grid;   
+  grid-gap: 10px; 
+  grid-template-columns: repeat(2, 1fr);
+  background-color: red
+   
+  }
+  .footerSpace {
+    grid-column: span 2;
+    background-color: rgb(0, 179, 255);
+  }
+}
+@media (min-width: 700px) {
+  .containerSpace {
+    display: grid;   
+  grid-gap: 10px; 
+  grid-template-columns: repeat(3, 1fr);
+  background-color: red
+   
+  }
+  .footerSpace {
+    grid-column: span 3;
+    background-color: rgb(0, 179, 255);
+  }
+}
+

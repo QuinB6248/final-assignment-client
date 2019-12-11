@@ -11,8 +11,10 @@ class TicketListContainer extends Component {
   }
   
   componentDidMount() {
-   console.log('IS this oke')
+  
    this.props.fetchTickets(Number(this.props.match.params.id))
+   console.log('IS this oke')
+   //this.componentDidMount()
     //this.bla()
   }
 
@@ -54,8 +56,8 @@ class TicketListContainer extends Component {
   
   render() {
     if(!this.props.tickets) {
-      return 'Loading...'
-      }
+      return 'loading'
+    }
       console.log('WIAUW', this.props.tickets)
       return (
       <div>

@@ -5,7 +5,7 @@ export default function EventForm(props) {
   const { onChange, onSubmit, values} = props
   
   return (
-    <div>
+    <div className='formSpace'>
       
       <form onSubmit={onSubmit}>
         

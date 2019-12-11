@@ -22,8 +22,8 @@ export default function TicketsList(props) {
       <li className='nobull' key={ticket.id}>
         <div className='headerSpace'>
             <div >
-              <div><Link to={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></Link></div>
-              {/* <a href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></a> */}
+              {/* <div><Link to={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></Link></div> */}
+              <a href={`tickets/${ticket.id}`}><h2>{eventName.name}</h2></a>
             </div>
         </div >
         <div className='eventSpace'>
