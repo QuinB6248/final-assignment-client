@@ -1,6 +1,8 @@
 import React from 'react'
 import '../component.css'
 import EventForm from './EventForm'
+//import {Link} from 'react-router-dom'
+
 
 
 export default function EventsList(props) {
@@ -18,7 +20,8 @@ export default function EventsList(props) {
       <li className='nobull' key={index}  onClick={linkClick}>
         <div className='headerSpace'>
           <div>
-            <a  href={`/events/${event.id}/tickets`}><h2 >{event.name}</h2></a>
+          {/* <div><Link to={`/events/${event.id}/tickets`}><h2>{event.name}</h2></Link></div> */}
+            <a  href={`/events/${event.id}/tickets`}><h2 >{event.name}</h2></a> 
           </div>
         </div>
         <div className='eventSpace'>

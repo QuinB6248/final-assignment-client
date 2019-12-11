@@ -19,6 +19,7 @@ class EventListContainer extends Component {
     } 
     this.setState({
       editMode: true,
+      // nameEvent:
       formValues: {
         picture: "", 
         price: "",
@@ -48,6 +49,7 @@ class EventListContainer extends Component {
     if(!this.props.tickets) {
       return 'Loading...'
       }
+      console.log('events', this.props.events)
       return (
       <div>
         <TicketList 
@@ -64,6 +66,7 @@ class EventListContainer extends Component {
 
 
 const mapStateToProps = state => ({
+  events: state.events,
   tickets: state.tickets,
   authenticated: !!state.authUser
 })

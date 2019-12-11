@@ -1,6 +1,7 @@
 import React from 'react'
 import '../component.css'
 import TicketForm from './TicketForm'
+import {Link} from 'react-router-dom'
 
 
 export default function TicketsList(props) {
@@ -14,13 +15,15 @@ export default function TicketsList(props) {
   const form = editMode && ticketForm
   const eventMap=tickets.map(ticket=> ticket.event)
   const eventName=eventMap[0]
+  
   const listOfTickets = 
   tickets
     .map(ticket => 
       <li className='nobull' key={ticket.id}>
         <div className='headerSpace'>
             <div >
-              <a href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></a>
+              <div><Link to={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></Link></div>
+              {/* <a href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></a> */}
             </div>
         </div >
         <div className='eventSpace'>
