@@ -1,5 +1,5 @@
 import React from 'react'
-import '../component.css'
+import './ticketDetails.css'
 import CommentForm from './CommentForm'
 import TicketForm from '../Ticket/TicketForm'
 
@@ -24,33 +24,51 @@ export default function TicketDetails(props) {
       </li>)
   
   return (
-    <div>
-      <div className='headerSpace'>
-      <a  href={`/events`}>HOME</a>
+    <div className='containerTicketDetails'>
+      
+      <div className='homeSpace'>
+        <a href={`/events`}>HOME</a>
       </div>
-      <div className='eventSpace'> 
-        <h1>{ticket.event.name}</h1>
-        <p>{ticket.ticket.description}</p>
-        <div className='imageSpace'>
-          <img className='imgSize' src={ticket.ticket.image}/>
+     
+      <div className='ticketDetailsSpace'> 
+        <div className='ticketDetailsNameSpace'>
+          <h1>{ticket.event.name}</h1>
         </div>
-        <div>
-          <h4>fraud-risk:</h4>
-          <h4>{ticket.ticket.risk} %</h4>
+       
+        
+        <div className='imageBigSpace' style={{background: "linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,-1.5)), url(" + ticket.ticket.image  + ")", backgroundSize: "cover", backgroundRepeat:"no-repeat", backgroundPosition:'center'}}>
+          <img className='imgBigSize' src={ticket.ticket.image}/>
         </div>
-        <p>€{ticket.ticket.price}</p>
+        <div className='ticketDetailsDescription'>
+         <p>{ticket.ticket.description}</p>
+         
+        </div>
+        <div className='ticketDetailsPrice'>
+         <h3>price €{ticket.ticket.price},-</h3>
+         
+
+        </div>
+        <div className='ticketDetailsRisk'>
+        <h4> risk: {ticket.ticket.risk} %</h4>
+        </div>
+
+        
+       
+        
       </div>
-      <div className='headerSpace'>
+
+      <div className='detailButtonSpace'>
         <button onClick={onEdit}>EDIT TICKET</button>
       </div>
       {edform}
-      <div>
+      
+      <div className='commentHeader'>
         <h4>COMMENTS</h4>
         <div >
           {commentList}
         </div>
       </div> 
-      <div  className='headerSpace'>
+      <div className='eventButtonSpace'>
         <button onClick={onAdd}>ADD COMMENT</button>
       </div>
       {comform} 

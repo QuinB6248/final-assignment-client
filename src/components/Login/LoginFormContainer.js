@@ -13,7 +13,7 @@ class LoginFormContainer extends React.Component {
   onSubmit = (event) => {
     event.preventDefault()
     this.props.login(this.state.email, this.state.password)
-    setTimeout(this.check, 100);
+    setTimeout(this.check, 200);
   }
 
   check = () => {

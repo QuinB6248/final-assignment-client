@@ -53,19 +53,10 @@ export default function EventsList(props) {
             <h3>EVENTS</h3>
           </div>
         </div>
-       
-         {listOfEvents}
-      
-        
-         
-
-       
-       
+        {listOfEvents}
         <div className='footerSpace'>
           <div className='eventButtonSpace'>
             <button onClick={onAdd}>ADD AN EVENT</button>
-            
-           
           </div>
           <div >
             {form}
