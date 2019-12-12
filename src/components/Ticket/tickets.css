@@ -1,11 +1,7 @@
 
 .containerTicketsSpace {
-  
-  display: flex;
-  flex-direction: column;
-  
-  flex-basis: 450px;
-  min-width: 450px;
+  max-width:450px;
+ margin:auto;
 }
 
 .ticketTitleSpace{

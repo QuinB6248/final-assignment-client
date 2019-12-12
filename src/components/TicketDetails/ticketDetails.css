@@ -30,14 +30,10 @@ body {
   text-align: center;
 }
 .containerTicketDetails{
-  /* display: flex;
-  flex-direction: column;
-  background-color: rgb(247, 26, 26);
-  flex-basis: 450px;
-  min-width: 450px; */
-  /* display: grid;  
-  grid-template-rows: 50px 450px 50px 50px 50px;
-  grid-gap: 10px; */
+  
+  max-width: 600px; 
+  margin: auto;
+ 
 
 
   
