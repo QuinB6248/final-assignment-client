@@ -8,26 +8,26 @@ export default function SignUpForm(props) {
   const valid = !validTrue && warning
   
   return (
-    <div className='eventSpace'>
+    <div className='loginBox'>
       <form onSubmit={onSubmit}>
-      <div>
-          <label>USERNAME</label>
-        </div>
+        <div className='loginSpace'>
+          <div>
+            <label>USERNAME</label>
+          </div>
           <input name={'name'} onChange={onChange} value={values.name} placeholder='username'/>
-        <div>
-          <label>EMAIL</label>
-          {valid}
-        </div>
+          <div>
+            <label>EMAIL</label>
+            {valid}
+          </div>
           <input name={'email'} onChange={onChange} value={values.email} placeholder='email'/>
-        <div>
-          <label>PASSWORD</label>
-        </div>
+          <div>
+            <label>PASSWORD</label>
+          </div>
           <input name={'password'} onChange={onChange} value={values.password} placeholder='password'/>
-        <div>
-          <button type='submit'>SIGNUP</button>
+          <div>
+            <button type='submit'>SIGNUP</button>
+          </div>
         </div>
-       
-       
       </form>
     </div>
   )

@@ -4,9 +4,8 @@ import TicketDetails from './TicketDetails'
 import { fetchTicket, createComment, updateTicket } from '../../actions/ticket'
 
 
-
 class TicketDetailsContainer extends Component {
- state = {
+  state = {
     editMode: false,
     editCommentMode: false,
   }
@@ -78,11 +77,10 @@ class TicketDetailsContainer extends Component {
   render() {
     if(!this.props.ticket) {
       return 'loading...'
-      }
-    console.log('DETAILTICKETS', this.props.ticket)
+    }
     
     return (
-     <div>
+      <div>
         <TicketDetails
           authenticated={this.props.authenticated}
           ticket={this.props.ticket}

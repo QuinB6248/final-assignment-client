@@ -11,9 +11,6 @@ export default function TicketsList(props) {
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && ticketForm
-  const eventMap=tickets.map(ticket=> ticket.event)
-  const eventName=eventMap[0]
-  
   const listOfTickets = 
   tickets
     .map(ticket => 
@@ -31,12 +28,14 @@ export default function TicketsList(props) {
                 <div className='ticketPrice'>
                   <h3>ticketprice: €{ticket.price}</h3>
                 </div>
-                { ticket.risk < 15 ? 
-                  <div className='green'><p className='risk'>risk</p></div> : 
-                  ticket.risk > 70 ? 
-                  <div className='red'><p className='risk'>risk</p></div> : 
-                  <div className='yellow'><p className='risk'>risk</p></div>
-                }
+                <div className='riskfield'>
+                  { ticket.risk < 15 ? 
+                    <div className='green color'><p className='risk'>risk</p></div> : 
+                    ticket.risk > 70 ? 
+                    <div className='red color'><p className='risk'>risk</p></div> : 
+                    <div className='yellow color'><p className='risk'>risk</p></div>
+                  }
+                </div>
               </div>
             </div>
           </div >

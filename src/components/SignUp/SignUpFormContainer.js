@@ -20,7 +20,6 @@ onSubmit = (event) => {
   return this.setState({
     validation: false
   })
-  //return  console.log('Its false')
  } 
  this.setState({
   validation: true
@@ -38,12 +37,11 @@ onChange = (event) => {
 
 render() {
  return (
-   <div>
-     <div>
-        <SignUpForm onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
-     </div>
-     
+  <div>
+    <div>
+      <SignUpForm onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
     </div>
+  </div>
   )
  }
 }

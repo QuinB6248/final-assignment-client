@@ -2,17 +2,20 @@ body {
   background: #ecf0f1;
   padding: 2.23em;
   font-family: 'Raleway', sans-serif;
-
+  min-width: 450px;
 }
 
-h4 {
+.descriptionSpace > h4 {
   margin: 0;
   text-align: center;
 }
 
-p {
+ .priceSpace > p {
   margin: 0;
-  text-align: center;
+ }
+
+.dateSpace > p {
+  margin: 0;
 }
 
 .nobull {
@@ -23,7 +26,6 @@ p {
   display: grid;   
   grid-gap: 10px; 
   grid-template-columns: repeat(1, 1fr);
-  
 }
 
 .headerSpace {
@@ -37,6 +39,7 @@ p {
 /* EVENTS-CONTAINERS */
 .eventSpace{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 .titleSpace {
   display: flex;
@@ -139,3 +142,31 @@ input {
   }
 }
 
+
+/* LOGIN AND SIGNUPFORM */
+
+.loginBox{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px;
+}
+.loginSpace{
+  display: flex;
+  flex-direction: column;
+  padding:20px;
+}
+
+.signUpAccount{
+  display: flex;
+  justify-content: center;
+}
+
+.signUpLink{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(240, 240, 240);
+  width:20%;
+  margin: auto;
+  border: solid black 0.1px;
+}
