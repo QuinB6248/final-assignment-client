@@ -8,10 +8,11 @@ const ticketsFetched = (tickets) => ({
   payload: tickets
 })
 export const fetchTickets = (id) => (dispatch, getState) => {
+  console.log('HEy', getState().events)
   if (getState().events) return
   request(`${baseUrl}/events/${id}/tickets`)
     .then(response => {
-      console.log('TICKETS', response.body)
+      console.log('TICKEeeeeeTS', response.body)
       dispatch(ticketsFetched(response.body))})
     .catch(console.error)
 }

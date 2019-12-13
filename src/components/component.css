@@ -10,9 +10,9 @@ body {
   text-align: center;
 }
 
- .priceSpace > p {
+.priceSpace > p {
   margin: 0;
- }
+}
 
 .dateSpace > p {
   margin: 0;
