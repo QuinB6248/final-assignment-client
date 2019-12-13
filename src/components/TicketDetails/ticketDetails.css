@@ -7,7 +7,7 @@
 
 .ticketDetailsSpace{
   display: grid;  
-  grid-template-rows: 50px 200px 80px 50px 50px;
+  grid-template-rows: 50px 200px 80px 50px 50px 30px;
   grid-gap: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
@@ -66,19 +66,26 @@
 .detailButtonSpace {
   display: flex;
   justify-content: center;
-  margin: 15px;
+  align-items: center;
+ 
 }
 
+.authorSpace {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 15px;
+}
 /* COMMENT SPACE */
 
 .commentSpace {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+
+  justify-content: space-between;
   border: solid rgb(205, 205, 205) 0.1px;
   width: 80%;
-  padding-left:10px;
-  padding-right:10px;
+  padding-left:15px;
+  padding-right:15px;
   margin: 10px auto;
 }
 
@@ -89,4 +96,13 @@
 
 .commentHeader > h4{
   text-align: center;
+}
+.comment {
+
+max-width: 80%;
+}
+.authorCommentSpace {
+
+ 
+ 
 }

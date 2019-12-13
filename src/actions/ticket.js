@@ -22,12 +22,15 @@ const commentCreated = comment => ({
   payload: comment
 })
 export const createComment = (id, ticketId, data) => (dispatch, getState) => {
+  console.log('DATAAA', data)
   const jwt = getState().authUser
   request
     .post(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
-    .then(response => dispatch(commentCreated(response.body)))
+    .then(response => {
+      console.log('RESP',response.body)
+      dispatch(commentCreated(response.body))})
     .catch(console.error)
 }
 

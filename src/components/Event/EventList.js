@@ -18,9 +18,6 @@ export default function EventsList(props) {
   events
     .map((event, index) => 
       <li className='nobull' key={index}  onClick={linkClick}>
-       
-          
-        
         <div className='eventSpace'>
           <div className='titleSpace'>
             {/* <div><Link to={`/events/${event.id}/tickets`}><h2>{event.name}</h2></Link></div> */}

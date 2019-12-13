@@ -13,9 +13,13 @@ body {
 .priceSpace > p {
   margin: 0;
 }
+.priceSpace > h4 {
+  margin: 0;
+}
 
 .dateSpace > p {
   margin: 0;
+
 }
 
 .nobull {
@@ -57,11 +61,11 @@ body {
 .imgSize{
   max-width: 200px;
   height: 100px;
- 
 }
 
 .descriptionSpace {
-  padding:20px;
+  padding-top: 5px;
+  padding-bottom: 15px;
   
 }
 
@@ -69,7 +73,7 @@ body {
   text-align: center;
   font-family: 'Roboto Slab', serif;
   font-size: 12px;
-  padding:2px;
+  padding:10px;
   
 }
 

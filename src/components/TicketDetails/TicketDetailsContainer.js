@@ -23,7 +23,8 @@ class TicketDetailsContainer extends Component {
       editMode: false,
       editCommentMode: true,
       formValues: {
-        comment: "", 
+        comment: "",
+         
       }
     })
   }
@@ -51,6 +52,14 @@ class TicketDetailsContainer extends Component {
       editCommentMode: false
     })
    this.props.createComment(id, ticketId, this.state.formValues)
+  //  setTimeout(this.check, 200);
+  }
+  check = () => {
+    if(this.props.authenticated) return this.setState({
+      editMode: false,
+      editCommentMode: false
+    })
+    
   }
 
   onSubmit = (event) => {
@@ -78,8 +87,9 @@ class TicketDetailsContainer extends Component {
     if(!this.props.ticket) {
       return 'loading...'
     }
-    
+    console.log('erw', this.props.ticket)
     return (
+      
       <div>
         <TicketDetails
           authenticated={this.props.authenticated}

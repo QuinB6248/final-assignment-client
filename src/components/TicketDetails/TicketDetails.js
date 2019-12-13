@@ -7,21 +7,32 @@ export default function TicketDetails(props) {
   if(!props.ticket) {
     return 'loading...'
   }
-
+ 
   const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values } = props
   const {editMode, editCommentMode} = values
   const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
   const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const comform = editCommentMode && commentForm
   const edform = editMode && editForm
+ 
   const commentList = 
   ticket.comments
-    .map(comment => 
-      <li className='nobull' key={comment.id}>
-        <div className='commentSpace'>
-          <p>{comment.comment}</p>
+    .map(comment => {
+      
+     return  <li className='nobull' key={comment.id}>
+         <div className='commentSpace'>
+           <div className='comment'>
+           <p>{comment.comment}</p>
+           </div>
+         
+          <div className='authorCommentSpace'>
+           <h5>author: {comment.user.name}</h5>
+         </div>
+       
+       
+         
         </div>
-      </li>)
+      </li>})
   
   return (
     <div className='containerTicketDetails'>
@@ -57,6 +68,9 @@ export default function TicketDetails(props) {
         <div className='detailButtonSpace'>
           <button onClick={onEdit}>EDIT TICKET</button>
         </div>
+        <div className='authorSpace'>
+          <h5>author: {ticket.userDetails.name}</h5>
+        </div>
         {edform}
       </div>
 
@@ -66,10 +80,11 @@ export default function TicketDetails(props) {
           {commentList}
         </div>
       </div> 
+      {comform} 
       <div className='eventButtonSpace'>
         <button onClick={onAdd}>ADD COMMENT</button>
       </div>
-      {comform} 
+     
     </div>
   )
 }
