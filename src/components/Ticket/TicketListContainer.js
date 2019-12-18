@@ -2,25 +2,19 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TicketList from './TicketList'
 import { fetchTickets, createTicket} from '../../actions/tickets'
+import { checkToken } from '../../actions/auth'
 
 
 class TicketListContainer extends Component {
   state = {
     editMode: false,
-    //hi: false
   }
   
   componentDidMount() {
-  
+   this.props.checkToken(sessionStorage.getItem("token"))
    this.props.fetchTickets(Number(this.props.match.params.id))
-   console.log('IS this oke')
-   //this.componentDidMount()
-    //this.bla()
+   
   }
-
-  // bla = () => {
-  //   return this.setState({hi: true})
-  // }
 
   onAdd = () => {
     if(!this.props.authenticated) {
@@ -28,7 +22,6 @@ class TicketListContainer extends Component {
     } 
     this.setState({
       editMode: true,
-      // nameEvent:
       formValues: {
         picture: "", 
         price: "",
@@ -58,7 +51,7 @@ class TicketListContainer extends Component {
     if(!this.props.tickets) {
       return 'loading'
     }
-      console.log('WIAUW', this.props.tickets)
+    console.log('Auth', this.props.tickets)
       return (
       <div>
         <TicketList 
@@ -75,9 +68,9 @@ class TicketListContainer extends Component {
 
 
 const mapStateToProps = state => ({
-  //events: state.events,
+  events: state.events,
   tickets: state.tickets,
   authenticated: !!state.authUser
 })
 
-export default connect(mapStateToProps, {fetchTickets, createTicket})(TicketListContainer)
+export default connect(mapStateToProps, {fetchTickets, createTicket, checkToken})(TicketListContainer)

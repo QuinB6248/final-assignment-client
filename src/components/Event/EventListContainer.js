@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import EventList from './EventList'
 import { fetchEvents, createEvent, countEvents } from '../../actions/events'
+import { checkToken } from '../../actions/auth'
 
 
 class EventListContainer extends Component {
@@ -12,6 +13,7 @@ class EventListContainer extends Component {
   }
 
   componentDidMount() {
+    this.props.checkToken(sessionStorage.getItem("token"))
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
 
@@ -93,4 +95,4 @@ const mapStateToProps = state => ({
   count: state.count
 })
 
-export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents})(EventListContainer)
+export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents, checkToken})(EventListContainer)

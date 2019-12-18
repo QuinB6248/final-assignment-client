@@ -8,11 +8,9 @@ const ticketsFetched = (tickets) => ({
   payload: tickets
 })
 export const fetchTickets = (id) => (dispatch, getState) => {
-  console.log('HEy', getState().events)
   if (getState().events) return
   request(`${baseUrl}/events/${id}/tickets`)
     .then(response => {
-      console.log('TICKEeeeeeTS', response.body)
       dispatch(ticketsFetched(response.body))})
     .catch(console.error)
 }
@@ -24,7 +22,9 @@ const ticketCreated = ticket => ({
   payload: ticket
 })
 export const createTicket = (id, data) => (dispatch, getState) => {
-  const jwt = getState().authUser
+ // const jwt = getState().authUser
+  const jwt = sessionStorage.getItem("token")
+ 
   request
     .post(`${baseUrl}/events/${id}/tickets`)
     .set('Authorization', `Bearer ${jwt}`)

@@ -6,7 +6,6 @@ const reducer = (state = null, action) => {
     case TICKET_FETCHED :
       return action.payload
     case COMMENT_CREATED:
-
       return [...state, action.payload]
     default: 
       return state

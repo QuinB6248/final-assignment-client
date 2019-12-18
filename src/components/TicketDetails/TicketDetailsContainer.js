@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TicketDetails from './TicketDetails'
 import { fetchTicket, createComment, updateTicket } from '../../actions/ticket'
+import { checkToken } from '../../actions/auth'
 
 
 class TicketDetailsContainer extends Component {
@@ -12,6 +13,7 @@ class TicketDetailsContainer extends Component {
 
   componentDidMount() {
     const id = Number(this.props.match.params.id)
+    this.props.checkToken(sessionStorage.getItem("token"))
     this.props.fetchTicket(id, this.props.match.params.ticketId)
   }
   
@@ -114,4 +116,4 @@ const mapStateToProps = state => ({
   
 })
 
-export default connect(mapStateToProps, {fetchTicket, createComment, updateTicket})(TicketDetailsContainer)
+export default connect(mapStateToProps, {fetchTicket, createComment, updateTicket, checkToken})(TicketDetailsContainer)

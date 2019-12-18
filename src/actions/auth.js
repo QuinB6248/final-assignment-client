@@ -12,11 +12,17 @@ export const login = (email, password) => (dispatch) => {
     .post(`${baseUrl}/login`)
     .send({email, password})
     .then((response)=> {
-      console.log('RRRRRESP', response)
+      sessionStorage.setItem("token", response.body.jwt)
       dispatch(loginSucces(response.body.jwt))
       
     })
     .catch(console.error)
+}
+
+export const checkToken = (token) => (dispatch) => {
+  console.log('TokenInSessionStorage', token)
+  if (!token)  {return}
+  dispatch(loginSucces(token))
 }
 
 
@@ -30,7 +36,6 @@ export const signup = (name, email, password) => (dispatch) => {
     .post(`${baseUrl}/signup`)
     .send({name, email, password})
     .then(response => {
-      console.log('REEEEEEEE', response)
       //response.body{id:"", name: "", email: "", password: ""}
       dispatch(signupSucces(response.body))
     })

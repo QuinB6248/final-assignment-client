@@ -29,8 +29,8 @@ function Routes() {
 }
 
 const mapStateToProps = state => ({
-  authenticated: !!state.authUser,
-  signUpUser: state.signUpUser
+  // authenticated: !!state.authUser,
+  // signUpUser: state.signUpUser
 })
 
 //As the first argument passed in to connect, mapStateToProps is used for selecting the part of the data from the store that the connected component needs. 
