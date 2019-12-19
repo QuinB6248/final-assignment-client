@@ -1,24 +1,14 @@
 body {
   background: #ecf0f1;
-  padding: 2.23em;
+  padding: 1.23em;
   font-family: 'Raleway', sans-serif;
-  min-width: 450px;
 }
 
 .nobull {
   list-style: none;
 }
-/* .footerSpace {
-  grid-column: span 1;
-  
-} */
-/* .homeSpace {
-  grid-column: span 3;
-  display: flex;
-  justify-content: flex-start;
-} */
+
 .loginButtons{
-  /* grid-column: span 3; */
   display: flex;
   justify-content: space-between;
 }
@@ -131,7 +121,7 @@ input {
   box-sizing: border-box;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 400px) {
   .containerSpace {
     display: grid;   
   grid-gap: 10px; 

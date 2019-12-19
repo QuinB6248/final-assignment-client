@@ -2,6 +2,7 @@
 
 .containerTicketDetails{
   max-width: 600px; 
+  min-width: 300px;
   margin: auto;
 }
 
