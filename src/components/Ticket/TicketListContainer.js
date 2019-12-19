@@ -23,7 +23,7 @@ class TicketListContainer extends Component {
     this.setState({
       editMode: true,
       formValues: {
-        picture: "", 
+        image: "", 
         price: "",
         description: ""
         }
@@ -51,11 +51,11 @@ class TicketListContainer extends Component {
     if(!this.props.tickets) {
       return 'loading'
     }
-    console.log('Auth', this.props.tickets)
       return (
       <div>
         <TicketList 
-          tickets={this.props.tickets}
+          tickets={this.props.tickets.tickets}
+          eventName={this.props.tickets.eventName}
           onAdd={this.onAdd} 
           onChange={this.onChange}
           onSubmit={this.onSubmit}

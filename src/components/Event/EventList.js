@@ -10,7 +10,7 @@ export default function EventsList(props) {
     return 'loading...'
   }
  
-  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick}  = props
+  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated}  = props
   const {editMode} = values
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && eventForm
@@ -45,6 +45,19 @@ export default function EventsList(props) {
   
     return (
       <div className='containerSpace'>
+       
+        <div className='footerSpace'>
+        {/* <div className='homeSpace'>
+          <a href={`/events`}>EVENTS</a>
+        </div> */}
+        
+          <div className='loginButtons'>
+           <a href={`/events`}>EVENTS</a>
+            {authenticated? <div><p>logged in: {sessionStorage.getItem("name")}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
+          </div>
+        </div>
+       
+        
         <div className='footerSpace'>
           <div className='headerSpace'>
             <h3>EVENTS</h3>

@@ -1,10 +1,11 @@
 import React from 'react'
 import LoginForm from './Loginform'
 import {connect} from 'react-redux'
-import {login} from '../../actions/auth'
+import {login } from '../../actions/auth'
 
 class LoginFormContainer extends React.Component {
   state = {
+    name:'',
     email: '',
     password: '',
     existingUser: true
@@ -12,7 +13,7 @@ class LoginFormContainer extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.props.login(this.state.email, this.state.password)
+    this.props.login(this.state.name, this.state.email, this.state.password)
     setTimeout(this.check, 400);
   }
 

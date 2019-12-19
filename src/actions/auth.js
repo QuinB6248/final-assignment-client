@@ -7,16 +7,24 @@ const loginSucces = jwt => ({
   type: LOGIN_SUCCES,
   payload: jwt
 })
-export const login = (email, password) => (dispatch) => {
+export const login = (name, email, password) => (dispatch) => {
+  sessionStorage.setItem("name", name)
   request
     .post(`${baseUrl}/login`)
     .send({email, password})
     .then((response)=> {
       sessionStorage.setItem("token", response.body.jwt)
+     console.log('Sesss',sessionStorage)
       dispatch(loginSucces(response.body.jwt))
       
     })
     .catch(console.error)
+}
+
+export const logout = () => (dispatch) => {
+  sessionStorage.removeItem("token")
+  sessionStorage.removeItem("name")
+  dispatch(loginSucces(false))
 }
 
 export const checkToken = (token) => (dispatch) => {

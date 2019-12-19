@@ -12,6 +12,10 @@ export default function LoginForm(props) {
     <div className='loginBox'>
       <form onSubmit={onSubmit}>
         <div className='loginSpace'>
+        <div>
+            <label>NAME</label>
+          </div>
+          <input name={'name'} onChange={onChange} value={values.name} placeholder='name'/>
           <div>
             <label>EMAIL</label>
           </div>

@@ -5,27 +5,28 @@ body {
   min-width: 450px;
 }
 
-.descriptionSpace > h4 {
-  margin: 0;
-  text-align: center;
-}
-
-.priceSpace > p {
-  margin: 0;
-}
-.priceSpace > h4 {
-  margin: 0;
-}
-
-.dateSpace > p {
-  margin: 0;
-
-}
-
 .nobull {
   list-style: none;
 }
-
+/* .footerSpace {
+  grid-column: span 1;
+  
+} */
+/* .homeSpace {
+  grid-column: span 3;
+  display: flex;
+  justify-content: flex-start;
+} */
+.loginButtons{
+  /* grid-column: span 3; */
+  display: flex;
+  justify-content: space-between;
+}
+.loginButtons > div > p{
+  margin: 0;
+  font-size: 12px;
+  display: inline-block;
+}
 .containerSpace {
   display: grid;   
   grid-gap: 10px; 
@@ -66,7 +67,10 @@ body {
 .descriptionSpace {
   padding-top: 5px;
   padding-bottom: 15px;
-  
+}
+.descriptionSpace > h4 {
+  margin: 0;
+  text-align: center;
 }
 
 .priceSpace {
@@ -74,7 +78,12 @@ body {
   font-family: 'Roboto Slab', serif;
   font-size: 12px;
   padding:10px;
-  
+}
+.priceSpace > p {
+  margin: 0;
+}
+.priceSpace > h4 {
+  margin: 0;
 }
 
 .dateSpace {
@@ -82,7 +91,9 @@ body {
   font-family: 'Roboto Slab', serif;
   font-size: 12px;
   padding:2px;
- 
+}
+.dateSpace > p {
+  margin: 0;
 }
 
 /* FOOTER */

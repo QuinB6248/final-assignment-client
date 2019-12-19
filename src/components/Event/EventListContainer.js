@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import EventList from './EventList'
 import { fetchEvents, createEvent, countEvents } from '../../actions/events'
-import { checkToken } from '../../actions/auth'
+import { checkToken , logout} from '../../actions/auth'
 
 
 class EventListContainer extends Component {
@@ -48,6 +48,15 @@ class EventListContainer extends Component {
     })
   }
 
+  logOut = () => {
+    this.props.logout()
+    this.componentDidMount()
+  }
+
+  logIn = () => {
+    return this.props.history.push('/login')
+  }
+
   onSubmit = (event) => {
     event.preventDefault()
     this.setState({
@@ -69,6 +78,7 @@ class EventListContainer extends Component {
     if(!this.props.events) {
       return 'loading...'
     }
+   
     return (
       <div>
         <EventList 
@@ -81,6 +91,9 @@ class EventListContainer extends Component {
           clickNext={this.clickNext}
           clickPrevious={this.clickPrevious}
           linkClick={this.linkClick}
+          logOut={this.logOut}
+          logIn={this.logIn}
+         
         />
       </div>
     )
@@ -92,7 +105,7 @@ const mapStateToProps = state => ({
   events: state.events,
   //!!state.authUser gives a boolean false or true
   authenticated: !!state.authUser,
-  count: state.count
+  
 })
 
-export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents, checkToken})(EventListContainer)
+export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents, checkToken, logout})(EventListContainer)

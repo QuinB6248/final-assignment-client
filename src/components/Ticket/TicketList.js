@@ -7,13 +7,13 @@ export default function TicketsList(props) {
     return 'loading...'
     }
 
-  const { tickets, onAdd, onChange, onSubmit, values }  = props
+  const { tickets, eventName, onAdd, onChange, onSubmit, values }  = props
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
  
   const form = editMode && ticketForm
-  console.log('Tick', tickets)
   const ticketDetails = 
+  
     <div className='ticketsFormSpace'>
       <div className='ticketButtonSpace'>
         <button onClick={onAdd}>ADD A TICKET</button>
@@ -60,17 +60,18 @@ export default function TicketsList(props) {
     return (
     
       <div className='containerTicketsSpace'>
+        
         <div className='homeSpace'>
           <a href={`/events`}>EVENTS</a>
+          <div className='ticketTitleSpace'>
+            <h3> {eventName} TICKETS</h3>
+         </div>
+         
         </div>
         { tickets.length === 0 ? listOfTickets = ticketDetails: 
          <div>
-        
-         <div className='ticketTitleSpace'>
-          <h3>{tickets[0].event.name} TICKETS</h3>
-         </div>
-         {ticketDetails}
-         {listOfTickets}
+          {ticketDetails}
+          {listOfTickets}
        </div>}
        
       </div>

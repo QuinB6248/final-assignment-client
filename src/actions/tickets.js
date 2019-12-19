@@ -8,7 +8,7 @@ const ticketsFetched = (tickets) => ({
   payload: tickets
 })
 export const fetchTickets = (id) => (dispatch, getState) => {
-  if (getState().events) return
+  //if (getState().events) return
   request(`${baseUrl}/events/${id}/tickets`)
     .then(response => {
       dispatch(ticketsFetched(response.body))})
@@ -24,12 +24,13 @@ const ticketCreated = ticket => ({
 export const createTicket = (id, data) => (dispatch, getState) => {
  // const jwt = getState().authUser
   const jwt = sessionStorage.getItem("token")
- 
+  
   request
     .post(`${baseUrl}/events/${id}/tickets`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
-      dispatch(ticketCreated(response.body))})
+      console.log('PLEASE', response.body.ticket)
+      dispatch(ticketCreated(response.body.ticket))})
     .catch(console.error)
 }
