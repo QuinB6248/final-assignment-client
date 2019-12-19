@@ -7,7 +7,8 @@ const eventsFetched = (events) => ({
   type: EVENTS_FETCHED,
   payload: events
 })
-export const fetchEvents = (limit, offset) => (dispatch) => {
+export const fetchEvents = (limit, offset) => (dispatch, getState) => {
+  if (getState().nameLogin) return
   request(`${baseUrl}/events?limit=${limit}&offset=${offset}`)
     .then(response => {
       dispatch(eventsFetched(response.body.events))
@@ -35,7 +36,8 @@ const eventCreated = event => ({
   payload: event
 })
 export const createEvent = (data) => (dispatch, getState) => {
-  const jwt = getState().authUser
+  //const jwt = getState().authUser
+  const jwt = sessionStorage.getItem("token")
   request
     .post(`${baseUrl}/events`)
     .set('Authorization', `Bearer ${jwt}`)

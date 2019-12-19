@@ -20,7 +20,7 @@ function Routes() {
     <Switch>
       <Route path="/events" exact component={EventListContainer} />
       <Route path="/events/:id/tickets" exact component={TicketListContainer} />  
-      <Route path="/events/:id/events/:id/tickets/:ticketId" exact component={TicketDetailsContainer} />
+      <Route path="/events/:id/tickets/:ticketId" exact component={TicketDetailsContainer} />
       <Route path="/login" exact component={LoginFormContainer} />
       <Route path="/signup" exact component={SignUpFormContainer} />
       {/* <Route path="" render={() => <Redirect to="/events" />} /> */}
@@ -29,8 +29,8 @@ function Routes() {
 }
 
 const mapStateToProps = state => ({
-  authenticated: !!state.authUser,
-  signUpUser: state.signUpUser
+  // authenticated: !!state.authUser,
+  // signUpUser: state.signUpUser
 })
 
 //As the first argument passed in to connect, mapStateToProps is used for selecting the part of the data from the store that the connected component needs. 

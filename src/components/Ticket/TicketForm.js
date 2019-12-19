@@ -1,11 +1,11 @@
 import React from 'react'
-import '../component.css'
+
 
 export default function TicketForm(props) {
   const { onChange, onSubmit, values} = props
   
   return (
-    <div>
+    <div className='formSpace'>
       <form onSubmit={onSubmit}>
         <div>
           <div>

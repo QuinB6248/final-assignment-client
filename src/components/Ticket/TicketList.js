@@ -1,60 +1,79 @@
 import React from 'react'
-import '../component.css'
 import TicketForm from './TicketForm'
-import {Link} from 'react-router-dom'
-
+import './tickets.css'
 
 export default function TicketsList(props) {
   if(!props.tickets) {
     return 'loading...'
     }
 
-  const { tickets, onAdd, onChange, onSubmit, values }  = props
+  const { tickets, eventName, onAdd, onChange, onSubmit, values }  = props
   const {editMode} = values
   const ticketForm =  <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
+ 
   const form = editMode && ticketForm
-  const eventMap=tickets.map(ticket=> ticket.event)
-  const eventName=eventMap[0]
+  const ticketDetails = 
   
-  const listOfTickets = 
+    <div className='ticketsFormSpace'>
+      <div className='ticketButtonSpace'>
+        <button onClick={onAdd}>ADD A TICKET</button>
+      </div>
+      <div>
+        {form}
+      </div>
+    </div>  
+
+
+  let listOfTickets;
+  tickets.length === 0 ? listOfTickets = [] : 
+  listOfTickets = 
   tickets
     .map(ticket => 
-      <li className='nobull' key={ticket.id}>
-        <div className='headerSpace'>
-            <div >
-              <div><Link to={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></Link></div>
-              {/* <a href={`events/${ticket.eventId}/tickets/${ticket.id}`}><h2>{eventName.name}</h2></a> */}
+      <a href={`tickets/${ticket.id}`} key={ticket.id}>
+        <li className='nobull'>
+          <div className='ticketContainer'>
+            <div className='ticketImageSpace' style={{background: "linear-gradient(rgba(255,255,255,1.2), rgba(255,255,255,-0.5)), url(" + ticket.image  + ")"}}>
+              <img className='ticketImage'src={ticket.image}/>
             </div>
-        </div >
-        <div className='eventSpace'>
-          <div className='imageSpace'>
-            <img className='imgSize'src={ticket.image}/>
-          </div>
-          <div>
-            <h4>{ticket.description}</h4>
-          </div>
-          <div>
-            <h4>€{ticket.price}</h4>
-          </div>
-          {ticket.risk < 15 ? 
-          <div className='green'></div> : 
-          ticket.risk > 70 ? 
-          <div className='red'></div> : 
-          <div className='yellow'></div>
-          }
-        </div>
-      </li>)
+            <div className='ticketInfoSpace'>
+              <div className='ticketDescriptionSpace'>
+                <p>{ticket.description}</p>
+              </div>
+              <div className='ticketPriceSpace'>
+                <div className='ticketPrice'>
+                  <h3>ticketprice: €{ticket.price}</h3>
+                </div>
+                <div className='riskfield'>
+                  { ticket.risk < 15 ? 
+                    <div className='green color'><p className='risk'>risk</p></div> : 
+                    ticket.risk > 70 ? 
+                    <div className='red color'><p className='risk'>risk</p></div> : 
+                    <div className='yellow color'><p className='risk'>risk</p></div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div >
+        </li>  
+      </a>)
   
     return (
-      <div>
-        <div className='headerSpace'>
-        <a  href={`/events`}>HOME</a>
+    
+      <div className='containerTicketsSpace'>
+        
+        <div className='homeSpace'>
+          <a href={`/events`}>EVENTS</a>
+          <div className='ticketTitleSpace'>
+            <h3> {eventName} TICKETS</h3>
+         </div>
+         
         </div>
-        {listOfTickets}
-        {form}
-        <div className='headerSpace'>
-          <button onClick={onAdd}>ADD A TICKET</button>
-        </div>
+        { tickets.length === 0 ? listOfTickets = ticketDetails: 
+         <div>
+          {ticketDetails}
+          {listOfTickets}
+       </div>}
+       
       </div>
-  )
+    )
 }

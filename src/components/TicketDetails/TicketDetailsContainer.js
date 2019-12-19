@@ -2,17 +2,18 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TicketDetails from './TicketDetails'
 import { fetchTicket, createComment, updateTicket } from '../../actions/ticket'
-
+import { checkToken } from '../../actions/auth'
 
 
 class TicketDetailsContainer extends Component {
- state = {
+  state = {
     editMode: false,
     editCommentMode: false,
   }
 
   componentDidMount() {
     const id = Number(this.props.match.params.id)
+    this.props.checkToken(sessionStorage.getItem("token"))
     this.props.fetchTicket(id, this.props.match.params.ticketId)
   }
   
@@ -24,7 +25,8 @@ class TicketDetailsContainer extends Component {
       editMode: false,
       editCommentMode: true,
       formValues: {
-        comment: "", 
+        comment: "",
+         
       }
     })
   }
@@ -52,6 +54,14 @@ class TicketDetailsContainer extends Component {
       editCommentMode: false
     })
    this.props.createComment(id, ticketId, this.state.formValues)
+  //  setTimeout(this.check, 200);
+  }
+  check = () => {
+    if(this.props.authenticated) return this.setState({
+      editMode: false,
+      editCommentMode: false
+    })
+    
   }
 
   onSubmit = (event) => {
@@ -78,11 +88,11 @@ class TicketDetailsContainer extends Component {
   render() {
     if(!this.props.ticket) {
       return 'loading...'
-      }
-    console.log('DETAILTICKETS', this.props.ticket)
-    
+    }
+    console.log('erw', this.props.ticket)
     return (
-     <div>
+      
+      <div>
         <TicketDetails
           authenticated={this.props.authenticated}
           ticket={this.props.ticket}
@@ -106,4 +116,4 @@ const mapStateToProps = state => ({
   
 })
 
-export default connect(mapStateToProps, {fetchTicket, createComment, updateTicket})(TicketDetailsContainer)
+export default connect(mapStateToProps, {fetchTicket, createComment, updateTicket, checkToken})(TicketDetailsContainer)

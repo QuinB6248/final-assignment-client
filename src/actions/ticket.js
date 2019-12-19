@@ -22,12 +22,14 @@ const commentCreated = comment => ({
   payload: comment
 })
 export const createComment = (id, ticketId, data) => (dispatch, getState) => {
-  const jwt = getState().authUser
+  //const jwt = getState().authUser
+  const jwt = sessionStorage.getItem("token")
   request
     .post(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(data)
-    .then(response => dispatch(commentCreated(response.body)))
+    .then(response => {
+      dispatch(commentCreated(response.body))})
     .catch(console.error)
 }
 
@@ -38,7 +40,8 @@ const ticketUpdated = ticket => ({
   payload: ticket
 })
 export const updateTicket = (id, ticketId, data) => (dispatch, getState) => {
-  const jwt = getState().authUser
+  //const jwt = getState().authUser
+  const jwt = sessionStorage.getItem("token")
   request
     .patch(`${baseUrl}/events/${id}/tickets/${ticketId}`)
     .set('Authorization', `Bearer ${jwt}`)

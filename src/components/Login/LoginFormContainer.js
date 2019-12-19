@@ -1,35 +1,40 @@
 import React from 'react'
 import LoginForm from './Loginform'
 import {connect} from 'react-redux'
-import {login} from '../../actions/auth'
+import {login } from '../../actions/auth'
 
 class LoginFormContainer extends React.Component {
-state = {
+  state = {
+    name:'',
     email: '',
-    password: ''
+    password: '',
+    existingUser: true
   }
 
-onSubmit = (event) => {
- event.preventDefault()
- this.props.login(this.state.email, this.state.password)
- this.props.history.goBack()
-}
+  onSubmit = (event) => {
+    event.preventDefault()
+    this.props.login(this.state.name, this.state.email, this.state.password)
+    setTimeout(this.check, 400);
+  }
 
-onChange = (event) => {
- this.setState({
-   [event.target.name]: event.target.value
- })
-}
+  check = () => {
+    if(this.props.authenticated) {return this.props.history.goBack()}
+    return this.setState({existingUser: false})
+  }
 
-render() {
- return (
-  <div>
-     <div>
-        <LoginForm onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
-     </div>
-  </div>
-  )
- }
+  onChange = (event) => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  render() {
+    return (
+      <div>
+        <div>
+          <LoginForm authenticated={this.props.authenticated} onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
+        </div>
+      </div>
+    )
+  } 
 }
 
 

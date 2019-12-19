@@ -10,7 +10,7 @@ export default function EventsList(props) {
     return 'loading...'
   }
  
-  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick}  = props
+  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated}  = props
   const {editMode} = values
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const form = editMode && eventForm
@@ -18,13 +18,11 @@ export default function EventsList(props) {
   events
     .map((event, index) => 
       <li className='nobull' key={index}  onClick={linkClick}>
-        <div className='headerSpace'>
-          <div>
-          {/* <div><Link to={`/events/${event.id}/tickets`}><h2>{event.name}</h2></Link></div> */}
-            <a  href={`/events/${event.id}/tickets`}><h2 >{event.name}</h2></a> 
-          </div>
-        </div>
         <div className='eventSpace'>
+          <div className='titleSpace'>
+            {/* <div><Link to={`/events/${event.id}/tickets`}><h2>{event.name}</h2></Link></div> */}
+            <a  href={`/events/${event.id}/tickets`}><h3 >{event.name}</h3></a> 
+          </div>
           <div className='imageSpace'>
             <img className='imgSize'src={event.image}/>
           </div>
@@ -32,33 +30,54 @@ export default function EventsList(props) {
             <h4>{event.description}</h4>
           </div>
           <div className='priceSpace'>
+            <p>Average Price:</p>
             <h4>€{event.avg_price}</h4>
           </div>
           <div className='dateSpace'>
-            <p>start:{event.start}</p>
+            <p>date:</p>
+            {event.start} t/m {event.end}
           </div>
-          <div className='dateSpace'>
-            <p>end:{event.end}</p>
-          </div>
+          
         </div>
+        
       </li>)
   
   
     return (
-      <div>
+      <div className='containerSpace'>
+       
+        <div className='footerSpace'>
+        {/* <div className='homeSpace'>
+          <a href={`/events`}>EVENTS</a>
+        </div> */}
+        
+          <div className='loginButtons'>
+           <a href={`/events`}>EVENTS</a>
+            {authenticated? <div><p>logged in: {sessionStorage.getItem("name")}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
+          </div>
+        </div>
+       
+        
+        <div className='footerSpace'>
+          <div className='headerSpace'>
+            <h3>EVENTS</h3>
+          </div>
+        </div>
         {listOfEvents}
-        <div>
-          {form}
+        <div className='footerSpace'>
+          <div className='eventButtonSpace'>
+            <button onClick={onAdd}>ADD AN EVENT</button>
+          </div>
+          <div >
+            {form}
+            </div>
         </div>
-        <div className='headerSpace'>
-          <button onClick={onAdd}>ADD AN EVENT</button>
+        <div className='footerSpace'>
+          <div className='buttonSpace'>
+            <button onClick={clickPrevious}>{'<--prev'}</button>
+            <button onClick={clickNext}>{'next-->'}</button>
+          </div>
         </div>
-        <div className='headerSpace'>
-          <button onClick={clickPrevious}>PREVIOUS</button>
-          <button onClick={clickNext}>NEXT</button>
-        </div>
-        
-        
       </div>
     )
 }

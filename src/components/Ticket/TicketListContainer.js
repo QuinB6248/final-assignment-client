@@ -2,26 +2,28 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TicketList from './TicketList'
 import { fetchTickets, createTicket} from '../../actions/tickets'
+import { checkToken } from '../../actions/auth'
 
 
-class EventListContainer extends Component {
+class TicketListContainer extends Component {
   state = {
-    editMode: false
+    editMode: false,
   }
   
   componentDidMount() {
-    this.props.fetchTickets(Number(this.props.match.params.id))
+   this.props.checkToken(sessionStorage.getItem("token"))
+   this.props.fetchTickets(Number(this.props.match.params.id))
+   
   }
-  
+
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
     } 
     this.setState({
       editMode: true,
-      // nameEvent:
       formValues: {
-        picture: "", 
+        image: "", 
         price: "",
         description: ""
         }
@@ -47,13 +49,13 @@ class EventListContainer extends Component {
   
   render() {
     if(!this.props.tickets) {
-      return 'Loading...'
-      }
-      console.log('events', this.props.events)
+      return 'loading'
+    }
       return (
       <div>
         <TicketList 
-          tickets={this.props.tickets}
+          tickets={this.props.tickets.tickets}
+          eventName={this.props.tickets.eventName}
           onAdd={this.onAdd} 
           onChange={this.onChange}
           onSubmit={this.onSubmit}
@@ -71,4 +73,4 @@ const mapStateToProps = state => ({
   authenticated: !!state.authUser
 })
 
-export default connect(mapStateToProps, {fetchTickets, createTicket})(EventListContainer)
+export default connect(mapStateToProps, {fetchTickets, createTicket, checkToken})(TicketListContainer)

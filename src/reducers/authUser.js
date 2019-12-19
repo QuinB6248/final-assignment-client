@@ -1,4 +1,4 @@
-import { LOGIN_SUCCES } from '../actions/auth'
+import { LOGIN_SUCCES, NAME_LOG } from '../actions/auth'
   
 
 const reducer = (state = null, action) => {
