@@ -4,7 +4,6 @@
   flex-direction: column;
   align-items: center;
   margin:auto;
-  background-color: aqua;
 }
 
 .ticketTitleSpace{
@@ -24,7 +23,6 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
-  background-color: blueviolet;
   margin-top: 10px;
 }
 
@@ -33,7 +31,6 @@
   justify-content: center;
   overflow: hidden;
   border-radius: 2px;
-  background-color: chocolate;
 }
 
 .ticketImage{
@@ -46,13 +43,11 @@
 .ticketInfoSpace {
   display: flex;
   flex-direction: column;
-  background-color: coral;
 }
 
 .ticketDescriptionSpace{
   border: 1px solid rgb(182, 180, 180);
   height: 90px;
-  background-color: darkgoldenrod;
 }
 .ticketDescriptionSpace > p {
   font-family: 'Roboto Slab', serif;
@@ -66,7 +61,6 @@
   display:flex;
   justify-content: space-between;
   max-height: 60px;
-  background-color: darkseagreen;
 }
 .ticketPrice{
   font-family: 'Roboto Slab', serif;
