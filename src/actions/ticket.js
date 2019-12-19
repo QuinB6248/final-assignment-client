@@ -1,5 +1,6 @@
 import request from 'superagent'
-const baseUrl = 'http://localhost:4000'
+//const baseUrl = 'http://localhost:4000'
+const baseUrl ='https://damp-castle-35837.herokuapp.com'
 
 
 export const TICKET_FETCHED = 'TICKET_FETCHED'
