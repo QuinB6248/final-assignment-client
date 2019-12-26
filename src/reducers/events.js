@@ -1,4 +1,4 @@
-import { EVENTS_FETCHED, EVENTS_COUNT, EVENT_CREATED } from '../actions/events'
+import { EVENTS_FETCHED, EVENTS_COUNT, EVENT_CREATED, EVENT_UPDATED, EVENT_DELETED } from '../actions/events'
 
   
 
@@ -10,6 +10,10 @@ const reducer = (state = null, action) => {
       return action.payload
     case EVENT_CREATED: 
       return [...state, action.payload]
+    case EVENT_UPDATED:
+      return state.map(event => event.id === action.payload.id ? event = action.payload : event)
+    case EVENT_DELETED:
+     return state.filter(event => event.id !== action.payload)
     default: 
       return state
   }

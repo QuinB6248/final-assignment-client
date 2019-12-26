@@ -65,12 +65,16 @@ export default function TicketDetails(props) {
             }
           </div>
         </div>
-        <div className='detailButtonSpace'>
-          <button onClick={onEdit}>EDIT TICKET</button>
-        </div>
-        <div className='authorSpace'>
+        {sessionStorage.getItem("name") === ticket.userDetails.name ? 
+           <div className='detailButtonSpace'>
+        
+           <button onClick={onEdit}>EDIT TICKET</button>
+         </div>:
+          <div className='authorSpace'>
           <h5>author: {ticket.userDetails.name}</h5>
-        </div>
+        </div>}
+       
+       
         {edform}
       </div>
 
