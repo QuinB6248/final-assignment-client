@@ -112,20 +112,32 @@ body {
 .formSpace {
   display: flex;
   justify-content: center;
-  background-color: rgb(33, 33, 33);
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 10px;
 }
+
 input {
-  width: 95%;
+  width: 100%;
   padding: 6px 30px;
   margin: 8px 0;
+  box-sizing: border-box;
+}
+.formButton {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  background-color:white;
+  padding: 6px 30px;
+  margin-top: 8px;
   box-sizing: border-box;
 }
 
 @media (min-width: 400px) {
   .containerSpace {
     display: grid;   
-  grid-gap: 10px; 
-  grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px; 
+    grid-template-columns: repeat(2, 1fr);
  
   }
   .footerSpace {
