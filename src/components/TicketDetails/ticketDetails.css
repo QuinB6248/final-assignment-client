@@ -8,7 +8,7 @@
 
 .ticketDetailsSpace{
   display: grid;  
-  grid-template-rows: 50px 200px 80px 50px 50px 30px;
+  grid-template-rows: 50px 200px 80px 50px 50px;
   grid-gap: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }

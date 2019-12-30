@@ -1,7 +1,7 @@
 import React from 'react'
 import '../component.css'
 import EventForm from './EventForm'
-//import {Link} from 'react-router-dom'
+
 
 
 
@@ -10,10 +10,14 @@ export default function EventsList(props) {
     return 'loading...'
   }
  
-  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated}  = props
+  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated, onDelete, onSubmitUpdate, onUpdate}  = props
   const {editMode} = values
+  const {editModeUpdate} = values
+  const {id} = values
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
+  const eventFormUpdate =  <EventForm onChange={onChange} onSubmit={onSubmitUpdate} values={values}/>
   const form = editMode && eventForm
+  const updateForm = editModeUpdate && eventFormUpdate
   const listOfEvents = 
   events
     .map((event, index) => 
@@ -37,15 +41,21 @@ export default function EventsList(props) {
             <p>date:</p>
             {event.start} t/m {event.end}
           </div>
-          
+          {sessionStorage.getItem("name") === event.user.name ? 
+          <h6>
+            <button onClick={()=>onDelete(event.id)}>DELETE</button> 
+            <button onClick={()=>onUpdate(event.id)}>UPDATE</button> 
+            {id === event.id? updateForm: <br></br> }
+          </h6>
+             :<h6>{event.user.name}</h6>}
         </div>
-        
+          
       </li>)
   
   
     return (
       <div className='containerSpace'>
-       
+        
         <div className='footerSpace'>
         {/* <div className='homeSpace'>
           <a href={`/events`}>EVENTS</a>
@@ -67,6 +77,7 @@ export default function EventsList(props) {
         <div className='footerSpace'>
           <div className='eventButtonSpace'>
             <button onClick={onAdd}>ADD AN EVENT</button>
+           
           </div>
           <div >
             {form}

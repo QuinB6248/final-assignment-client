@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import EventList from './EventList'
-import { fetchEvents, createEvent, countEvents } from '../../actions/events'
+import { fetchEvents, createEvent, countEvents, deleteEvent, updateEvent } from '../../actions/events'
 import { checkToken , logout} from '../../actions/auth'
 
 
 class EventListContainer extends Component {
   state = {
     editMode: false,
+    editModeUpdate: false,
     eventsPerPage: 6,
     curOffset:0,
   }
@@ -17,26 +18,28 @@ class EventListContainer extends Component {
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
 
-  clickNext = (event) => {
-    this.setState({
-      curOffset: this.state.curOffset+=6,
-    })
-    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+  logOut = () => {
+    this.props.logout()
+    this.componentDidMount()
+  }
+  logIn = () => {
+    return this.props.history.push('/login')
   }
 
-  clickPrevious = (event) => {
-    this.setState({
-      curOffset: this.state.curOffset-=6,
-    })
+  clickNext = () => {
+    this.setState({ curOffset: this.state.curOffset+=6 })
+    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+  }
+  clickPrevious = () => {
+    this.setState({ curOffset: this.state.curOffset-=6 })
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
   
-  onAdd = () => {
+  updateOrAdd=()=>{
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
     } 
     this.setState({
-      editMode: true,
       formValues: {
         name: '',
         description: '',
@@ -47,24 +50,26 @@ class EventListContainer extends Component {
       }
     })
   }
-
-  logOut = () => {
-    this.props.logout()
-    this.componentDidMount()
+  
+  onAdd = () => {
+    this.updateOrAdd()
+    this.setState({editMode: true})
   }
-
-  logIn = () => {
-    return this.props.history.push('/login')
-  }
-
-  onSubmit = (event) => {
-    event.preventDefault()
-    this.setState({
-      editMode: false
-    })
-    this.props.createEvent(this.state.formValues)
-  }
+  onUpdate = (id) => {
+    this.setState({editModeUpdate: true, id:id})
+    this.updateOrAdd()
     
+  }
+
+  onDelete = (id) => {
+    if(!this.props.authenticated) {
+      return this.props.history.push('/login')
+    }
+    this.props.deleteEvent(id)
+  }
+
+  
+
   onChange = (event) => {
     this.setState({
       formValues: {
@@ -73,6 +78,30 @@ class EventListContainer extends Component {
       }
     })
   }
+  onSubmit = (event) => {
+    event.preventDefault()
+    this.setState({
+      editMode: false
+    })
+    this.props.createEvent(this.state.formValues)
+  }
+
+  onSubmitUpdate = (event) => {
+    event.preventDefault()
+    this.setState({
+      editModeUpdate: false
+    })
+    const formValue = this.state.formValues
+    const newFormValues = {}
+    const keyOfObject = Object.keys(formValue)
+    keyOfObject.filter(el => {
+      if(formValue[el]) {
+        return newFormValues[el] = formValue[el]
+      }
+    })
+    this.props.updateEvent(this.state.id, newFormValues)
+  }
+  
 
   render() {
     if(!this.props.events) {
@@ -85,6 +114,7 @@ class EventListContainer extends Component {
           events={this.props.events}
           authenticated={this.props.authenticated}
           onAdd={this.onAdd} 
+          onUpdate={this.onUpdate}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           values={this.state}
@@ -93,7 +123,8 @@ class EventListContainer extends Component {
           linkClick={this.linkClick}
           logOut={this.logOut}
           logIn={this.logIn}
-         
+          onDelete={this.onDelete}
+          onSubmitUpdate={this.onSubmitUpdate}
         />
       </div>
     )
@@ -108,4 +139,4 @@ const mapStateToProps = state => ({
   
 })
 
-export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents, checkToken, logout})(EventListContainer)
+export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents, checkToken, logout, updateEvent, deleteEvent})(EventListContainer)

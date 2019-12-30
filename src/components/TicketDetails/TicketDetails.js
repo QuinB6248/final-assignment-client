@@ -17,22 +17,17 @@ export default function TicketDetails(props) {
  
   const commentList = 
   ticket.comments
-    .map(comment => {
-      
-     return  <li className='nobull' key={comment.id}>
-         <div className='commentSpace'>
-           <div className='comment'>
-           <p>{comment.comment}</p>
-           </div>
-         
+    .map(comment => 
+      <li className='nobull' key={comment.id}>
+        <div className='commentSpace'>
+          <div className='comment'>
+            <p>{comment.comment}</p>
+          </div>
           <div className='authorCommentSpace'>
-           <h5>author: {comment.user.name}</h5>
-         </div>
-       
-       
-         
+            <h5>author: {comment.user.name}</h5>
+          </div>
         </div>
-      </li>})
+      </li>)
   
   return (
     <div className='containerTicketDetails'>
@@ -65,14 +60,17 @@ export default function TicketDetails(props) {
             }
           </div>
         </div>
-        <div className='detailButtonSpace'>
-          <button onClick={onEdit}>EDIT TICKET</button>
-        </div>
-        <div className='authorSpace'>
-          <h5>author: {ticket.userDetails.name}</h5>
-        </div>
-        {edform}
-      </div>
+        {sessionStorage.getItem("name") === ticket.userDetails.name ? 
+          <div className='detailButtonSpace'>
+            <button onClick={onEdit}>EDIT TICKET</button>
+          </div>:
+          <div className='authorSpace'>
+            <h5>author: {ticket.userDetails.name}</h5>
+          </div>}
+          <div >
+           {edform}
+          </div>
+       </div>
 
       <div className='commentHeader'>
         <h4>COMMENTS</h4>
@@ -80,7 +78,10 @@ export default function TicketDetails(props) {
           {commentList}
         </div>
       </div> 
+      <div>
       {comform} 
+      </div>
+      
       <div className='eventButtonSpace'>
         <button onClick={onAdd}>ADD COMMENT</button>
       </div>
