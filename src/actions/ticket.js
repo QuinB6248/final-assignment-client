@@ -1,6 +1,6 @@
 import request from 'superagent'
-//const baseUrl = 'http://localhost:4000'
-const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
+const baseUrl = 'http://localhost:4000'
+//const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
 
 
 /////////////////////FETCH TICKET ACTION/////////////////
@@ -10,9 +10,7 @@ const ticketFetched = (ticket) => ({
   payload: ticket
 })
 
-export const fetchTicket = (id, ticketId) => (dispatch, getState) => {
-  if (getState().events) return
-
+export const fetchTicket = (id, ticketId) => (dispatch) => {
   request(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
     .then(response => dispatch(ticketFetched(response.body)))
     .catch(console.error)
@@ -26,13 +24,10 @@ const commentCreated = comment => ({
 })
 
 export const createComment = (id, ticketId, data) => (dispatch, getState) => {
-  //const jwt = getState().authUser
-  const jwt = sessionStorage.getItem("token")
-
   request
     .post(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
-    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
+    .withCredentials()
     .then(response => dispatch(commentCreated(response.body)))
     .catch(console.error)
 }
@@ -45,13 +40,10 @@ const ticketUpdated = ticket => ({
 })
 
 export const updateTicket = (id, ticketId, data) => (dispatch, getState) => {
-  //const jwt = getState().authUser
-  const jwt = sessionStorage.getItem("token")
-
   request
     .patch(`${baseUrl}/events/${id}/tickets/${ticketId}`)
-    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
+    .withCredentials()
     .then(response => dispatch(ticketUpdated(response.body)))
     .catch(console.error)
 }

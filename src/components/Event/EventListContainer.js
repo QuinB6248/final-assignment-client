@@ -14,13 +14,23 @@ class EventListContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.checkToken(sessionStorage.getItem("token"))
+   
+    const nameCookie = document.cookie.split('=')[1]
+    if (nameCookie === undefined || nameCookie === "undefined"){
+      this.props.checkToken(false)
+    }else {
+      this.props.checkToken(true)
+    }
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
 
   logOut = () => {
+    document.cookie = "name=undefined"
     this.props.logout()
     this.componentDidMount()
+    this.setState({
+      editMode: false
+    })
   }
   logIn = () => {
     return this.props.history.push('/login')

@@ -60,7 +60,7 @@ export default function TicketDetails(props) {
             }
           </div>
         </div>
-        {sessionStorage.getItem("name") === ticket.userDetails.name ? 
+        { document.cookie.split('=')[1] === ticket.userDetails.name ? 
           <div className='detailButtonSpace'>
             <button onClick={onEdit}>EDIT TICKET</button>
           </div>:

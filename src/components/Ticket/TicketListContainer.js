@@ -11,7 +11,7 @@ class TicketListContainer extends Component {
   }
   
   componentDidMount() {
-   this.props.checkToken(sessionStorage.getItem("token"))
+   this.props.checkToken(document.cookie.split('=')[1])
    this.props.fetchTickets(Number(this.props.match.params.id))
    
   }

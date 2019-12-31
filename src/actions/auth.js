@@ -1,6 +1,6 @@
 import request from 'superagent'
-//const baseUrl = 'http://localhost:4000'
-const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
+const baseUrl = 'http://localhost:4000'
+//const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
 
 
 //////////////////SIGN IN ACTION////////////////
@@ -20,34 +20,32 @@ export const signup = (name, email, password) => (dispatch) => {
 
 ///////////////LOGIN, LOGOUT, CHECK TOKEN ACTION//////////////
 export const LOGIN_SUCCES = 'LOGIN_SUCCES'
-const loginSucces = jwt => ({
+const loginSucces = data => ({
   type: LOGIN_SUCCES,
-  payload: jwt
+  payload: data
 })
 
 ////////////////////LOGIN////////////////////
 export const login = (name, email, password) => (dispatch) => {
-  sessionStorage.setItem("name", name)
+  //sessionStorage.setItem("name", name)
   request
     .post(`${baseUrl}/login`)
     .send({email, password})
-    .then((response)=> {
-      sessionStorage.setItem("token", response.body.jwt)
-      dispatch(loginSucces(response.body.jwt))
-    })
+    .withCredentials()
+    .then((response)=> {dispatch(loginSucces(response.body.jwt))})
     .catch(console.error)
 }
 
 ////////////////////LOGOUT//////////////////
 export const logout = () => (dispatch) => {
-  sessionStorage.removeItem("token")
-  sessionStorage.removeItem("name")
-  dispatch(loginSucces(false))
+  request(`${baseUrl}/clearcookie`)
+    .withCredentials()
+    .then(response => dispatch(loginSucces(response.body)))
+    .catch(console.error)
 }
 
 ////////////////////CHECK TOKEN///////////////
-export const checkToken = (token) => (dispatch) => {
-  if (!token)  {return}
-  dispatch(loginSucces(token))
+export const checkToken = (check) => (dispatch) => {
+  dispatch(loginSucces(check))
 }
 

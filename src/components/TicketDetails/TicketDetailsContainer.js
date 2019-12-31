@@ -13,7 +13,7 @@ class TicketDetailsContainer extends Component {
 
   componentDidMount() {
     const id = Number(this.props.match.params.id)
-    this.props.checkToken(sessionStorage.getItem("token"))
+    this.props.checkToken(document.cookie.split('=')[1])
     this.props.fetchTicket(id, this.props.match.params.ticketId)
   }
   

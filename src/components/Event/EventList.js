@@ -24,7 +24,6 @@ export default function EventsList(props) {
       <li className='nobull' key={index}  onClick={linkClick}>
         <div className='eventSpace'>
           <div className='titleSpace'>
-            {/* <div><Link to={`/events/${event.id}/tickets`}><h2>{event.name}</h2></Link></div> */}
             <a  href={`/events/${event.id}/tickets`}><h3 >{event.name}</h3></a> 
           </div>
           <div className='imageSpace'>
@@ -41,7 +40,7 @@ export default function EventsList(props) {
             <p>date:</p>
             {event.start} t/m {event.end}
           </div>
-          {sessionStorage.getItem("name") === event.user.name ? 
+          { document.cookie.split('=')[1] === event.user.name ? 
           <h6>
             <button onClick={()=>onDelete(event.id)}>DELETE</button> 
             <button onClick={()=>onUpdate(event.id)}>UPDATE</button> 
@@ -55,19 +54,13 @@ export default function EventsList(props) {
   
     return (
       <div className='containerSpace'>
-        
         <div className='footerSpace'>
-        {/* <div className='homeSpace'>
-          <a href={`/events`}>EVENTS</a>
-        </div> */}
-        
           <div className='loginButtons'>
-           <a href={`/events`}>EVENTS</a>
-            {authenticated? <div><p>logged in: {sessionStorage.getItem("name")}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
+            <a href={`/events`}>EVENTS</a>
+            {authenticated? <div><p>logged in: {document.cookie.split('=')[1]}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
           </div>
         </div>
        
-        
         <div className='footerSpace'>
           <div className='headerSpace'>
             <h3>EVENTS</h3>
