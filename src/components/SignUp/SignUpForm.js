@@ -14,16 +14,16 @@ export default function SignUpForm(props) {
           <div>
             <label>USERNAME</label>
           </div>
-          <input name={'name'} onChange={onChange} value={values.name} placeholder='username'/>
+          <input name={'name'} onChange={onChange} value={values.name} placeholder='username' required/>
           <div>
             <label>EMAIL</label>
             {valid}
           </div>
-          <input name={'email'} onChange={onChange} value={values.email} placeholder='email'/>
+          <input name={'email'} onChange={onChange} value={values.email} placeholder='email' required/>
           <div>
             <label>PASSWORD</label>
           </div>
-          <input name={'password'} onChange={onChange} value={values.password} placeholder='password'/>
+          <input name={'password'} onChange={onChange} value={values.password} placeholder='password' required/>
           <div>
             <button type='submit'>SIGNUP</button>
           </div>

@@ -2,18 +2,18 @@ import React from 'react'
 import '../component.css'
 import EventForm from './EventForm'
 
-
-
-
 export default function EventsList(props) {
   if(!props.events) {
     return 'loading...'
   }
  
-  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated, onDelete, onSubmitUpdate, onUpdate}  = props
+  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated, onDelete, onSubmitUpdate, onUpdate, reRender}  = props
+  const {curOffset} = values
   const {editMode} = values
   const {editModeUpdate} = values
   const {id} = values
+  const{rerender} = values
+  
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const eventFormUpdate =  <EventForm onChange={onChange} onSubmit={onSubmitUpdate} values={values}/>
   const form = editMode && eventForm
@@ -41,14 +41,16 @@ export default function EventsList(props) {
             {event.start} t/m {event.end}
           </div>
           { document.cookie.split('=')[1] === event.user.name ? 
-          <h6>
-            <button onClick={()=>onDelete(event.id)}>DELETE</button> 
-            <button onClick={()=>onUpdate(event.id)}>UPDATE</button> 
-            {id === event.id? updateForm: <br></br> }
-          </h6>
-             :<h6>{event.user.name}</h6>}
+            <div className='nameButtonSpace'>
+              <div>
+                <button onClick={()=>onDelete(event.id)}>DELETE</button> 
+                <button onClick={()=>onUpdate(event.id)}>UPDATE</button> 
+              </div>
+            </div>
+            :<div className='nameButtonSpace'></div>
+          }
+          {id === event.id? <div className='nameButtonSpace2'>{updateForm}<h6>author: {event.user.name}</h6></div>: <div className='nameButtonSpace2'><h6>author: {event.user.name}</h6></div> }
         </div>
-          
       </li>)
   
   
@@ -70,16 +72,19 @@ export default function EventsList(props) {
         <div className='footerSpace'>
           <div className='eventButtonSpace'>
             <button onClick={onAdd}>ADD AN EVENT</button>
-           
           </div>
           <div >
             {form}
-            </div>
+          </div>
         </div>
+
         <div className='footerSpace'>
           <div className='buttonSpace'>
-            <button onClick={clickPrevious}>{'<--prev'}</button>
-            <button onClick={clickNext}>{'next-->'}</button>
+        
+            {curOffset === 0 ? <h6>First Page</h6> :  <button onClick={clickPrevious}>{'<--prev'}</button>}
+            {props.events.length >= 6 ?  <button onClick={clickNext}>{'next-->'}</button> : <h6>Last Page</h6>}
+          
+           
           </div>
         </div>
       </div>

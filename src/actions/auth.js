@@ -3,7 +3,7 @@ const baseUrl = 'http://localhost:4000'
 //const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
 
 
-//////////////////SIGN IN ACTION////////////////
+//////////////////SIGNIN ACTION////////////////
 export const SIGNUP_SUCCES = 'SIGNUP_SUCCES'
 const signupSucces = event => ({
   type: SIGNUP_SUCCES,
@@ -25,9 +25,8 @@ const loginSucces = data => ({
   payload: data
 })
 
-////////////////////LOGIN////////////////////
-export const login = (name, email, password) => (dispatch) => {
-  //sessionStorage.setItem("name", name)
+////////////////////LOGIN ACTION////////////////////
+export const login = (email, password) => (dispatch) => {
   request
     .post(`${baseUrl}/login`)
     .send({email, password})
@@ -36,7 +35,7 @@ export const login = (name, email, password) => (dispatch) => {
     .catch(console.error)
 }
 
-////////////////////LOGOUT//////////////////
+////////////////////LOGOUT ACTION//////////////////
 export const logout = () => (dispatch) => {
   request(`${baseUrl}/clearcookie`)
     .withCredentials()
@@ -44,7 +43,7 @@ export const logout = () => (dispatch) => {
     .catch(console.error)
 }
 
-////////////////////CHECK TOKEN///////////////
+////////////////////CHECK TOKEN ACTION///////////////
 export const checkToken = (check) => (dispatch) => {
   dispatch(loginSucces(check))
 }

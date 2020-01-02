@@ -4,20 +4,19 @@ const baseUrl = 'http://localhost:4000'
 //console.log('docCook', document.cookie.split('=')[1])
 
 
-//////////////////FETCH EVENTS//////////////////
+//////////////////FETCH EVENTS ACTION//////////////////
 export const EVENTS_FETCHED = 'EVENTS_FETCHED'
 const eventsFetched = (events) => ({
   type: EVENTS_FETCHED,
   payload: events
 })
-export const fetchEvents = (limit, offset) => (dispatch, getState) => {
-  if (getState().events) return
+export const fetchEvents = (limit, offset) => (dispatch) => {
   request(`${baseUrl}/events?limit=${limit}&offset=${offset}`)
     .then(response => dispatch(eventsFetched(response.body.events)))
     .catch(console.error)
 }
 
-//////////////////CREATE EVENTS//////////////////
+//////////////////CREATE EVENTS ACTION//////////////////
 export const EVENT_CREATED = 'EVENT_CREATED'
 const eventCreated = (event) => ({
   type: EVENT_CREATED,
@@ -36,7 +35,7 @@ export const createEvent = (data) => (dispatch) => {
     .catch(console.error)
 }
 
-//////////////////UPDATE EVENTS//////////////////
+//////////////////UPDATE EVENTS ACTION//////////////////
 export const EVENT_UPDATED = 'EVENT_UPDATED'
 const eventUpdated = event => ({
   type: EVENT_UPDATED,
@@ -52,7 +51,7 @@ export const updateEvent = (id, data) => (dispatch) => {
     .catch(console.error)
 }
 
-//////////////////DELETE EVENTS//////////////////
+//////////////////DELETE EVENTS ACTION//////////////////
 export const EVENT_DELETED = 'EVENT_DELETED'
 const eventDeleted = id => ({
   type: EVENT_DELETED,
@@ -67,7 +66,7 @@ export const deleteEvent = (id) => (dispatch) => {
     .catch(console.error)
 }
 
-//////////////////COUNT EVENTS//////////////////
+//////////////////COUNT EVENTS ACTION//////////////////
 export const EVENTS_COUNT = 'EVENTS_COUNT'
 const eventsCount = (total, numOfPages) => ({
   type: EVENTS_COUNT,

@@ -6,17 +6,24 @@ import { checkToken , logout} from '../../actions/auth'
 
 
 class EventListContainer extends Component {
+///////////////COMPONENT STATE/////////////////////
   state = {
     editMode: false,
     editModeUpdate: false,
     eventsPerPage: 6,
     curOffset:0,
+    startDateValidation: true,
+    endDateValidation: true,
+    validation: true,
+    priceValidation: true,
+    requiredFormFields: true,
+    rerender: false
   }
 
+//////////////////COMPONENT MOUNT///////////////////
   componentDidMount() {
-   
     const nameCookie = document.cookie.split('=')[1]
-    if (nameCookie === undefined || nameCookie === "undefined"){
+    if (nameCookie === undefined ){
       this.props.checkToken(false)
     }else {
       this.props.checkToken(true)
@@ -24,62 +31,18 @@ class EventListContainer extends Component {
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
 
-  logOut = () => {
-    document.cookie = "name=undefined"
-    this.props.logout()
-    this.componentDidMount()
-    this.setState({
-      editMode: false
-    })
-  }
+//////////////LOG IN AND OUT////////////////////////
   logIn = () => {
     return this.props.history.push('/login')
   }
 
-  clickNext = () => {
-    this.setState({ curOffset: this.state.curOffset+=6 })
-    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
-  }
-  clickPrevious = () => {
-    this.setState({ curOffset: this.state.curOffset-=6 })
-    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+  logOut = () => {
+    this.props.logout()
+    this.componentDidMount()
+    this.setState({ editMode: false })
   }
   
-  updateOrAdd=()=>{
-    if(!this.props.authenticated) {
-      return this.props.history.push('/login')
-    } 
-    this.setState({
-      formValues: {
-        name: '',
-        description: '',
-        image: '',
-        start: '',
-        end: '',
-        avg_price: ''
-      }
-    })
-  }
-  
-  onAdd = () => {
-    this.updateOrAdd()
-    this.setState({editMode: true})
-  }
-  onUpdate = (id) => {
-    this.setState({editModeUpdate: true, id:id})
-    this.updateOrAdd()
-    
-  }
-
-  onDelete = (id) => {
-    if(!this.props.authenticated) {
-      return this.props.history.push('/login')
-    }
-    this.props.deleteEvent(id)
-  }
-
-  
-
+///////////////////ADD UPDATE DELETE EVENT///////////////////
   onChange = (event) => {
     this.setState({
       formValues: {
@@ -88,31 +51,116 @@ class EventListContainer extends Component {
       }
     })
   }
+
+////////////////ADD EVENT////////////////
+  onAdd = () => {
+    if(!this.props.authenticated) {
+      return this.props.history.push('/login')
+    } 
+    this.setState({editModeUpdate: false, requiredFormFields: true})
+    
+    if(this.state.editMode === false){
+      return this.setState({editMode: true})
+    }
+    if(this.state.editMode === true){
+      return this.setState({editMode: false})
+    }
+  }
+  
   onSubmit = (event) => {
     event.preventDefault()
+    const createSubmit = () => this.props.createEvent(this.state.formValues)
+    this.submitValidation(createSubmit)
+    this.setState();
+    console.log('STAATE2', this.state)
+    //this.props.history.push('/dashboard')
+    //setTimeout(()=>this.reRender(), 200)
+  }
+
+  reRender = () => {
+    this.componentDidMount()
+  }
+
+////////////////SUBMIT ADD & UPDATE///////////////
+  submitValidation = (submitCreateOrUpdate) => {
+    
+    const dateIsValid = date => /(\d{4})-(\d{2})-(\d{2})/.test(date)
+    const curDate = new Date().toISOString().split('T')[0]
+    
+    const startDateTrue = dateIsValid(this.state.formValues.start)
+    const endDateTrue = dateIsValid(this.state.formValues.end)
+    
+    if( this.state.formValues.avg_price && isNaN(this.state.formValues.avg_price) === true) {
+      return this.setState({priceValidation: false})
+    } 
+    this.setState({ priceValidation: true })
+    
+    if(this.state.formValues.start && startDateTrue !== true ) {
+      return this.setState({ startDateValidation: false})
+    } 
+    this.setState({ startDateValidation: true })
+
+    if(this.state.formValues.end && endDateTrue !== true) {
+      return this.setState({ endDateValidation: false})
+    } 
+    this.setState({ endDateValidation: true })
+
+    if(this.state.formValues.end && curDate > this.state.formValues.end) {
+      return this.setState({validation: false})
+    }
     this.setState({
-      editMode: false
-    })
-    this.props.createEvent(this.state.formValues)
+      editMode: false,
+      validation: true,
+      editModeUpdate: false,
+      requiredFormFields: true
+    }) 
+    console.log('STAATE', this.state)
+
+    submitCreateOrUpdate()
+   
+  }
+
+////////////////UPDATE EVENT//////////////////
+  onUpdate = (id) => {
+    if(!this.props.authenticated) {
+      return this.props.history.push('/login')
+    } 
+    this.setState({editMode: false})
+
+    if(this.state.editModeUpdate === false){
+      return this.setState({editModeUpdate: true, id:id, requiredFormFields: false})
+    }
+    if(this.state.editModeUpdate === true){
+      return this.setState({editModeUpdate: false, requiredFormFields: true})
+    }
   }
 
   onSubmitUpdate = (event) => {
     event.preventDefault()
-    this.setState({
-      editModeUpdate: false
-    })
-    const formValue = this.state.formValues
-    const newFormValues = {}
-    const keyOfObject = Object.keys(formValue)
-    keyOfObject.filter(el => {
-      if(formValue[el]) {
-        return newFormValues[el] = formValue[el]
-      }
-    })
-    this.props.updateEvent(this.state.id, newFormValues)
+    const updateSubmit = () => this.props.updateEvent(this.state.id,this.state.formValues)
+    this.submitValidation(updateSubmit)
+   
   }
-  
 
+///////////////////DELETE EVENT///////////////////
+  onDelete = (id) => {
+    if(!this.props.authenticated) {
+      return this.props.history.push('/login')
+    }
+    this.props.deleteEvent(id)
+  }
+
+////////////PAGINATION NEXT AND PREVIOUS//////////////
+  clickNext = () => {
+    this.setState({ curOffset: this.state.curOffset+=6 })
+    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+  }
+  clickPrevious = () => {
+    this.setState({ curOffset: this.state.curOffset-=6 })
+    this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+  }
+
+/////////////RENDER////////////////////////////////
   render() {
     if(!this.props.events) {
       return 'loading...'
@@ -121,27 +169,31 @@ class EventListContainer extends Component {
     return (
       <div>
         <EventList 
+          
           events={this.props.events}
           authenticated={this.props.authenticated}
+          values={this.state}
+          
+          logOut={this.logOut}
+          logIn={this.logIn}
           onAdd={this.onAdd} 
           onUpdate={this.onUpdate}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
-          values={this.state}
+          onSubmitUpdate={this.onSubmitUpdate}
+          onDelete={this.onDelete}
+          linkClick={this.linkClick}
+          reRender={this.reRender}
+          
           clickNext={this.clickNext}
           clickPrevious={this.clickPrevious}
-          linkClick={this.linkClick}
-          logOut={this.logOut}
-          logIn={this.logIn}
-          onDelete={this.onDelete}
-          onSubmitUpdate={this.onSubmitUpdate}
         />
       </div>
     )
   }
 }
 
-
+//////////////////////MAP STATE TO PROPS///////////////////////
 const mapStateToProps = state => ({
   events: state.events,
   //!!state.authUser gives a boolean false or true

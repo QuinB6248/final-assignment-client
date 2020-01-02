@@ -31,3 +31,4 @@ export const createTicket = (id, data) => (dispatch) => {
     .then(response => dispatch(ticketCreated(response.body.ticket)))
     .catch(console.error)
 }
+

@@ -7,7 +7,11 @@ body {
 .nobull {
   list-style: none;
 }
-
+button{
+  background-color: rgb(106, 106, 106);
+  
+  color: white;
+}
 .loginButtons{
   display: flex;
   justify-content: space-between;
@@ -28,13 +32,13 @@ body {
   justify-content: center;
   color: white;
   background-color: rgb(24, 24, 24);
+  
 }
 
 
 /* EVENTS-CONTAINERS */
 .eventSpace{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 .titleSpace {
   display: flex;
@@ -57,6 +61,7 @@ body {
 .descriptionSpace {
   padding-top: 5px;
   padding-bottom: 15px;
+  height: 50px;
 }
 .descriptionSpace > h4 {
   margin: 0;
@@ -68,6 +73,8 @@ body {
   font-family: 'Roboto Slab', serif;
   font-size: 12px;
   padding:10px;
+  height: 30px;
+  background-color: rgb(220, 220, 220);
 }
 .priceSpace > p {
   margin: 0;
@@ -77,14 +84,31 @@ body {
 }
 
 .dateSpace {
+  background-color: rgb(220, 220, 220);
   text-align: center;
   font-family: 'Roboto Slab', serif;
   font-size: 12px;
   padding:2px;
+  height: 35px;
 }
 .dateSpace > p {
   margin: 0;
 }
+
+.nameButtonSpace{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 30px;
+}
+.nameButtonSpace2 > h6{
+  background-color: rgb(213, 213, 213);
+  padding:5px;
+  margin: 0;
+}
+
 
 /* FOOTER */
 
@@ -95,9 +119,15 @@ body {
   font-size: 15px;
   cursor: pointer;
 }
+
 .buttonSpace {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.buttonSpace > h6 {
+ margin: 0;
 }
 
 .eventButtonSpace > button {
@@ -106,7 +136,7 @@ body {
   background-color: black ;
   font-size: 15px;
   cursor: pointer;
-  margin: auto;
+  margin: 5px;
 }
 
 .formSpace {
@@ -187,3 +217,17 @@ input {
   margin: auto;
   border: solid black 0.1px;
 }
+
+
+input:invalid {
+  border: 0.1px dashed rgb(159, 0, 0);
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 221, 221));
+}
+
+input:valid {
+  border: 2px solid black;
+}
+

@@ -8,7 +8,7 @@ export default function TicketDetails(props) {
     return 'loading...'
   }
  
-  const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values } = props
+  const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values, onDelete, goBack, logIn, logOut, authenticated } = props
   const {editMode, editCommentMode} = values
   const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
   const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
@@ -31,9 +31,15 @@ export default function TicketDetails(props) {
   
   return (
     <div className='containerTicketDetails'>
+      
       <div className='homeSpace'>
-        <a href={`/events`}>HOME</a>
+        <div className='loginButtons'>
+          <a href={`/events`}>EVENTS</a>
+          {authenticated? <div><p>logged in: {document.cookie.split('=')[1]}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
+        </div>
+        <button onClick={goBack}>Go back</button>
       </div>
+
       <div className='ticketDetailsSpace'> 
         <div className='ticketDetailsNameSpace'>
           <h1>{ticket.event.name}</h1>
@@ -62,30 +68,36 @@ export default function TicketDetails(props) {
         </div>
         { document.cookie.split('=')[1] === ticket.userDetails.name ? 
           <div className='detailButtonSpace'>
-            <button onClick={onEdit}>EDIT TICKET</button>
+            <div>
+              <button onClick={onEdit}>EDIT </button>
+              <button onClick={onDelete}>DELETE </button>
+            </div>
+            <h6>author: {ticket.userDetails.name}</h6>
           </div>:
-          <div className='authorSpace'>
-            <h5>author: {ticket.userDetails.name}</h5>
-          </div>}
-          <div >
-           {edform}
+          <div className='detailButtonSpace'>
+            <br></br>
+            <h6>author: {ticket.userDetails.name}</h6>
           </div>
-       </div>
-
-      <div className='commentHeader'>
-        <h4>COMMENTS</h4>
-        <div >
-          {commentList}
+        }
+        <div>
+          {edform}
         </div>
-      </div> 
-      <div>
-      {comform} 
       </div>
-      
+
       <div className='eventButtonSpace'>
         <button onClick={onAdd}>ADD COMMENT</button>
       </div>
+      <div  className='commentInputSpace'>
+        {comform} 
+      </div>
      
+      <div className='commentHeader'>
+        <h4>COMMENTS</h4>
+        <div>
+          {commentList}
+        </div>
+      </div> 
+    
     </div>
   )
 }

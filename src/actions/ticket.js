@@ -47,3 +47,18 @@ export const updateTicket = (id, ticketId, data) => (dispatch, getState) => {
     .then(response => dispatch(ticketUpdated(response.body)))
     .catch(console.error)
 }
+
+//////////////////DELETE TICKET ACTION//////////////////
+export const TICKET_DELETED = 'TICKET_DELETED'
+const ticketDeleted = id => ({
+  type: TICKET_DELETED,
+  payload: id
+})
+
+export const deleteTicket = (id, ticketId) => (dispatch) => {
+  request
+    .delete(`${baseUrl}/events/${id}/tickets/${ticketId}`)
+    .withCredentials()
+    .then(() => dispatch(ticketDeleted(ticketId)))
+    .catch(console.error)
+}

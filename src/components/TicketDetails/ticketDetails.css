@@ -56,38 +56,25 @@
   align-items: center;
 }
 
-.detailButtonSpace > button {
-  border: none;
-  background: #d3d3d3;
-  color: #070707;
-  font-size: 15px;
-  cursor: pointer;
-}
-
 .detailButtonSpace {
   display: flex;
-  justify-content: center;
-  align-items: center;
- 
-}
-
-.authorSpace {
-  display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin: 15px;
 }
+
+
 /* COMMENT SPACE */
 
 .commentSpace {
   display: flex;
-
   justify-content: space-between;
   border: solid rgb(205, 205, 205) 0.1px;
   width: 80%;
   padding-left:15px;
   padding-right:15px;
   margin: 10px auto;
+  
 }
 
 .commentHeader{
@@ -98,12 +85,14 @@
 .commentHeader > h4{
   text-align: center;
 }
+
 .comment {
-
-max-width: 80%;
+  max-width: 80%;
 }
-.authorCommentSpace {
 
- 
- 
+.commentInputSpace{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
 }

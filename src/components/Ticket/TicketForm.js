@@ -3,6 +3,11 @@ import React from 'react'
 
 export default function TicketForm(props) {
   const { onChange, onSubmit, values} = props
+
+  const {priceValidation} = values
+  const {requiredFormFields} = values
+  const warningPrice =  <p style={{color: "red"}}>Fill in price as a whole number</p>
+  const validPrice = !priceValidation && warningPrice
   
   return (
     <div className='formSpace'>
@@ -18,7 +23,11 @@ export default function TicketForm(props) {
           </div>
           <div>
             <label>price</label>
-            <input name={'price'} value={values.price} onChange={onChange} placeholder='price'/>
+            {validPrice}
+            { requiredFormFields  ? 
+              <input name={'price'} value={values.price} onChange={onChange} placeholder='price' required/>:
+              <input name={'price'} value={values.price} onChange={onChange} placeholder='price' />
+            }
           </div>
           <div>
             <button type='submit'>ADD</button>

@@ -5,15 +5,20 @@ import {login } from '../../actions/auth'
 
 class LoginFormContainer extends React.Component {
   state = {
-    name:'',
     email: '',
     password: '',
-    existingUser: true
+    existingUser: true,
+    validationEmail: true
   }
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.props.login(this.state.name, this.state.email, this.state.password)
+    const emailIsValid = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    const emailTrue = emailIsValid(this.state.email)
+    if(emailTrue !== true) {
+      return this.setState({ validationEmail: false })
+  } 
+    this.props.login(this.state.email, this.state.password)
     setTimeout(this.check, 400);
   }
 
