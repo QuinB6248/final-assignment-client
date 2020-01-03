@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import EventList from './EventList'
-import { fetchEvents, createEvent, countEvents, deleteEvent, updateEvent } from '../../actions/events'
+import { fetchEvents, createEvent, countEvents, deleteEvent, updateEvent, searchEvents } from '../../actions/events'
 import { checkToken , logout} from '../../actions/auth'
 
 
@@ -17,7 +17,6 @@ class EventListContainer extends Component {
     validation: true,
     priceValidation: true,
     requiredFormFields: true,
-    rerender: false
   }
 
 //////////////////COMPONENT MOUNT///////////////////
@@ -29,6 +28,25 @@ class EventListContainer extends Component {
       this.props.checkToken(true)
     }
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+    //this.props.searchEvents('9', 'Catty')
+  }
+  
+///////////////SEARCH EVENT/////////////////////////
+  submitSearch = (event) => {
+    event.preventDefault()
+
+    if(this.state.formValues === undefined){
+      return this.setState({
+        formValues: { eventName: 'false',userName: 'false'}
+      })
+    }
+    if(this.state.formValues.eventName === undefined){
+      return this.props.searchEvents('false', this.state.formValues.userName)
+    }
+    if(this.state.formValues.userName === undefined){
+      return this.props.searchEvents(this.state.formValues.eventName, 'false')
+    }
+    this.props.searchEvents(this.state.formValues.eventName, this.state.formValues.userName)
   }
 
 //////////////LOG IN AND OUT////////////////////////
@@ -71,14 +89,6 @@ class EventListContainer extends Component {
     event.preventDefault()
     const createSubmit = () => this.props.createEvent(this.state.formValues)
     this.submitValidation(createSubmit)
-    this.setState();
-    console.log('STAATE2', this.state)
-    //this.props.history.push('/dashboard')
-    //setTimeout(()=>this.reRender(), 200)
-  }
-
-  reRender = () => {
-    this.componentDidMount()
   }
 
 ////////////////SUBMIT ADD & UPDATE///////////////
@@ -114,7 +124,6 @@ class EventListContainer extends Component {
       editModeUpdate: false,
       requiredFormFields: true
     }) 
-    console.log('STAATE', this.state)
 
     submitCreateOrUpdate()
    
@@ -181,9 +190,9 @@ class EventListContainer extends Component {
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           onSubmitUpdate={this.onSubmitUpdate}
+          submitSearch={this.submitSearch}
           onDelete={this.onDelete}
           linkClick={this.linkClick}
-          reRender={this.reRender}
           
           clickNext={this.clickNext}
           clickPrevious={this.clickPrevious}
@@ -201,4 +210,4 @@ const mapStateToProps = state => ({
   
 })
 
-export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents, checkToken, logout, updateEvent, deleteEvent})(EventListContainer)
+export default connect(mapStateToProps, {fetchEvents, createEvent, countEvents, checkToken, logout, updateEvent, deleteEvent, searchEvents})(EventListContainer)

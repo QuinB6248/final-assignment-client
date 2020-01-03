@@ -15,6 +15,14 @@ export const fetchEvents = (limit, offset) => (dispatch) => {
     .then(response => dispatch(eventsFetched(response.body.events)))
     .catch(console.error)
 }
+//////////////////SEARCH EVENT ACTION////////////////
+export const searchEvents = (name, user) => (dispatch) => {
+  console.log('SEARCH', user)
+  request(`${baseUrl}/events?name=${name}&user=${user}`)
+    .then(response => dispatch(eventsFetched(response.body.events)))
+    .catch(console.error)
+}
+
 
 //////////////////CREATE EVENTS ACTION//////////////////
 export const EVENT_CREATED = 'EVENT_CREATED'

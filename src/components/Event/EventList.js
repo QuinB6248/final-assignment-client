@@ -1,19 +1,19 @@
 import React from 'react'
 import '../component.css'
 import EventForm from './EventForm'
+import EventSearchForm from './EventSearchForm'
 
 export default function EventsList(props) {
   if(!props.events) {
     return 'loading...'
   }
  
-  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated, onDelete, onSubmitUpdate, onUpdate, reRender}  = props
+  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated, onDelete, onSubmitUpdate, onUpdate, submitSearch}  = props
   const {curOffset} = values
   const {editMode} = values
   const {editModeUpdate} = values
   const {id} = values
-  const{rerender} = values
-  
+
   const eventForm =  <EventForm onChange={onChange} onSubmit={onSubmit} values={values}/>
   const eventFormUpdate =  <EventForm onChange={onChange} onSubmit={onSubmitUpdate} values={values}/>
   const form = editMode && eventForm
@@ -56,10 +56,18 @@ export default function EventsList(props) {
   
     return (
       <div className='containerSpace'>
+      
         <div className='footerSpace'>
           <div className='loginButtons'>
+          <div className='eventLoginSearch'> 
             <a href={`/events`}>EVENTS</a>
-            {authenticated? <div><p>logged in: {document.cookie.split('=')[1]}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
+            </div>
+            <div className='eventLoginSearch'> 
+              <EventSearchForm onChange={onChange} onSubmit={submitSearch} values={values}/>
+            </div>
+            <div className='eventLoginSearch'> 
+            {authenticated? <div className='eventLoginFields'><button onClick={logOut}>logout</button><p>Welkom {document.cookie.split('=')[1]}  </p></div>: <div className='eventLoginFields'><button onClick={logIn}>login</button></div>}
+            </div>
           </div>
         </div>
        
