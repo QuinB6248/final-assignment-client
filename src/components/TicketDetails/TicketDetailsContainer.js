@@ -1,80 +1,45 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TicketDetails from './TicketDetails'
-import { fetchTicket, createComment, updateTicket } from '../../actions/ticket'
-import { checkToken } from '../../actions/auth'
+import { fetchTicket, createComment, updateTicket, deleteTicket } from '../../actions/ticket'
+import { checkToken, logout } from '../../actions/auth'
+
 
 
 class TicketDetailsContainer extends Component {
+//////////////////////COMPONENT STATE///////////////////////
   state = {
     editMode: false,
     editCommentMode: false,
+    priceValidation: true,
+    requiredFormFields: false,
+    inputText: true
   }
 
+//////////////////////COMPONENT MOUNT///////////////////////
   componentDidMount() {
     const id = Number(this.props.match.params.id)
-    this.props.checkToken(sessionStorage.getItem("token"))
+    const nameCookie = document.cookie.split('=')[1]
+    if (nameCookie === undefined){
+      this.props.checkToken(false)
+    }else {
+      this.props.checkToken(true)
+    }
     this.props.fetchTicket(id, this.props.match.params.ticketId)
   }
   
-  onAdd = () => {
-    if(!this.props.authenticated) {
-      return this.props.history.push('/login')
-    }
-    this.setState({
-      editMode: false,
-      editCommentMode: true,
-      formValues: {
-        comment: "",
-         
-      }
-    })
+//////////////LOGIN  LOGOUT////////////////////////
+  logIn = () => {
+    return this.props.history.push('/login')
   }
 
-  onEdit = () => {
-    if(!this.props.authenticated) {
-      return this.props.history.push('/login')
-    }
-    this.setState({
-      editMode: true,
-      formValues: {
-        picture: this.props.ticket.ticket.picture, 
-        price: this.props.ticket.ticket.price,
-        description: this.props.ticket.ticket.description
-        }
-     })
+  logOut = () => {
+    this.props.logout()
+    this.componentDidMount()
+    this.setState({ editMode: false })
   }
 
-  onSubmitComment = (event) => {
-    const id = this.props.ticket.event.id
-    const ticketId = this.props.ticket.ticket.id
-    event.preventDefault()
-    this.setState({
-      editMode: false,
-      editCommentMode: false
-    })
-   this.props.createComment(id, ticketId, this.state.formValues)
-  //  setTimeout(this.check, 200);
-  }
-  check = () => {
-    if(this.props.authenticated) return this.setState({
-      editMode: false,
-      editCommentMode: false
-    })
-    
-  }
-
-  onSubmit = (event) => {
-    const id = this.props.ticket.event.id
-    const ticketId = this.props.ticket.ticket.id
-    event.preventDefault()
-    this.setState({
-      editMode: false,
-      editCommentMode: false
-    })
-   this.props.updateTicket(id, ticketId, this.state.formValues)
-  }
-
+//////////////////UPDATE TICKET ADD COMMENT////////////////////////
   onChange = (event) => {
     this.setState({
       formValues: {
@@ -82,16 +47,95 @@ class TicketDetailsContainer extends Component {
         [event.target.name]: event.target.value
       }
     })
-    console.log('ChangeState', this.state)
   }
 
+//////////////////UPDATE TICKET////////////////////////
+  onEdit = () => {
+    if(!this.props.authenticated) {
+      return this.props.history.push('/login')
+    }
+    
+    if(this.state.editMode === false){
+      return this.setState({editMode: true})
+    }
+
+    if(this.state.editMode === true){
+      return this.setState({editMode: false})
+    }
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+
+    const id = this.props.ticket.event.id
+    const ticketId = this.props.ticket.ticket.id
+   
+    if( this.state.formValues.price && isNaN(this.state.formValues.price) === true) {
+      return this.setState({priceValidation: false})
+    } 
+    this.setState({
+      editMode: false,
+      editCommentMode: false
+    })
+    this.props.updateTicket(id, ticketId, this.state.formValues)
+  }
+
+//////////////////ADD COMMENT////////////////////////
+  onAdd = () => {
+    if (this.state.formValues){
+      this.setState({ formValues:  undefined })
+    }
+    if(!this.props.authenticated) {
+      return this.props.history.push('/login')
+    }
+    this.setState({ editMode: false })
+
+    if(this.state.editCommentMode === false){
+      return this.setState({ editCommentMode: true})
+    }
+    if(this.state.editCommentMode === true){
+      return this.setState({editCommentMode: false})
+    }
+  }
+
+  onSubmitComment = (event) => {
+    event.preventDefault()
+    
+    const id = this.props.ticket.event.id
+    const ticketId = this.props.ticket.ticket.id
+    
+    if (this.state.formValues === undefined){
+      return this.setState({inputText: false})
+    }
+    this.setState({
+      editMode: false,
+      editCommentMode: false,
+      inputText: true
+    })
+    this.props.createComment(id, ticketId, this.state.formValues)
+  }
+ 
+ 
+//////////////////DELETE TICKET////////////////////////
+  onDelete = () => {
+    const id = this.props.ticket.event.id
+    const ticketId = this.props.ticket.ticket.id
+    this.props.deleteTicket(id, ticketId)
+    this.props.history.goBack()
+  }
+
+//////////////////GO BACK TO TICKETS////////////////////////
+  goBack = () => {
+    setTimeout(()=> this.props.history.goBack(), 400)
+  }
+
+//////////////////////RENDER///////////////////////
   render() {
     if(!this.props.ticket) {
       return 'loading...'
     }
-    console.log('erw', this.props.ticket)
+
     return (
-      
       <div>
         <TicketDetails
           authenticated={this.props.authenticated}
@@ -101,14 +145,18 @@ class TicketDetailsContainer extends Component {
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           onSubmitComment={this.onSubmitComment}
-          values={this.state}  
+          values={this.state} 
+          onDelete={this.onDelete} 
+          goBack = {this.goBack}
+          logOut={this.logOut}
+          logIn={this.logIn}
         />
       </div>
     )
   }
 }
 
-
+//////////////////////MAP STATE TO PROPS///////////////////////
 const mapStateToProps = state => ({
   ticket: state.ticket,
   tickets: state.tickets,
@@ -116,4 +164,4 @@ const mapStateToProps = state => ({
   
 })
 
-export default connect(mapStateToProps, {fetchTicket, createComment, updateTicket, checkToken})(TicketDetailsContainer)
+export default connect(mapStateToProps, {fetchTicket, createComment, updateTicket, checkToken, deleteTicket, logout})(TicketDetailsContainer)

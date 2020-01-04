@@ -23,14 +23,12 @@ const ticketCreated = ticket => ({
   payload: ticket
 })
 
-export const createTicket = (id, data) => (dispatch, getState) => {
- // const jwt = getState().authUser
-  const jwt = sessionStorage.getItem("token")
-  
+export const createTicket = (id, data) => (dispatch) => {
   request
     .post(`${baseUrl}/events/${id}/tickets`)
-    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
+    .withCredentials()
     .then(response => dispatch(ticketCreated(response.body.ticket)))
     .catch(console.error)
 }
+

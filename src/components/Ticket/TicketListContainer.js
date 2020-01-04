@@ -6,16 +6,25 @@ import { checkToken } from '../../actions/auth'
 
 
 class TicketListContainer extends Component {
+///////////////COMPONENT STATE/////////////////////
   state = {
     editMode: false,
+    priceValidation: true,
+    requiredFormFields: true
   }
   
+///////////////COMPONENT MOUNT////////////////////
   componentDidMount() {
-   this.props.checkToken(sessionStorage.getItem("token"))
-   this.props.fetchTickets(Number(this.props.match.params.id))
-   
+    const nameCookie = document.cookie.split('=')[1]
+    if (nameCookie === undefined || nameCookie === "undefined"){
+      this.props.checkToken(false)
+    }else {
+      this.props.checkToken(true)
+    }
+    this.props.fetchTickets(Number(this.props.match.params.id))
   }
 
+///////////////ADD TICKET/////////////////////
   onAdd = () => {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
@@ -30,14 +39,6 @@ class TicketListContainer extends Component {
     })
   }
 
-  onSubmit = (event) => {
-    event.preventDefault()
-    this.setState({
-      editMode: false
-    })
-    this.props.createTicket(Number(this.props.match.params.id), this.state.formValues)
-  }
-
   onChange = (event) => {
     this.setState({
       formValues: {
@@ -46,7 +47,20 @@ class TicketListContainer extends Component {
       }
     })
   }
-  
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    if( isNaN(this.state.formValues.price) === true) {
+      return this.setState({priceValidation: false})
+    } 
+    this.setState({
+      priceValidation: true,
+      editMode: false
+    })
+    this.props.createTicket(Number(this.props.match.params.id), this.state.formValues)
+  }
+
+///////////////RENDER/////////////////////
   render() {
     if(!this.props.tickets) {
       return 'loading'
@@ -66,7 +80,7 @@ class TicketListContainer extends Component {
   }
 }
 
-
+//////////////////////MAP STATE TO PROPS///////////////////////
 const mapStateToProps = state => ({
   events: state.events,
   tickets: state.tickets,

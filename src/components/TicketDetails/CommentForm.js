@@ -3,6 +3,10 @@ import '../component.css'
 
 export default function CommentForm(props) {
   const { onChange, onSubmit, values} = props
+
+  const {inputText} = values
+  const warningText =  <p style={{color: "red"}}>Fill in comment!</p>
+  const validText = !inputText && warningText
   
   return (
     <div>
@@ -10,7 +14,8 @@ export default function CommentForm(props) {
         <div>
           <div>
             <label>comment</label>
-            <input type='text' name={'comment'} value={values.comment} onChange={onChange} placeholder='comment'/>
+            { validText}
+            <input type='text' name={'comment'} value={values.comment} onChange={onChange} placeholder='comment' />
           </div>
           <div>
             <button type='submit'>ADD</button>

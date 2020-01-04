@@ -1,4 +1,5 @@
-import { TICKET_FETCHED, COMMENT_CREATED, TICKET_UPDATED  } from '../actions/ticket'
+import { TICKET_FETCHED, COMMENT_CREATED, TICKET_UPDATED, TICKET_DELETED  } from '../actions/ticket'
+
   
 
 const reducer = (state = null, action) => {
@@ -9,6 +10,8 @@ const reducer = (state = null, action) => {
       return {...state, comments: [...state.comments, action.payload]}
     case TICKET_UPDATED :
       return {...state, comments: state.comments, ticket:action.payload}
+    case  TICKET_DELETED: 
+     return state
     default: 
       return state
   }

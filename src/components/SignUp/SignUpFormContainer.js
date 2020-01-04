@@ -13,26 +13,21 @@ state = {
   }
 
 onSubmit = (event) => {
- event.preventDefault()
- const emailIsValid = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
- const emailTrue = emailIsValid(this.state.email)
- if(emailTrue !== true) {
-  return this.setState({
-    validation: false
-  })
- } 
- this.setState({
-  validation: true
-})
-this.props.signup(this.state.name, this.state.email, this.state.password)
-this.props.history.goBack()
+  event.preventDefault()
+ 
+  const emailIsValid = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const emailTrue = emailIsValid(this.state.email)
+  if(emailTrue !== true) {
+    return this.setState({ validation: false })
+  } 
+  this.setState({ validation: true })
+  this.props.signup(this.state.name, this.state.email, this.state.password)
+  this.props.history.goBack()
 }
 
 onChange = (event) => {
   //event.target = <input name="name, email, password" placeholder="" value="typing">
- this.setState({
-   [event.target.name]: event.target.value
- })
+ this.setState({ [event.target.name]: event.target.value })
 }
 
 render() {

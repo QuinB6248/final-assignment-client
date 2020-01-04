@@ -8,22 +8,23 @@ export default function LoginForm(props) {
   const warning =  <p style={{color: "red"}}>No Account</p>
   const valid = !existingUser && warning
   
+  const {validationEmail} = values
+  const warningEmail =  <p style={{color: "red"}}>this is not a valid email-address</p>
+  const validEmail = !validationEmail && warningEmail
+ 
   return (
     <div className='loginBox'>
       <form onSubmit={onSubmit}>
         <div className='loginSpace'>
-        <div>
-            <label>NAME</label>
-          </div>
-          <input name={'name'} onChange={onChange} value={values.name} placeholder='name'/>
           <div>
             <label>EMAIL</label>
+            {validEmail}
           </div>
-          <input name={'email'} onChange={onChange} value={values.email} placeholder='email'/>
+          <input name={'email'} onChange={onChange}  value={values.email} placeholder='email' required/>
           <div>
             <label>PASSWORD</label>
           </div>
-          <input name={'password'} onChange={onChange} value={values.password} placeholder='password'/>
+          <input name={'password'} onChange={onChange} value={values.password} placeholder='password' required/>
           <div style={{paddingBottom: '20px'}}>{valid}</div>
           <div>
             <button type='submit'>LOGIN</button>
