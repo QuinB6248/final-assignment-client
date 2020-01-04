@@ -9,7 +9,6 @@ body {
 }
 button{
   background-color: rgb(0, 0, 0);
-  
   color: white;
 }
 
@@ -30,7 +29,6 @@ button{
   background-color: rgb(24, 24, 24);
   
 }
-
 
 /* EVENTS-CONTAINERS */
 .eventSpace{

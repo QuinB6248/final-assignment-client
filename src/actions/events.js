@@ -1,7 +1,6 @@
 import request from 'superagent'
-const baseUrl = 'http://localhost:4000'
-//const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
-//console.log('docCook', document.cookie.split('=')[1])
+//const baseUrl = 'http://localhost:4000'
+const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
 
 
 //////////////////FETCH EVENTS ACTION//////////////////
@@ -15,6 +14,7 @@ export const fetchEvents = (limit, offset) => (dispatch) => {
     .then(response => dispatch(eventsFetched(response.body.events)))
     .catch(console.error)
 }
+
 //////////////////SEARCH EVENT ACTION////////////////
 export const searchEvents = (name, user) => (dispatch) => {
   console.log('SEARCH', user)
@@ -22,7 +22,6 @@ export const searchEvents = (name, user) => (dispatch) => {
     .then(response => dispatch(eventsFetched(response.body.events)))
     .catch(console.error)
 }
-
 
 //////////////////CREATE EVENTS ACTION//////////////////
 export const EVENT_CREATED = 'EVENT_CREATED'
