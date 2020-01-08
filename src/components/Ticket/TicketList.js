@@ -32,7 +32,7 @@ export default function TicketsList(props) {
           <li className='nobull'>
             <div className='ticketContainer'>
               <div className='ticketImageSpace' style={{background: "radial-gradient(rgba(255,255,255,1.2), rgba(255,255,255,0.7)), url(" + ticket.image  + ")"}}>
-                <img className='ticketImage'src={ticket.image} alt='No Image'/>
+                <img className='ticketImage'src={ticket.image} alt=""/>
               </div>
               <div className='ticketInfoSpace'>
                 <div className='ticketDescriptionSpace'>

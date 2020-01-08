@@ -1,6 +1,6 @@
 import request from 'superagent'
-const baseUrl = 'http://localhost:4000'
-//const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
+//const baseUrl = 'http://localhost:4000'
+const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
 
 
 //////////////////SIGNIN ACTION////////////////
@@ -31,13 +31,16 @@ export const login = (email, password) => (dispatch) => {
     .post(`${baseUrl}/login`)
     .send({email, password})
     .withCredentials()
-    .then((response)=> {dispatch(loginSucces(response.body.jwt))})
+    .then((response)=> {
+      sessionStorage.setItem("name", response.body.name)
+      dispatch(loginSucces(response.body))})
     .catch(console.error)
 }
 
 ////////////////////LOGOUT ACTION//////////////////
 export const logout = () => (dispatch) => {
-  request(`${baseUrl}/clearcookie`)
+  sessionStorage.removeItem("name")
+  request(`${baseUrl}/cleartoken`)
     .withCredentials()
     .then(response => dispatch(loginSucces(response.body)))
     .catch(console.error)
@@ -45,6 +48,8 @@ export const logout = () => (dispatch) => {
 
 ////////////////////CHECK TOKEN ACTION///////////////
 export const checkToken = (check) => (dispatch) => {
-  dispatch(loginSucces(check))
+  request(`${baseUrl}/gettoken`)
+    .then(response => dispatch(loginSucces(response.body)))
+    .catch(console.error)
 }
 

@@ -1,6 +1,6 @@
 import request from 'superagent'
-const baseUrl = 'http://localhost:4000'
-//const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
+//const baseUrl = 'http://localhost:4000'
+const baseUrl ='https://pure-hamlet-15394.herokuapp.com'
 
 
 ///////////////////FETCH TICKETS ACTION///////////////////////////
@@ -23,11 +23,11 @@ const ticketCreated = ticket => ({
   payload: ticket
 })
 
-export const createTicket = (id, data) => (dispatch) => {
+export const createTicket = (id, data, jwt) => (dispatch) => {
   request
     .post(`${baseUrl}/events/${id}/tickets`)
     .send(data)
-    .withCredentials()
+    .set('Authorization', `Bearer ${jwt}`)
     .then(response => dispatch(ticketCreated(response.body.ticket)))
     .catch(console.error)
 }

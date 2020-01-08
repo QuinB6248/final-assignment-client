@@ -1,12 +1,11 @@
 import { EVENTS_FETCHED, EVENTS_COUNT, EVENT_CREATED, EVENT_UPDATED, EVENT_DELETED } from '../actions/events'
 
-  
+
 
 const reducer = (state = null, action) => {
   switch(action.type) {
     case EVENTS_FETCHED :
-      console.log('PAAAAAYLOAD',action.payload )
-      return action.payload
+      return action.payload.events
     case EVENTS_COUNT:
       return action.payload
     case EVENT_CREATED: 

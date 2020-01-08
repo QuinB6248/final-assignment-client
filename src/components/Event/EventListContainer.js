@@ -21,14 +21,13 @@ class EventListContainer extends Component {
 
 //////////////////COMPONENT MOUNT///////////////////
   componentDidMount() {
-    const nameCookie = document.cookie.split('=')[1]
-    if (nameCookie === undefined ){
+    const nameCookie = this.props.authenticated
+    if (nameCookie === undefined || nameCookie === null || nameCookie === false){
       this.props.checkToken(false)
     }else {
-      this.props.checkToken(true)
+      this.props.checkToken(nameCookie)
     }
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
-    //this.props.searchEvents('9', 'Catty')
   }
   
 ///////////////SEARCH EVENT/////////////////////////
@@ -87,8 +86,9 @@ class EventListContainer extends Component {
   
   onSubmit = (event) => {
     event.preventDefault()
-    const createSubmit = () => this.props.createEvent(this.state.formValues)
+    const createSubmit = () => this.props.createEvent(this.state.formValues, this.props.authenticated.token)
     this.submitValidation(createSubmit)
+    setTimeout(()=>this.componentDidMount(), 400)
   }
 
 ////////////////SUBMIT ADD & UPDATE///////////////
@@ -146,7 +146,7 @@ class EventListContainer extends Component {
 
   onSubmitUpdate = (event) => {
     event.preventDefault()
-    const updateSubmit = () => this.props.updateEvent(this.state.id,this.state.formValues)
+    const updateSubmit = () => this.props.updateEvent(this.state.id, this.state.formValues, this.props.authenticated.token)
     this.submitValidation(updateSubmit)
    
   }
@@ -156,7 +156,8 @@ class EventListContainer extends Component {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
     }
-    this.props.deleteEvent(id)
+    this.props.deleteEvent(id, this.props.authenticated.token)
+    setTimeout(()=>this.componentDidMount(), 400)
   }
 
 ////////////PAGINATION NEXT AND PREVIOUS//////////////
@@ -180,7 +181,6 @@ class EventListContainer extends Component {
         <EventList 
           
           events={this.props.events}
-          authenticated={this.props.authenticated}
           values={this.state}
           
           logOut={this.logOut}
@@ -206,7 +206,7 @@ class EventListContainer extends Component {
 const mapStateToProps = state => ({
   events: state.events,
   //!!state.authUser gives a boolean false or true
-  authenticated: !!state.authUser,
+  authenticated: state.authUser,
   
 })
 

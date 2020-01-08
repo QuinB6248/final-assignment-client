@@ -15,11 +15,11 @@ class TicketListContainer extends Component {
   
 ///////////////COMPONENT MOUNT////////////////////
   componentDidMount() {
-    const nameCookie = document.cookie.split('=')[1]
-    if (nameCookie === undefined || nameCookie === "undefined"){
+    const nameCookie = this.props.authenticated
+    if (nameCookie === undefined || nameCookie === null || nameCookie === false){
       this.props.checkToken(false)
     }else {
-      this.props.checkToken(true)
+      this.props.checkToken(nameCookie)
     }
     this.props.fetchTickets(Number(this.props.match.params.id))
   }
@@ -57,7 +57,7 @@ class TicketListContainer extends Component {
       priceValidation: true,
       editMode: false
     })
-    this.props.createTicket(Number(this.props.match.params.id), this.state.formValues)
+    this.props.createTicket(Number(this.props.match.params.id), this.state.formValues, this.props.authenticated.token)
   }
 
 ///////////////RENDER/////////////////////
@@ -65,7 +65,8 @@ class TicketListContainer extends Component {
     if(!this.props.tickets) {
       return 'loading'
     }
-      return (
+   
+    return (
       <div>
         <TicketList 
           tickets={this.props.tickets.tickets}
@@ -84,7 +85,7 @@ class TicketListContainer extends Component {
 const mapStateToProps = state => ({
   events: state.events,
   tickets: state.tickets,
-  authenticated: !!state.authUser
+  authenticated: state.authUser
 })
 
 export default connect(mapStateToProps, {fetchTickets, createTicket, checkToken})(TicketListContainer)
