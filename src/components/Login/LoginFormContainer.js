@@ -19,7 +19,7 @@ class LoginFormContainer extends React.Component {
       return this.setState({ validationEmail: false })
   } 
     this.props.login(this.state.email, this.state.password)
-    setTimeout(this.check, 400);
+    setTimeout(this.check, 600);
   }
 
   check = () => {
