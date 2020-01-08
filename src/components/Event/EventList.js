@@ -8,7 +8,7 @@ export default function EventsList(props) {
     return 'loading...'
   }
  
-  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, authenticated, onDelete, onSubmitUpdate, onUpdate, submitSearch}  = props
+  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, onDelete, onSubmitUpdate, onUpdate, submitSearch}  = props
   const {curOffset} = values
   const {editMode} = values
   const {editModeUpdate} = values
@@ -27,7 +27,7 @@ export default function EventsList(props) {
             <a  href={`/events/${event.id}/tickets`}><h3 >{event.name}</h3></a> 
           </div>
           <div className='imageSpace'>
-            <img className='imgSize'src={event.image}/>
+            <img className='imgSize'src={event.image} alt=""/>
           </div>
           <div className='descriptionSpace'>
             <h4>{event.description}</h4>
@@ -40,7 +40,7 @@ export default function EventsList(props) {
             <p>date:</p>
             {event.start} t/m {event.end}
           </div>
-          { document.cookie.split('=')[1] === event.user.name ? 
+          { sessionStorage.getItem("name") === event.user.name ? 
             <div className='nameButtonSpace'>
               <div>
                 <button onClick={()=>onDelete(event.id)}>DELETE</button> 
@@ -66,7 +66,7 @@ export default function EventsList(props) {
               <EventSearchForm onChange={onChange} onSubmit={submitSearch} values={values}/>
             </div>
             <div className='eventLoginSearch'> 
-            {authenticated? <div className='eventLoginFields'><button onClick={logOut}>logout</button><p>Welkom {document.cookie.split('=')[1]}  </p></div>: <div className='eventLoginFields'><button onClick={logIn}>login</button></div>}
+            {sessionStorage.getItem("name")? <div className='eventLoginFields'><button onClick={logOut}>logout</button><p>Welkom {sessionStorage.getItem("name")}  </p></div>: <div className='eventLoginFields'><button onClick={logIn}>login</button></div>}
             </div>
           </div>
         </div>

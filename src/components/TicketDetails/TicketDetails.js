@@ -8,7 +8,7 @@ export default function TicketDetails(props) {
     return 'loading...'
   }
  
-  const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values, onDelete, goBack, logIn, logOut, authenticated } = props
+  const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values, onDelete, goBack, logIn, logOut} = props
   const {editMode, editCommentMode} = values
   const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
   const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
@@ -35,7 +35,7 @@ export default function TicketDetails(props) {
       <div className='homeSpace'>
         <div className='loginButtons'>
           <a href={`/events`}>EVENTS</a>
-          {authenticated? <div><p>logged in: {document.cookie.split('=')[1]}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
+          {sessionStorage.getItem("name")? <div><p>Welkom {sessionStorage.getItem("name")}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
         </div>
         <button onClick={goBack}>Go back</button>
       </div>
@@ -45,7 +45,7 @@ export default function TicketDetails(props) {
           <h1>{ticket.event.name}</h1>
         </div>
         <div className='imageBigSpace' style={{background: "radial-gradient(rgba(236,240,241,0.7), rgba(236,240,241,4)), url(" + ticket.ticket.image  + ")", backgroundSize: "cover", backgroundRepeat:"no-repeat", backgroundPosition:'center'}}>
-          <img className='imgBigSize' src={ticket.ticket.image}/>
+          <img className='imgBigSize' src={ticket.ticket.image} alt=""/>
         </div>
         <div className='ticketDetailsDescription'>
           <div className='descriptionBox'>
@@ -66,7 +66,7 @@ export default function TicketDetails(props) {
             }
           </div>
         </div>
-        { document.cookie.split('=')[1] === ticket.userDetails.name ? 
+        { sessionStorage.getItem("name") === ticket.userDetails.name ? 
           <div className='detailButtonSpace'>
             <div>
               <button onClick={onEdit}>EDIT </button>

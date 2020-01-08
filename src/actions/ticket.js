@@ -23,11 +23,11 @@ const commentCreated = comment => ({
   payload: comment
 })
 
-export const createComment = (id, ticketId, data) => (dispatch, getState) => {
+export const createComment = (id, ticketId, data, jwt) => (dispatch) => {
   request
     .post(`${baseUrl}/events/${id}/tickets/${ticketId}/comments`)
     .send(data)
-    .withCredentials()
+    .set('Authorization', `Bearer ${jwt}`)
     .then(response => dispatch(commentCreated(response.body)))
     .catch(console.error)
 }
@@ -39,11 +39,11 @@ const ticketUpdated = ticket => ({
   payload: ticket
 })
 
-export const updateTicket = (id, ticketId, data) => (dispatch, getState) => {
+export const updateTicket = (id, ticketId, data, jwt) => (dispatch, getState) => {
   request
     .patch(`${baseUrl}/events/${id}/tickets/${ticketId}`)
     .send(data)
-    .withCredentials()
+    .set('Authorization', `Bearer ${jwt}`)
     .then(response => dispatch(ticketUpdated(response.body)))
     .catch(console.error)
 }
@@ -55,10 +55,10 @@ const ticketDeleted = id => ({
   payload: id
 })
 
-export const deleteTicket = (id, ticketId) => (dispatch) => {
+export const deleteTicket = (id, ticketId, jwt) => (dispatch) => {
   request
     .delete(`${baseUrl}/events/${id}/tickets/${ticketId}`)
-    .withCredentials()
+    .set('Authorization', `Bearer ${jwt}`)
     .then(() => dispatch(ticketDeleted(ticketId)))
     .catch(console.error)
 }

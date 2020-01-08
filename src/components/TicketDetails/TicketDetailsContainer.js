@@ -19,11 +19,11 @@ class TicketDetailsContainer extends Component {
 //////////////////////COMPONENT MOUNT///////////////////////
   componentDidMount() {
     const id = Number(this.props.match.params.id)
-    const nameCookie = document.cookie.split('=')[1]
-    if (nameCookie === undefined){
+    const nameCookie = this.props.authenticated
+    if (nameCookie === undefined || nameCookie === null || nameCookie === false){
       this.props.checkToken(false)
     }else {
-      this.props.checkToken(true)
+      this.props.checkToken(nameCookie)
     }
     this.props.fetchTicket(id, this.props.match.params.ticketId)
   }
@@ -77,7 +77,7 @@ class TicketDetailsContainer extends Component {
       editMode: false,
       editCommentMode: false
     })
-    this.props.updateTicket(id, ticketId, this.state.formValues)
+    this.props.updateTicket(id, ticketId, this.state.formValues, this.props.authenticated.token)
   }
 
 //////////////////ADD COMMENT////////////////////////
@@ -112,7 +112,7 @@ class TicketDetailsContainer extends Component {
       editCommentMode: false,
       inputText: true
     })
-    this.props.createComment(id, ticketId, this.state.formValues)
+    this.props.createComment(id, ticketId, this.state.formValues, this.props.authenticated.token)
   }
  
  
@@ -120,7 +120,7 @@ class TicketDetailsContainer extends Component {
   onDelete = () => {
     const id = this.props.ticket.event.id
     const ticketId = this.props.ticket.ticket.id
-    this.props.deleteTicket(id, ticketId)
+    this.props.deleteTicket(id, ticketId, this.props.authenticated.token)
     this.props.history.goBack()
   }
 
@@ -138,7 +138,6 @@ class TicketDetailsContainer extends Component {
     return (
       <div>
         <TicketDetails
-          authenticated={this.props.authenticated}
           ticket={this.props.ticket}
           onAdd={this.onAdd} 
           onEdit={this.onEdit}
@@ -160,7 +159,7 @@ class TicketDetailsContainer extends Component {
 const mapStateToProps = state => ({
   ticket: state.ticket,
   tickets: state.tickets,
-  authenticated: !!state.authUser
+  authenticated: state.authUser
   
 })
 

@@ -5,19 +5,19 @@ const baseUrl ='https://secure-dusk-52930.herokuapp.com'
 
 //////////////////FETCH EVENTS ACTION//////////////////
 export const EVENTS_FETCHED = 'EVENTS_FETCHED'
-const eventsFetched = (events) => ({
+const eventsFetched = (events, jwt) => ({
   type: EVENTS_FETCHED,
-  payload: events
+  payload: {events, jwt}
 })
-export const fetchEvents = (limit, offset) => (dispatch) => {
+export const fetchEvents = (limit, offset) => (dispatch, getState) => {
+  const jwt = getState().authUser
   request(`${baseUrl}/events?limit=${limit}&offset=${offset}`)
-    .then(response => dispatch(eventsFetched(response.body.events)))
+    .then(response => dispatch(eventsFetched(response.body.events, jwt)))
     .catch(console.error)
 }
 
 //////////////////SEARCH EVENT ACTION////////////////
 export const searchEvents = (name, user) => (dispatch) => {
-  console.log('SEARCH', user)
   request(`${baseUrl}/events?name=${name}&user=${user}`)
     .then(response => dispatch(eventsFetched(response.body.events)))
     .catch(console.error)
@@ -30,14 +30,11 @@ const eventCreated = (event) => ({
   payload: event
 })
 
-export const createEvent = (data) => (dispatch) => {
-  //const jwt = getState().authUser
-  //const jwt = sessionStorage.getItem("token")
+export const createEvent = (data, jwt) => (dispatch) => {
   request
     .post(`${baseUrl}/events`)
-    //.set('Authorization', `Bearer ${jwt}`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
-    .withCredentials()
     .then(response =>dispatch(eventCreated(response.body)))
     .catch(console.error)
 }
@@ -49,11 +46,11 @@ const eventUpdated = event => ({
   payload: event
 })
 
-export const updateEvent = (id, data) => (dispatch) => {
+export const updateEvent = (id, data, jwt) => (dispatch) => {
   request
     .patch(`${baseUrl}/events/${id}`)
     .send(data)
-    .withCredentials()
+    .set('Authorization', `Bearer ${jwt}`)
     .then(response => dispatch(eventUpdated(response.body)))
     .catch(console.error)
 }
@@ -65,10 +62,10 @@ const eventDeleted = id => ({
   payload: id
 })
 
-export const deleteEvent = (id) => (dispatch) => {
+export const deleteEvent = (id, jwt) => (dispatch) => {
   request
     .delete(`${baseUrl}/events/${id}`)
-    .withCredentials()
+    .set('Authorization', `Bearer ${jwt}`)
     .then(() => dispatch(eventDeleted(id)))
     .catch(console.error)
 }
