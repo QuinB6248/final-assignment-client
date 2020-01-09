@@ -10,8 +10,8 @@ const reducer = (state = null, action) => {
       return {...state, comments: [...state.comments, action.payload]}
     case TICKET_UPDATED :
       return {...state, comments: state.comments, ticket:action.payload}
-    case  TICKET_DELETED: 
-     return state
+    // case  TICKET_DELETED: 
+    //  return state
     default: 
       return state
   }

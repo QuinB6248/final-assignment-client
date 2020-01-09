@@ -128,7 +128,7 @@ class TicketDetailsContainer extends Component {
 
 //////////////////GO BACK TO TICKETS////////////////////////
   goBackTickets = () => {
-    setTimeout(()=> this.props.history.goBack(), 1000)
+    setTimeout(()=> this.props.history.goBack(), 200)
   }
 
 //////////////////////RENDER///////////////////////
@@ -148,7 +148,7 @@ class TicketDetailsContainer extends Component {
           onSubmitComment={this.onSubmitComment}
           values={this.state} 
           onDelete={this.onDelete} 
-          goBack = {this.goBack}
+          goBack = {this.goBackTickets}
           logOut={this.logOut}
           logIn={this.logIn}
         />
