@@ -1,6 +1,6 @@
 import request from 'superagent'
-//const baseUrl = 'http://localhost:4000'
-const baseUrl ='https://secure-dusk-52930.herokuapp.com'
+const baseUrl = 'http://localhost:4000'
+//const baseUrl ='https://secure-dusk-52930.herokuapp.com'
 
 
 //////////////////SIGNIN ACTION////////////////
@@ -33,22 +33,26 @@ export const login = (email, password) => (dispatch) => {
     .withCredentials()
     .then((response)=> {
       sessionStorage.setItem("name", response.body.name)
+      sessionStorage.setItem("id", response.body.id)
       dispatch(loginSucces(response.body))})
     .catch(console.error)
 }
 
 ////////////////////LOGOUT ACTION//////////////////
-export const logout = () => (dispatch) => {
+export const logout = (check) => (dispatch) => {
   sessionStorage.removeItem("name")
-  request(`${baseUrl}/cleartoken`)
-    .withCredentials()
-    .then(response => dispatch(loginSucces(response.body)))
+  sessionStorage.removeItem("id")
+  request .delete(`${baseUrl}/cleartoken/${check.id}`)
+    .then(response => {
+      console.log('resclear', response.body)
+      dispatch(loginSucces(response.body))})
     .catch(console.error)
 }
 
 ////////////////////CHECK TOKEN ACTION///////////////
 export const checkToken = (check) => (dispatch) => {
-  request(`${baseUrl}/gettoken`)
+  const id =sessionStorage.getItem("id") || 1
+  request(`${baseUrl}/gettoken/${id}`)
     .then(response => {
       if (response.body) {
         request(`${baseUrl}/authtoken`)

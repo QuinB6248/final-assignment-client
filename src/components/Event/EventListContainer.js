@@ -21,7 +21,6 @@ class EventListContainer extends Component {
 
 //////////////////COMPONENT MOUNT///////////////////
   componentDidMount() {
-    
     const nameCookie = this.props.authenticated
     if (nameCookie === undefined || nameCookie === null || nameCookie === false){
       this.props.checkToken(false)
@@ -56,7 +55,8 @@ class EventListContainer extends Component {
   }
 
   logOut = () => {
-    this.props.logout()
+    //console.log('iiiiiddddddddd',this.props.authenticated)
+    this.props.logout(this.props.authenticated)
     this.setState({ editMode: false })
   }
   

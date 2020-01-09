@@ -36,7 +36,7 @@ class TicketDetailsContainer extends Component {
   }
 
   logOut = () => {
-    this.props.logout()
+    this.props.logout(this.props.authenticated.id)
     this.componentDidMount()
     this.setState({ editMode: false })
   }
