@@ -10,7 +10,9 @@ class TicketListContainer extends Component {
   state = {
     editMode: false,
     priceValidation: true,
-    requiredFormFields: true
+    requiredFormFields: true,
+    login: true    
+
   }
   
 ///////////////COMPONENT MOUNT////////////////////
@@ -21,7 +23,7 @@ class TicketListContainer extends Component {
     }else {
       this.props.checkToken(nameCookie)
     }
-    this.props.fetchTickets(Number(this.props.match.params.id))
+    setTimeout(()=>this.props.fetchTickets(Number(this.props.match.params.id)), 200)
   }
 
 ///////////////ADD TICKET/////////////////////
@@ -38,7 +40,7 @@ class TicketListContainer extends Component {
         }
     })
   }
-
+  
   onChange = (event) => {
     this.setState({
       formValues: {
@@ -53,11 +55,13 @@ class TicketListContainer extends Component {
     if( isNaN(this.state.formValues.price) === true) {
       return this.setState({priceValidation: false})
     } 
+    
     this.setState({
       priceValidation: true,
       editMode: false
     })
     this.props.createTicket(Number(this.props.match.params.id), this.state.formValues, this.props.authenticated.token)
+    
   }
 
 ///////////////RENDER/////////////////////

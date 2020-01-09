@@ -13,7 +13,8 @@ class TicketDetailsContainer extends Component {
     editCommentMode: false,
     priceValidation: true,
     requiredFormFields: false,
-    inputText: true
+    inputText: true,
+   
   }
 
 //////////////////////COMPONENT MOUNT///////////////////////
@@ -25,6 +26,7 @@ class TicketDetailsContainer extends Component {
     }else {
       this.props.checkToken(nameCookie)
     }
+    
     this.props.fetchTicket(id, this.props.match.params.ticketId)
   }
   
@@ -125,8 +127,8 @@ class TicketDetailsContainer extends Component {
   }
 
 //////////////////GO BACK TO TICKETS////////////////////////
-  goBack = () => {
-    setTimeout(()=> this.props.history.goBack(), 400)
+  goBackTickets = () => {
+    setTimeout(()=> this.props.history.goBack(), 1000)
   }
 
 //////////////////////RENDER///////////////////////

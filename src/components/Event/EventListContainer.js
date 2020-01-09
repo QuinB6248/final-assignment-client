@@ -21,6 +21,7 @@ class EventListContainer extends Component {
 
 //////////////////COMPONENT MOUNT///////////////////
   componentDidMount() {
+    
     const nameCookie = this.props.authenticated
     if (nameCookie === undefined || nameCookie === null || nameCookie === false){
       this.props.checkToken(false)
@@ -28,6 +29,7 @@ class EventListContainer extends Component {
       this.props.checkToken(nameCookie)
     }
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
+   
   }
   
 ///////////////SEARCH EVENT/////////////////////////
@@ -55,7 +57,6 @@ class EventListContainer extends Component {
 
   logOut = () => {
     this.props.logout()
-    this.componentDidMount()
     this.setState({ editMode: false })
   }
   
@@ -89,6 +90,7 @@ class EventListContainer extends Component {
     const createSubmit = () => this.props.createEvent(this.state.formValues, this.props.authenticated.token)
     this.submitValidation(createSubmit)
     setTimeout(()=>this.componentDidMount(), 400)
+    
   }
 
 ////////////////SUBMIT ADD & UPDATE///////////////
@@ -175,7 +177,6 @@ class EventListContainer extends Component {
     if(!this.props.events) {
       return 'loading...'
     }
-   
     return (
       <div>
         <EventList 

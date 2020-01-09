@@ -2,6 +2,7 @@ import React from 'react'
 import LoginForm from './Loginform'
 import {connect} from 'react-redux'
 import {login } from '../../actions/auth'
+import { checkToken } from '../../actions/auth'
 
 class LoginFormContainer extends React.Component {
   state = {
@@ -23,7 +24,9 @@ class LoginFormContainer extends React.Component {
   }
 
   check = () => {
-    if(this.props.authenticated) {return this.props.history.goBack()}
+    if(this.props.authenticated) {
+      return this.props.history.goBack()
+    }
     return this.setState({existingUser: false})
   }
 
@@ -47,4 +50,4 @@ const mapStateToProps = state => ({
   authenticated: state.authUser
 })
 
-export default connect(mapStateToProps, {login})(LoginFormContainer)
+export default connect(mapStateToProps, {login, checkToken})(LoginFormContainer)

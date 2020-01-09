@@ -49,7 +49,18 @@ export const logout = () => (dispatch) => {
 ////////////////////CHECK TOKEN ACTION///////////////
 export const checkToken = (check) => (dispatch) => {
   request(`${baseUrl}/gettoken`)
-    .then(response => dispatch(loginSucces(response.body)))
+    .then(response => {
+      if (response.body) {
+        request(`${baseUrl}/authtoken`)
+          .set('Authorization', `Bearer ${response.body.token}`)
+          .then(res => {
+            if(res.body === false) { return logout()(dispatch)}
+            return dispatch(loginSucces(response.body))
+          })
+          .catch(console.error)
+      }
+      dispatch(loginSucces(false))
+    })
     .catch(console.error)
 }
 
