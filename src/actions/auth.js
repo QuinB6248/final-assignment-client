@@ -42,17 +42,18 @@ export const login = (email, password) => (dispatch) => {
 export const logout = (check) => (dispatch) => {
   sessionStorage.removeItem("name")
   sessionStorage.removeItem("id")
-  request .delete(`${baseUrl}/cleartoken/${check.id}`)
+  request
+    .delete(`${baseUrl}/cleartoken/${check.id}`)
     .then(response => {
-      console.log('resclear', response.body)
       dispatch(loginSucces(response.body))})
     .catch(console.error)
 }
 
 ////////////////////CHECK TOKEN ACTION///////////////
 export const checkToken = (check) => (dispatch) => {
-  const id =sessionStorage.getItem("id") || 1
-  request(`${baseUrl}/gettoken/${id}`)
+  console.log('SESSION',sessionStorage )
+  const id =sessionStorage.getItem("id") || false
+  request(`${baseUrl}/gettoken?id=${id}`)
     .then(response => {
       if (response.body) {
         request(`${baseUrl}/authtoken`)
