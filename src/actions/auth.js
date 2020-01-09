@@ -30,7 +30,7 @@ export const login = (email, password) => (dispatch) => {
   request
     .post(`${baseUrl}/login`)
     .send({email, password})
-    .withCredentials()
+    //.withCredentials()
     .then((response)=> {
       sessionStorage.setItem("name", response.body.name)
       sessionStorage.setItem("id", response.body.id)
