@@ -11,7 +11,6 @@ const reducer = (state = null, action) => {
     case TICKET_UPDATED :
       return {...state, comments: state.comments, ticket:action.payload}
     case  TICKET_DELETED: 
-    console.log('DELETpa', action.payload)
      return state
     default: 
       return state

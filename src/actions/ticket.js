@@ -56,14 +56,10 @@ const ticketDeleted = id => ({
 })
 
 export const deleteTicket = (id, ticketId, jwt) => (dispatch) => {
-  console.log('ID', id)
-  console.log('tickID', ticketId)
-  console.log('jwt', jwt)
   request
     .delete(`${baseUrl}/events/${id}/tickets/${ticketId}`)
     .set('Authorization', `Bearer ${jwt}`)
     .then(() => {
-      console.log('ID', id)
       dispatch(ticketDeleted(ticketId))
     })
     .catch(console.error)

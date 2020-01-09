@@ -120,7 +120,6 @@ class TicketDetailsContainer extends Component {
  
 //////////////////DELETE TICKET////////////////////////
   onDelete = () => {
-    console.log('Toke', this.props.authenticated.token)
     const id = this.props.ticket.event.id
     const ticketId = this.props.ticket.ticket.id
     this.props.deleteTicket(id, ticketId, this.props.authenticated.token)
