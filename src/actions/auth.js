@@ -1,6 +1,6 @@
 import request from 'superagent'
-//const baseUrl = 'http://localhost:4000'
-const baseUrl ='https://secure-dusk-52930.herokuapp.com'
+const baseUrl = 'http://localhost:4000'
+//const baseUrl ='https://secure-dusk-52930.herokuapp.com'
 
 
 //////////////////SIGNIN ACTION////////////////
@@ -30,7 +30,6 @@ export const login = (email, password) => (dispatch) => {
   request
     .post(`${baseUrl}/login`)
     .send({email, password})
-    //.withCredentials()
     .then((response)=> {
       sessionStorage.setItem("name", response.body.name)
       sessionStorage.setItem("id", response.body.id)
@@ -51,8 +50,13 @@ export const logout = (check) => (dispatch) => {
 
 ////////////////////CHECK TOKEN ACTION///////////////
 export const checkToken = (check) => (dispatch) => {
-  console.log('SESSION',sessionStorage )
-  const id =sessionStorage.getItem("id") || false
+  let id = ''
+  if(sessionStorage.length === 0){
+    id = 'none'
+  }else{
+    id = sessionStorage.getItem("id") 
+  }
+  
   request(`${baseUrl}/gettoken?id=${id}`)
     .then(response => {
       if (response.body) {

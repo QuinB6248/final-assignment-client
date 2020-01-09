@@ -55,8 +55,8 @@ class EventListContainer extends Component {
   }
 
   logOut = () => {
-    //console.log('iiiiiddddddddd',this.props.authenticated)
     this.props.logout(this.props.authenticated)
+    this.componentDidMount()
     this.setState({ editMode: false })
   }
   
