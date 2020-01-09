@@ -124,7 +124,7 @@ class TicketDetailsContainer extends Component {
     const id = this.props.ticket.event.id
     const ticketId = this.props.ticket.ticket.id
     this.props.deleteTicket(id, ticketId, this.props.authenticated.token)
-    setTimeout(()=>this.props.history.goBack(), 6000)
+    setTimeout(()=>this.props.history.goBack(), 600)
   }
 
 //////////////////GO BACK TO TICKETS////////////////////////
