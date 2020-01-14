@@ -20,7 +20,7 @@ export default function EventForm(props) {
           
           
           <div>
-            <button type='submit'>search</button>
+            <button className='searchButton' type='submit'>search</button>
           </div>
         </div>
       </form>

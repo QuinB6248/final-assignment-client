@@ -25,9 +25,9 @@ export default function LoginForm(props) {
             <label>PASSWORD</label>
           </div>
           <input name={'password'} onChange={onChange} value={values.password} placeholder='password' required/>
-          <div style={{paddingBottom: '20px'}}>{valid}</div>
+      
           <div>
-            <button type='submit'>LOGIN</button>
+            <button className='loginButton buttonField ' type='submit'>LOGIN</button>
           </div>
         </div>
       </form>
@@ -35,7 +35,7 @@ export default function LoginForm(props) {
         <h4>No account yet? First Sign Up:    </h4>
       </div>
       <div className='signUpLink'>
-        <Link to={`/signup`}>SIGN UP</Link>
+        <Link to={`/signup`} className='buttonField signupButton'>SIGN UP</Link>
       </div>
     </div>
   )

@@ -31,14 +31,12 @@ class TicketListContainer extends Component {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
     } 
-    this.setState({
-      editMode: true,
-      formValues: {
-        image: "", 
-        price: "",
-        description: ""
-        }
-    })
+    if(this.state.editMode === false){
+      return this.setState({ editMode: true})
+    }
+    if(this.state.editMode === true){
+      return this.setState({editMode: false})
+    }
   }
   
   onChange = (event) => {
