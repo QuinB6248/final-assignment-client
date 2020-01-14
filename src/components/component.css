@@ -187,9 +187,6 @@ body {
   margin: 0;
 }
 
-
-
-
 /* FORMS EVENTS */
 
 .formSpace {
@@ -339,7 +336,6 @@ input:valid {
   
 }
 @media (min-width: 940px) {
- 
   .containerSpace {
     min-width: 900px;
     display: grid;   
