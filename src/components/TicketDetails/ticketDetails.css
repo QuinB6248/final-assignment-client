@@ -1,16 +1,43 @@
 
 
 .containerTicketDetails{
-  max-width: 600px; 
-  min-width: 300px;
+  width: 330px;
   margin: auto;
 }
+.homeSpace{
+
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: inset 0 0px 30px 5px rgba(0, 0, 0, 0.2);
+}
+.linkButtons{
+  display: flex;
+ 
+  justify-content: space-between;
+}
+.goBackButton{
+  margin-left: 5px;
+  width: 80px;
+  height:22px;
+} 
 
 .ticketDetailsSpace{
+  background: #eff3f5;
   display: grid;  
-  grid-template-rows: 50px 200px 80px 50px 50px;
-  grid-gap: 10px;
+  grid-template-rows: 70px 200px 100px 70px 50px;
+  /* grid-gap: 10px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  padding:5px
+}
+.ticketDetailsNameSpace{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:rgb(0, 0, 0);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
 }
 
 .imageBigSpace{
@@ -19,26 +46,32 @@
   overflow: hidden;
   height: 200px;
   background-color: rgb(0, 0, 0);
+ 
+  
 }
 
 .imgBigSize{
   height: 200px;
   background-color: rgb(129, 165, 140);
+  
 }
 
 .ticketDetailsDescription{
   display: flex;
   justify-content: center;
   font-family: 'Roboto Slab', serif;
+  margin-top: 10px;
+  
 }
 
 .descriptionBox {
-  border: solid rgb(148, 148, 148) 0.1px;
+  
   padding: 10px;
-  width: 80%;
-  margin-left: 30px;
-  margin-right: 30px;
+  width: 100%;
+ 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4)
 }
+
 
 .descriptionBox > p{
   margin: 0;
@@ -50,44 +83,60 @@
   align-items: center;
 }
 
-.ticketDetailsNameSpace{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .detailButtonSpace {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 15px;
+  padding: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4)
 }
 
 
 /* COMMENT SPACE */
-
+.commentOverallSpace{
+  box-shadow: inset 0 0px 30px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  padding: 10px;
+}
+.addCommentSpace{
+  height:30px;
+  width:110px;
+  
+}
 .commentSpace {
   display: flex;
   justify-content: space-between;
   border: solid rgb(205, 205, 205) 0.1px;
   width: 80%;
-  padding-left:15px;
-  padding-right:15px;
-  margin: 10px auto;
-  
+  padding: 5px 15px;
+  margin: 5px auto;
 }
-
 .commentHeader{
   color: rgb(0, 0, 0);
   padding: 4px;
 }
+.authorCommentSpace{
+  display: flex;
+  align-items: flex-end;
+}
+.authorCommentSpace > h6{
+  margin-bottom: 0;
+}
 
 .commentHeader > h4{
+  margin-top: 0;
   text-align: center;
 }
 
 .comment {
+  display: flex;
+  align-items: center;
   max-width: 80%;
+}
+.comment > p{
+ margin: 0px;
 }
 
 .commentInputSpace{
@@ -95,4 +144,15 @@
   margin-bottom: 10px;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+
+@media (min-width: 450px) {
+ 
+  .containerTicketDetails {
+    max-width: 700px; 
+    min-width: 400px;
+  
+  }
+  
 }

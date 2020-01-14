@@ -24,7 +24,7 @@ export default function EventsList(props) {
       <li className='nobull' key={index}  onClick={linkClick}>
         <div className='eventSpace'>
           <div className='titleSpace'>
-            <a  href={`/events/${event.id}/tickets`}><h3 >{event.name}</h3></a> 
+            <a  href={`/events/${event.id}/tickets`} className='buttonField eventNameLink'><h3 >{event.name}</h3></a> 
           </div>
           <div className='imageSpace'>
             <img className='imgSize'src={event.image} alt=""/>
@@ -42,10 +42,10 @@ export default function EventsList(props) {
           </div>
           { sessionStorage.getItem("name") === event.user.name ? 
             <div className='nameButtonSpace'>
-              <div>
-                <button onClick={()=>onDelete(event.id)}>DELETE</button> 
-                <button onClick={()=>onUpdate(event.id)}>UPDATE</button> 
-              </div>
+              
+                <div className='buttonEvent ' onClick={()=>onDelete(event.id)}>DELETE</div> 
+                <div className='buttonEvent ' onClick={()=>onUpdate(event.id)}>UPDATE</div> 
+              
             </div>
             :<div className='nameButtonSpace'></div>
           }
@@ -57,40 +57,56 @@ export default function EventsList(props) {
     return (
       <div className='containerSpace'>
       
-        <div className='footerSpace'>
-          <div className='loginButtons'>
-          <div className='eventLoginSearch'> 
-            <a href={`/events`}>EVENTS</a>
+        <div className='gridSpace'>
+          <div className='headerSearchLogin'>
+            <div className='eventLoginSearch'> 
+              <a  href={`/events`} className='buttonField allEventsLink'>all events</a>
             </div>
             <div className='eventLoginSearch'> 
               <EventSearchForm onChange={onChange} onSubmit={submitSearch} values={values}/>
             </div>
             <div className='eventLoginSearch'> 
-            {sessionStorage.getItem("name")? <div className='eventLoginFields'><button onClick={logOut}>logout</button><p>Welkom {sessionStorage.getItem("name")}  </p></div>: <div className='eventLoginFields'><button onClick={logIn}>login</button></div>}
+              
+              <div >
+                {sessionStorage.getItem("name")? 
+                  <div className='eventLoginFields'>
+                    <div className='loginButtonSpace buttonField ' onClick={logOut}><div className='loginText'>logout</div></div>
+                    <p >Welkom {sessionStorage.getItem("name")}  </p>
+                  </div>
+                  : 
+                  <div  className='eventLoginFields'>
+                    <div className='loginButtonSpace buttonField ' onClick={logIn}><div className='loginText'>login</div></div>
+                  </div>
+                  
+                }
+              </div>
+            
             </div>
           </div>
         </div>
        
-        <div className='footerSpace'>
+        <div className='gridSpace'>
           <div className='headerSpace'>
             <h3>EVENTS</h3>
           </div>
         </div>
         {listOfEvents}
-        <div className='footerSpace'>
-          <div className='eventButtonSpace'>
-            <button onClick={onAdd}>ADD AN EVENT</button>
-          </div>
+        <div className='gridSpace'>
+          <div className='buttonField eventButtonSpace2' onClick={onAdd}>
+            <div className='eventText' > ADD EVENT</div> 
+           {/* <div className='backgroundButtons backgroundButtonEvent' ></div> */}
+            </div>
+
           <div >
             {form}
           </div>
         </div>
 
-        <div className='footerSpace'>
+        <div className='gridSpace'>
           <div className='buttonSpace'>
         
-            {curOffset === 0 ? <h6>First Page</h6> :  <button onClick={clickPrevious}>{'<--prev'}</button>}
-            {props.events.length >= 6 ?  <button onClick={clickNext}>{'next-->'}</button> : <h6>Last Page</h6>}
+            {curOffset === 0 ? <h6>First Page</h6> :  <div className='pagesButton' onClick={clickPrevious}>{'previous page'}</div>}
+            {props.events.length >= 6 ?  <div className='pagesButton'  onClick={clickNext}>{'next page'}</div> : <h6>Last Page</h6>}
           
            
           </div>

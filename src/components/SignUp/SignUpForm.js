@@ -25,7 +25,7 @@ export default function SignUpForm(props) {
           </div>
           <input name={'password'} onChange={onChange} value={values.password} placeholder='password' required/>
           <div>
-            <button type='submit'>SIGNUP</button>
+            <button type='submit' className='loginButton buttonField '>SIGNUP</button>
           </div>
         </div>
       </form>

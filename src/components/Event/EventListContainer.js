@@ -136,7 +136,7 @@ class EventListContainer extends Component {
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
     } 
-    this.setState({editMode: false})
+    this.setState({editMode: false, formValues: undefined})
 
     if(this.state.editModeUpdate === false){
       return this.setState({editModeUpdate: true, id:id, requiredFormFields: false})
@@ -148,6 +148,7 @@ class EventListContainer extends Component {
 
   onSubmitUpdate = (event) => {
     event.preventDefault()
+    if (this.state.formValues === undefined){return this.setState({editModeUpdate: false})}
     const updateSubmit = () => this.props.updateEvent(this.state.id, this.state.formValues, this.props.authenticated.token)
     this.submitValidation(updateSubmit)
    

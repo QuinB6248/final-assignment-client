@@ -1,4 +1,6 @@
-
+.ticketsListContainer{
+  width:350px;
+}
 .containerTicketsSpace {
   display: flex;
   flex-direction: column;
@@ -6,13 +8,18 @@
   margin:auto;
 }
 
-.ticketButtonSpace > button {
-  border:none;
-  background: #151515;
-  color: #e1e1e1;
-  font-size: 15px;
-  cursor: pointer;
-  margin: auto;
+.headerTicketsSpace{
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  margin-top:20px;
+  margin-bottom:30px;
+  color: white;
+  width:100%;
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.4);
+}
+.ticketsFormSpace  {
+ width: 100%;
 }
 
 .ticketContainer{
@@ -23,17 +30,18 @@
 }
 
 .ticketImageSpace{
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
+ display: flex;
+ justify-content: center;
+  overflow:hidden;
   border-radius: 2px;
+  margin:5px;
   width: 150px;
+  height: 150px;
+  box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, 0.4);
 }
 
 .ticketImage{
-  margin: auto;
-  text-align: center;
-  max-height: 150px;
+  max-height:150px;
   width: 150px;
 }
 
@@ -43,7 +51,8 @@
 }
 
 .ticketDescriptionSpace{
-  border: 1px solid rgb(182, 180, 180);
+  margin:5px;
+  box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, 0.4);
   height: 90px;
 }
 
@@ -110,11 +119,8 @@
 }
 
 
-@media (min-width: 400px) {
-  .ticketContainer{
-    width:600px;
-  }
-  .ticketDescriptionSpace{
-    min-width: 300px;
+@media (min-width: 500px) {
+  .ticketsListContainer{
+    width: 500px;
   }
 }

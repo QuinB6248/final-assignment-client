@@ -18,7 +18,7 @@ export default function CommentForm(props) {
             <input type='text' name={'comment'} value={values.comment} onChange={onChange} placeholder='comment' />
           </div>
           <div>
-            <button type='submit'>ADD</button>
+            <button type='submit' className='loginButton buttonField '>ADD</button>
           </div>
         </div>
       </form>

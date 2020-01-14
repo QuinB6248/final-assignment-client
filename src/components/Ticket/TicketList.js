@@ -14,8 +14,8 @@ export default function TicketsList(props) {
   
   const ticketDetails = 
     <div className='ticketsFormSpace'>
-      <div className='ticketButtonSpace'>
-        <button onClick={onAdd}>ADD A TICKET</button>
+      <div className='buttonField eventButtonSpace2' onClick={onAdd}>
+        <div className='eventText' > ADD TICKET</div> 
       </div>
       <div>
         {form}
@@ -57,20 +57,18 @@ export default function TicketsList(props) {
         </a>)
   
   return (
-    <div>
-      <div>
-        <a href={`/events`}>EVENTS</a>
+    <div className='ticketsListContainer'>
+      <div > 
+        <a  href={`/events`} className='buttonField allEventsLink'>events</a>
       </div>
-      <div className='containerTicketsSpace'>
-        <div className='ticketTitleSpace'>
-          <h3> {eventName} TICKETS</h3>
+      <div>
+        <div className='headerTicketsSpace'>
+         
+            <h3> {eventName} TICKETS</h3>
+          
         </div>
-        { tickets.length === 0 ? listOfTickets = ticketDetails: 
-          <div>
-            {ticketDetails}
-            {listOfTickets}
-          </div>
-        }
+        {ticketDetails}
+        {listOfTickets}
       </div>
     </div>
   )

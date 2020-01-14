@@ -24,7 +24,7 @@ export default function TicketDetails(props) {
             <p>{comment.comment}</p>
           </div>
           <div className='authorCommentSpace'>
-            <h5>author: {comment.user.name}</h5>
+            <h6>author: {comment.user.name}</h6>
           </div>
         </div>
       </li>)
@@ -33,16 +33,27 @@ export default function TicketDetails(props) {
     <div className='containerTicketDetails'>
       
       <div className='homeSpace'>
-        <div className='loginButtons'>
-          <a href={`/events`}>EVENTS</a>
-          {sessionStorage.getItem("name")? <div><p>Welkom {sessionStorage.getItem("name")}  </p><button onClick={logOut}>logout</button></div>: <div><button onClick={logIn}>login</button></div>}
+        <div className='linkButtons'>
+          <a  href={`/events`} className='buttonField allEventsLink'>events</a>
+          <div onClick={goBack}  className='buttonField goBackButton'>tickets</div>
         </div>
-        <button onClick={goBack}>Go back</button>
+        {sessionStorage.getItem("name")? 
+          <div className='eventLoginFields'>
+            <div className='loginButtonSpace buttonField ' onClick={logOut}><div className='loginText'>logout</div></div>
+              <p >Welkom {sessionStorage.getItem("name")}  </p>
+          </div> : 
+          <div className='eventLoginFields'>
+             <div className='loginButtonSpace buttonField ' onClick={logIn}><div className='loginText'>login</div></div>
+          </div>
+        }
+           
+        
+        
       </div>
 
       <div className='ticketDetailsSpace'> 
         <div className='ticketDetailsNameSpace'>
-          <h1>{ticket.event.name}</h1>
+          <h2>{ticket.event.name}</h2>
         </div>
         <div className='imageBigSpace' style={{background: "radial-gradient(rgba(236,240,241,0.7), rgba(236,240,241,4)), url(" + ticket.ticket.image  + ")", backgroundSize: "cover", backgroundRepeat:"no-repeat", backgroundPosition:'center'}}>
           <img className='imgBigSize' src={ticket.ticket.image} alt=""/>
@@ -68,9 +79,9 @@ export default function TicketDetails(props) {
         </div>
         { sessionStorage.getItem("name") === ticket.userDetails.name ? 
           <div className='detailButtonSpace'>
-            <div>
-              <button onClick={onEdit}>EDIT </button>
-              <button onClick={onDelete}>DELETE </button>
+            <div className='nameButtonSpace'>
+              <div  className='buttonEvent' onClick={onDelete}>DELETE </div >
+              <div className='buttonEvent' onClick={onEdit}>EDIT </div >
             </div>
             <h6>author: {ticket.userDetails.name}</h6>
           </div>:
@@ -84,19 +95,23 @@ export default function TicketDetails(props) {
         </div>
       </div>
 
-      <div className='eventButtonSpace'>
-        <button onClick={onAdd}>ADD COMMENT</button>
-      </div>
-      <div  className='commentInputSpace'>
-        {comform} 
-      </div>
-     
-      <div className='commentHeader'>
-        <h4>COMMENTS</h4>
-        <div>
-          {commentList}
+      <div className='commentOverallSpace'>
+        <div className='buttonField addCommentSpace'>
+          <div onClick={onAdd} className='eventText'>ADD COMMENT</div>
         </div>
-      </div> 
+        <div  className='commentInputSpace'>
+          {comform} 
+        </div>
+     
+        <div className='commentHeader'>
+          <h4>COMMENTS</h4>
+          <div>
+            {commentList}
+          </div>
+        </div> 
+      </div>
+
+      
     
     </div>
   )

@@ -64,7 +64,7 @@ export default function EventForm(props) {
             }
           </div>
           <div>
-            <button type='submit'>ADD</button>
+            <button className= 'formButton' type='submit'>ADD</button>
           </div>
         </div>
       </form>
