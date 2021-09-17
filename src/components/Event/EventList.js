@@ -8,7 +8,7 @@ export default function EventsList(props) {
     return 'loading...'
   }
  
-  const {events, onAdd, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, onDelete, onSubmitUpdate, onUpdate, submitSearch}  = props
+  const {events, onAdd, removeForm, onChange, onSubmit, values, clickNext, clickPrevious, linkClick, logOut, logIn, onDelete, onSubmitUpdate, onUpdate, submitSearch}  = props
   const {curOffset} = values
   const {editMode} = values
   const {editModeUpdate} = values
@@ -23,92 +23,92 @@ export default function EventsList(props) {
     .map((event, index) => 
       <li className='nobull' key={index}  onClick={linkClick}>
         <div className='eventSpace'>
-          <div className='titleSpace'>
-            <a  href={`/events/${event.id}/tickets`} className='buttonField eventNameLink'><h3 >{event.name}</h3></a> 
-          </div>
-          <div className='imageSpace'>
-            <img className='imgSize'src={event.image} alt=""/>
-          </div>
-          <div className='descriptionSpace'>
-            <h4>{event.description}</h4>
-          </div>
-          <div className='priceSpace'>
-            <p>Average Price:</p>
-            <h4>€{event.avg_price}</h4>
-          </div>
+            <a  href={`/events/${event.id}/tickets`} >
+            <div className='imageSpace' style={{ 
+              backgroundImage: `url(${event.image})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '100%'}}>
+              <div className='eventNameLink'>{event.name}</div>
+            </div>
+            </a> 
           <div className='dateSpace'>
-            <p>date:</p>
             {event.start} t/m {event.end}
           </div>
+          <div className='descriptionSpace'>
+            <p>{event.description}</p>
+          </div>
+          <div className='priceSpace'>
+            <p>Average Price:  €{event.avg_price}</p>
+          </div>
+          {<div className='nameButtonSpaceContainer'>
           { sessionStorage.getItem("name") === event.user.name ? 
             <div className='nameButtonSpace'>
-              
-                <div className='buttonEvent ' onClick={()=>onDelete(event.id)}>DELETE</div> 
-                <div className='buttonEvent ' onClick={()=>onUpdate(event.id)}>UPDATE</div> 
-              
-            </div>
-            :<div className='nameButtonSpace'></div>
+                <div className='buttonEvent ' onClick={()=>onDelete(event.id)}>
+                  <span className="material-icons">clear</span>
+                </div> 
+                <div className='buttonEvent ' onClick={()=>onUpdate(event.id)}>
+                  <span className="material-icons">edit</span>
+                </div> 
+            </div>:<div className='nameButtonSpace'></div>
           }
-          {id === event.id? <div className='nameButtonSpace2'>{updateForm}<h6>author: {event.user.name}</h6></div>: <div className='nameButtonSpace2'><h6>author: {event.user.name}</h6></div> }
+          {id === event.id? 
+            <div className='nameButtonSpace2'>{updateForm}author: {event.user.name}</div>: 
+            <div className='nameButtonSpace2'>author: {event.user.name}</div> 
+          }
+          </div>
+        }
         </div>
       </li>)
   
   
     return (
       <div className='containerSpace'>
-      
         <div className='gridSpace'>
           <div className='headerSearchLogin'>
             <div className='eventLoginSearch'> 
-              <a  href={`/events`} className='buttonField allEventsLink'>all events</a>
+              <a  href={`/events`} className='buttonField2 allEventsLink'>
+                <span className="material-icons">castle</span>
+              </a>
             </div>
             <div className='eventLoginSearch'> 
-              <EventSearchForm onChange={onChange} onSubmit={submitSearch} values={values}/>
-            </div>
-            <div className='eventLoginSearch'> 
-              
-              <div >
+              <div>
                 {sessionStorage.getItem("name")? 
                   <div className='eventLoginFields'>
-                    <div className='loginButtonSpace buttonField ' onClick={logOut}><div className='loginText'>logout</div></div>
+                    <div className='loginButtonSpace' onClick={logOut}><div className='loginText'>logout</div></div>
                     <p >Welkom {sessionStorage.getItem("name")}  </p>
                   </div>
                   : 
                   <div  className='eventLoginFields'>
-                    <div className='loginButtonSpace buttonField ' onClick={logIn}><div className='loginText'>login</div></div>
+                    <div className='loginButtonSpace ' onClick={logIn}><div className='loginText'>login</div></div>
                   </div>
-                  
                 }
               </div>
-            
             </div>
           </div>
         </div>
        
         <div className='gridSpace'>
           <div className='headerSpace'>
-            <h3>EVENTS</h3>
+            <div className='eventsHeader'>Creepy festivals</div>
           </div>
-        </div>
-        {listOfEvents}
-        <div className='gridSpace'>
-          <div className='buttonField eventButtonSpace2' onClick={onAdd}>
-            <div className='eventText' > ADD EVENT</div> 
-           {/* <div className='backgroundButtons backgroundButtonEvent' ></div> */}
+          <div className=' eventButtonSpace2' >
+            <div className='buttonField2' >
+              <div className='eventText' onClick={onAdd}> ADD EVENT</div> 
             </div>
-
+            <EventSearchForm onChange={onChange} onSubmit={submitSearch} values={values}/>
+          </div>
           <div >
             {form}
           </div>
+          {editMode == true? <div onClick={removeForm} className= 'removeForm' >X Close form</div>: <div></div>}
         </div>
+        {listOfEvents}
+        <div className='gridSpace'></div>
 
         <div className='gridSpace'>
           <div className='buttonSpace'>
-        
-            {curOffset === 0 ? <h6>First Page</h6> :  <div className='pagesButton' onClick={clickPrevious}>{'previous page'}</div>}
-            {props.events.length >= 6 ?  <div className='pagesButton'  onClick={clickNext}>{'next page'}</div> : <h6>Last Page</h6>}
-          
-           
+            {curOffset === 0 ? <p>First Page</p> :  <div className='pagesButton' onClick={clickPrevious}>{'previous page'}</div>}
+            {props.events.length >= 6 ?  <div className='pagesButton'  onClick={clickNext}>{'next page'}</div> : <p>Last Page</p>}
           </div>
         </div>
       </div>

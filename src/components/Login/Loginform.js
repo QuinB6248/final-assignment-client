@@ -13,6 +13,7 @@ export default function LoginForm(props) {
   const validEmail = !validationEmail && warningEmail
  
   return (
+    <div className="signUpLogIn">
     <div className='loginBox'>
       <form onSubmit={onSubmit}>
         <div className='loginSpace'>
@@ -32,11 +33,12 @@ export default function LoginForm(props) {
         </div>
       </form>
       <div className='signUpAccount'>
-        <h4>No account yet? First Sign Up:    </h4>
+        <h4>No account yet? First Sign Up:</h4>
       </div>
       <div className='signUpLink'>
         <Link to={`/signup`} className='buttonField signupButton'>SIGN UP</Link>
       </div>
+    </div>
     </div>
   )
 }

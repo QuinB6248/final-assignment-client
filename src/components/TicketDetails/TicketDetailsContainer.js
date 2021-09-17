@@ -5,7 +5,6 @@ import { fetchTicket, createComment, updateTicket, deleteTicket } from '../../ac
 import { checkToken, logout } from '../../actions/auth'
 
 
-
 class TicketDetailsContainer extends Component {
 //////////////////////COMPONENT STATE///////////////////////
   state = {
@@ -14,7 +13,6 @@ class TicketDetailsContainer extends Component {
     priceValidation: true,
     requiredFormFields: false,
     inputText: true,
-   
   }
 
 //////////////////////COMPONENT MOUNT///////////////////////
@@ -72,16 +70,24 @@ class TicketDetailsContainer extends Component {
     const id = this.props.ticket.event.id
     const ticketId = this.props.ticket.ticket.id
    
-    if( this.state.formValues.price && isNaN(this.state.formValues.price) === true) {
-      return this.setState({priceValidation: false})
-    } 
-    this.setState({
-      editMode: false,
-      editCommentMode: false
-    })
-    this.props.updateTicket(id, ticketId, this.state.formValues, this.props.authenticated.token)
+    if(this.state.formValues){
+      if( this.state.formValues.price && isNaN(this.state.formValues.price) === true) {
+        return this.setState({priceValidation: false})
+      } 
+     
+      this.props.updateTicket(id, ticketId, this.state.formValues, this.props.authenticated.token)
+      
+      this.setState({
+        editMode: false,
+        editCommentMode: false
+      })
+    }
   }
 
+  removeForm = () => {
+    return this.setState({editMode: false})
+  }
+  
 //////////////////ADD COMMENT////////////////////////
   onAdd = () => {
     if (this.state.formValues){
@@ -145,6 +151,7 @@ class TicketDetailsContainer extends Component {
           onEdit={this.onEdit}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
+          removeForm={this.removeForm}
           onSubmitComment={this.onSubmitComment}
           values={this.state} 
           onDelete={this.onDelete} 

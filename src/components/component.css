@@ -1,10 +1,10 @@
 body {
   /* background: #ecf0f1; */
-  background: #f0f3f4;
+  box-sizing: border-box;
+  background: #000000;
   padding: 1.23em;
-  font-family: 'Raleway', sans-serif;
-  display: flex;
-  justify-content: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
 .nobull {
@@ -12,6 +12,7 @@ body {
 }
 
 .containerSpace {
+  background-color: black;
   min-width:330px;
   display: grid;   
   grid-gap: 10px; 
@@ -19,6 +20,8 @@ body {
 }
 
 .gridSpace {
+  background-color: rgb(0, 0, 0);
+  color: white;
   grid-column: span 1;
 }
 
@@ -27,11 +30,14 @@ body {
 .headerSearchLogin{
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 40px;
+
   
 }
 .eventLoginSearch{
   width: 32%;
-  height: 70px;
+  
 }
 
 /* All Events link*/
@@ -39,32 +45,47 @@ body {
   width: 80px;
   height:22px;
 }
-
+.allEventsLink a:link{
+  color: aliceblue;
+}
 /* SEARCH FORM */
 .searchFormSpace {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: row;
 }
 .searchFormSpace > form {
-  max-width: 100px;
+  /* max-width: 100px; */
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .inputSearchForm{
-  margin: 0;
-  margin-bottom: 2px;
-  padding: 3px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  width: 100px;
+  margin: 0 !important;
+  padding: 3px 5px;
   border: none;
-  border-radius: 4px;
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2)
+  border-radius: 1px;
+  /* box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2) */
 }
 .searchButton{
-  width: 100px;
-  background-color: black;
-  border-radius: 5px;
-  color: white;
-  height: 22px;
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2)
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 1px;
+  height: 100%;
+  /* box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2) */
+}
+
+.searchButton .material-icons{
+  color: rgb(255, 255, 255);
+  font-size: 17px;
+  text-align: center;
 }
 
 /*Login Button Space*/
@@ -73,24 +94,34 @@ body {
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
-  height:70px;
- 
  }
+
 .loginButtonSpace{
   width: 60px;
   height:22px;
 }
 
 .loginText {
-  font-size: 14px;
+  color: white;
+  font-size: 8px;
+  text-align: center;
+  font-family: 'Nosifer', cursive;
+  font-size: 10px;
 } 
 
 .eventLoginFields > p {
- margin: 0;
+  font-family: 'Nosifer', cursive;
+  font-size: 10px;
+  color: white;
+  margin: 0;
 }
 
 /* Header Title*/
 .headerSpace {
+  background-image: url("https://cdn.pixabay.com/photo/2018/10/05/22/36/metal-3726995_1280.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 300px;
   display: flex;
   justify-content: center;
   color: rgb(255, 255, 255);
@@ -99,25 +130,54 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.eventsHeader{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  font-family: 'Nosifer', cursive;
+  opacity: 0.8;
+  font-size: 28px;
+}
 
 /*//////////// EVENTS-CONTAINERS ////////////////*/
 .eventSpace{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  box-shadow: rgba(255,255,255,0.2) 0px 1px 2px, inset rgba(255,255,255,0.2) 0px 0px 1px;
+  /* box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19); */
 }
+
 .titleSpace {
   display: flex;
   justify-content: center;
 }
+
 .eventNameLink{
-  width:250px;
-  height: 50px;
-  margin: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
+  min-height: 50px;
+  color: rgb(255, 255, 255);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 1));
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
 }
+
 .imageSpace {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   overflow: hidden;
-  height: 100px;
+  height: 200px;
   background-color: rgb(0, 0, 0);
 }
 
@@ -127,47 +187,39 @@ body {
 }
 
 .descriptionSpace {
-  padding-top: 5px;
-  padding-bottom: 15px;
-  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+  color: white;
 }
-.descriptionSpace > h4 {
-  margin: 0;
-  text-align: center;
+
+.descriptionSpace > p {
+  margin: 0 2px;
 }
 
 .priceSpace {
+  display: flex;
   text-align: center;
-  font-family: 'Roboto Slab', serif;
-  font-size: 12px;
-  padding:10px;
-  height: 30px;
-  background-color: rgb(220, 220, 220);
+  margin-top: 10px;
+
 }
 .priceSpace > p {
-  margin: 0;
+  margin: 0 2px;
 }
 .priceSpace > h4 {
-  margin: 0;
+  margin: 0 5px;
 }
 
 .dateSpace {
-  background-color: rgb(220, 220, 220);
-  text-align: center;
-  font-family: 'Roboto Slab', serif;
-  font-size: 12px;
-  padding:2px;
-  height: 35px;
-}
-.dateSpace > p {
-  margin: 0;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .nameButtonSpace{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 8px;
   padding-right: 8px;
   height: 30px;
 }
@@ -182,12 +234,18 @@ body {
 .buttonEvent:active{
   box-shadow: none
 }
-.nameButtonSpace2 > h6{
-  background-color: rgb(213, 213, 213);
+.nameButtonSpace2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
   padding:5px;
   margin: 0;
 }
-
+.nameButtonSpaceContainer{
+display: flex;
+justify-content: space-between;
+margin-top: 15px;
+}
 /* FORMS EVENTS */
 
 .formSpace {
@@ -224,9 +282,13 @@ input {
 }
 
 /* LOGIN AND SIGNUPFORM */
-
+.signUpLogIn{
+  display: flex;
+  justify-content: center;
+}
 .loginBox{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
   padding: 20px;
 }
 .loginSpace{
@@ -235,11 +297,14 @@ input {
   padding:20px;
 }
 .loginButton{
-  margin-top: 10px;
-  background-color: #ecf0f1;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px!important;
+  background-color: #000000;
   padding:8px;
   outline: none;
 }
+
 .signUpAccount{
   display: flex;
   justify-content: center;
@@ -249,42 +314,58 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(240, 240, 240);
- 
+  background-color: rgb(65, 65, 65);
 }
+
 .signupButton{
   padding: 8px;
-}
-input:invalid {
-  border: 0.1px dashed rgb(159, 0, 0);
 }
 
 input:invalid:required {
   background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 221, 221));
 }
 
-input:valid {
-  
-}
-
 /*//////////////GENERAL BUTTONS ADD EVENT LOGIN etc/////////////////*/
-.eventButtonSpace2{
-  width: 113px;
-  height:32px;
-}
+
 .eventText {
-  font-size: 14px;
+  background-color: rgb(53, 52, 52);
+  padding: 5px;
+  font-size: 12px;
 } 
 
-.buttonField  {
+.buttonField  {  
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; 
+  position: relative;
+  width: 100%;
+  overflow: hidden;
   position: relative;
   overflow: hidden;
-  border-radius: 5px;
-  box-shadow: 4px 5px 10px 0px rgba(0, 0, 0, 0.3)
+  margin: 0;
+}
+
+.buttonField2  {  
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; 
+  position: relative;
+  overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+
+.eventButtonSpace2{
+  display: flex; 
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .buttonField:active{
@@ -293,25 +374,35 @@ input:valid {
   
 } 
 
+.buttonField2:active{
+  box-shadow: none ;
+  transform: translateY(4px);
+  
+} 
 
+.removeForm{
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: 'Nosifer', cursive;
+  font-size: 10px;
+}
 
 /* ///////NEXT PAGE BUTTONS///// */
-
-
 .buttonSpace {
+  font-family: 'Nosifer', cursive;
+  font-size: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .pagesButton{
-  font-size: 13px;
-  width:90px; 
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5px;
-  color: rgb(99, 99, 99);
+  color: rgb(255, 255, 255);
   border-radius: 5px;
   box-shadow: inset 0px 0px 5px 5px rgba(0, 0, 0, 0.2); 
   
@@ -328,7 +419,7 @@ input:valid {
   .containerSpace {
     min-width: 600px;
     display: grid;   
-    grid-gap: 10px; 
+    grid-gap: 20px; 
     grid-template-columns: repeat(2, 1fr);
   }
   .gridSpace {
@@ -340,46 +431,11 @@ input:valid {
   .containerSpace {
     min-width: 900px;
     display: grid;   
-    grid-gap: 10px; 
+    grid-gap: 20px; 
     grid-template-columns: repeat(3, 1fr);
   }
   .gridSpace {
     grid-column: span 3;
   }
 }
-
-
-
-
-/* ////////////////Button Animation Background: Add Event and login////////////////
-
-
-.backgroundButtonLogin{
-  height: 500%;
-  width:170%;
-}
-.backgroundButtonEvent{
-  height: 600%;
-  width:170%;
-}
-.backgroundButtons {
-  opacity: 0;
-  position: absolute;
-  top: 40%;
-  left: -40%; 
-  border: none;
-  outline: none;
-  border-radius: 42%;
-  box-shadow: 0px 0px 10px 10px rgba(0, 0, 0,1);
-  background-color: rgb(0, 0, 0);
-}
-.buttonField:hover >  .backgroundButtons{
-  opacity: 0.3;
-  animation:slidebg 20s linear infinite;
-} 
-@keyframes slidebg {
-  to {
-    transform: rotate(360deg);
-  }
-}  */
 

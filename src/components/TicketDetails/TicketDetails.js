@@ -8,7 +8,7 @@ export default function TicketDetails(props) {
     return 'loading...'
   }
  
-  const { ticket, onAdd, onEdit, onChange, onSubmit, onSubmitComment, values, onDelete, goBack, logIn, logOut} = props
+  const { ticket, onAdd, onEdit, removeForm, onChange, onSubmit, onSubmitComment, values, onDelete, goBack, logIn, logOut} = props
   const {editMode, editCommentMode} = values
   const commentForm =  <CommentForm onChange={onChange} onSubmit={onSubmitComment} values={values}/>
   const editForm = <TicketForm onChange={onChange} onSubmit={onSubmit} values={values}/>
@@ -31,11 +31,10 @@ export default function TicketDetails(props) {
   
   return (
     <div className='containerTicketDetails'>
-      
       <div className='homeSpace'>
         <div className='linkButtons'>
-          <a  href={`/events`} className='buttonField allEventsLink'>events</a>
-          <div onClick={goBack}  className='buttonField goBackButton'>tickets</div>
+          <a  href={`/events`} className='buttonField2 allEventsLink'><span className="material-icons">castle</span></a>
+          <div onClick={goBack}  className='buttonField2 goBackButton'>tickets</div>
         </div>
         {sessionStorage.getItem("name")? 
         <div className='eventLoginFields'>
@@ -51,9 +50,9 @@ export default function TicketDetails(props) {
       <div className='ticketDetailContainer'>
         <div className='ticketDetailsSpace'> 
           <div className='ticketDetailsNameSpace'>
-            <h2>{ticket.event.name}</h2>
+            {ticket.event.name}
           </div>
-          <div className='imageBigSpace' style={{background: "radial-gradient(rgba(236,240,241,0.7), rgba(236,240,241,4)), url(" + ticket.ticket.image  + ")", backgroundSize: "cover", backgroundRepeat:"no-repeat", backgroundPosition:'center'}}>
+          <div className='imageBigSpace' style={{background: "radial-gradient(rgba(0,0,0,1), rgba(0,0,0,0.5)), url(" + ticket.ticket.image  + ")", backgroundSize: "cover", backgroundRepeat:"no-repeat", backgroundPosition:'center'}}>
             <img className='imgBigSize' src={ticket.ticket.image} alt=""/>
           </div>
           <div className='ticketDetailsDescription'>
@@ -64,7 +63,7 @@ export default function TicketDetails(props) {
           <div className='ticketPriceRisk'>
             <div className="color" ></div>
             <div className='ticketDetailsPrice'>
-              <h3>price €{ticket.ticket.price},-</h3>
+              price €{ticket.ticket.price},-
             </div>
             <div className='ticketDetailsRisk'>
               { ticket.ticket.risk < 15 ? 
@@ -90,6 +89,7 @@ export default function TicketDetails(props) {
           }
           <div>
             {edform}
+            {editMode == true? <div onClick={removeForm} className= 'removeForm' >X Close form</div>: <div></div>}
           </div>
         </div>
 
@@ -109,7 +109,6 @@ export default function TicketDetails(props) {
           </div>
         </div> 
       </div>
-      
     </div>
   )
 }

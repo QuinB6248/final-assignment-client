@@ -12,7 +12,6 @@ class TicketListContainer extends Component {
     priceValidation: true,
     requiredFormFields: true,
     login: true    
-
   }
   
 ///////////////COMPONENT MOUNT////////////////////
@@ -62,6 +61,10 @@ class TicketListContainer extends Component {
     
   }
 
+  removeForm = () => {
+    return this.setState({editMode: false})
+  }
+
 ///////////////RENDER/////////////////////
   render() {
     if(!this.props.tickets) {
@@ -76,6 +79,7 @@ class TicketListContainer extends Component {
           onAdd={this.onAdd} 
           onChange={this.onChange}
           onSubmit={this.onSubmit}
+          removeForm={this.removeForm}
           values={this.state}  
         />
       </div>

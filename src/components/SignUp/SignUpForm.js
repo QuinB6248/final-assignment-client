@@ -8,6 +8,7 @@ export default function SignUpForm(props) {
   const valid = !validTrue && warning
   
   return (
+    <div className="signUpLogIn">
     <div className='loginBox'>
       <form onSubmit={onSubmit}>
         <div className='loginSpace'>
@@ -29,6 +30,7 @@ export default function SignUpForm(props) {
           </div>
         </div>
       </form>
+    </div>
     </div>
   )
 }

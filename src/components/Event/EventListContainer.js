@@ -71,7 +71,9 @@ class EventListContainer extends Component {
   }
 
 ////////////////ADD EVENT////////////////
-  onAdd = () => {
+  onAdd = e => {
+    e.stopPropagation()
+    e.nativeEvent.stopImmediatePropagation();
     if(!this.props.authenticated) {
       return this.props.history.push('/login')
     } 
@@ -91,6 +93,10 @@ class EventListContainer extends Component {
     this.submitValidation(createSubmit)
     setTimeout(()=>this.componentDidMount(), 400)
     
+  }
+
+  removeForm = () => {
+    return this.setState({editMode: false})
   }
 
 ////////////////SUBMIT ADD & UPDATE///////////////
@@ -188,6 +194,7 @@ class EventListContainer extends Component {
           logOut={this.logOut}
           logIn={this.logIn}
           onAdd={this.onAdd} 
+          removeForm={this.removeForm}
           onUpdate={this.onUpdate}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
