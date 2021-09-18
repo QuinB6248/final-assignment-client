@@ -100,7 +100,7 @@ export default function EventsList(props) {
           <div >
             {form}
           </div>
-          {editMode == true? <div onClick={removeForm} className= 'removeForm' >X Close form</div>: <div></div>}
+          {editMode === true? <div onClick={removeForm} className= 'removeForm' >X Close form</div>: <div></div>}
         </div>
         {listOfEvents}
         <div className='gridSpace'></div>

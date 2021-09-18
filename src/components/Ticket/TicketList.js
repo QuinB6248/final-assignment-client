@@ -19,7 +19,7 @@ export default function TicketsList(props) {
       </div>
       <div>
         {form}
-        {editMode == true? <div onClick={removeForm} className= 'removeForm' >X Close form</div>: <div></div>}
+        {editMode === true? <div onClick={removeForm} className= 'removeForm' >X Close form</div>: <div></div>}
       </div>
     </div>  
 

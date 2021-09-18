@@ -33,6 +33,7 @@ export default function LoginForm(props) {
         </div>
       </form>
       <div className='signUpAccount'>
+        {valid}
         <h4>No account yet? First Sign Up:</h4>
       </div>
       <div className='signUpLink'>
