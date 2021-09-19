@@ -52,7 +52,10 @@ export default function EventsList(props) {
             </div>:<div className='nameButtonSpace'></div>
           }
           {id === event.id? 
-            <div className='nameButtonSpace2'>{updateForm}author: {event.user.name}</div>: 
+            <div className='nameButtonSpace2'>{updateForm}
+              <div className='authorSpace'>author: {event.user.name}</div>
+              {editModeUpdate === true? <div onClick={removeForm} className= 'removeForm' >X Close form</div>: <div></div>}
+            </div>: 
             <div className='nameButtonSpace2'>author: {event.user.name}</div> 
           }
           </div>

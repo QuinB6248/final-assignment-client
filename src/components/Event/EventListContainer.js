@@ -96,7 +96,7 @@ class EventListContainer extends Component {
   }
 
   removeForm = () => {
-    return this.setState({editMode: false})
+    return this.setState({editMode: false, editModeUpdate: false})
   }
 
 ////////////////SUBMIT ADD & UPDATE///////////////

@@ -35,10 +35,6 @@ body {
 
   
 }
-.eventLoginSearch{
-  width: 32%;
-  
-}
 
 /* All Events link*/
 .allEventsLink{
@@ -118,10 +114,9 @@ body {
 /* Header Title*/
 .headerSpace {
   background-image: url("../images/metal-3726995_1920.jpg");
-  background-size: 100%;
+  background-size: cover;
   background-position: 50% 10%;
   background-repeat: no-repeat;
-  height: 170px;
   display: flex;
   justify-content: center;
   color: rgb(255, 255, 255);
@@ -133,6 +128,7 @@ body {
 .eventsHeader{
   display: flex;
   width: 100%;  
+  min-height: 200px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -230,6 +226,12 @@ body {
   padding-right: 8px;
   height: 30px;
 }
+
+.authorSpace{
+  display: flex;
+  justify-content: flex-end;  
+  margin-bottom: 10px;
+}
 /* BUTTONS */
 .buttonEvent{
   font-size: 12px;
@@ -285,7 +287,6 @@ input {
 
 .formButton:active{
   box-shadow: 0 0px 10px 3px rgba(255, 255, 255, 1);
- 
 }
 
 /* LOGIN AND SIGNUPFORM */
@@ -293,16 +294,19 @@ input {
   display: flex;
   justify-content: center;
 }
+
 .loginBox{
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
   padding: 20px;
 }
+
 .loginSpace{
   display: flex;
   flex-direction: column;
   padding:20px;
 }
+
 .loginButton{
   display: flex;
   justify-content: center;
@@ -357,6 +361,18 @@ input:invalid:required {
   margin: 0;
 }
 
+button.buttonField{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonField.signupButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .buttonField2  {  
   display: flex;
   justify-content: flex-start;
@@ -375,6 +391,7 @@ input:invalid:required {
   display: flex; 
   justify-content: space-between;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .buttonField:active{
