@@ -89,8 +89,16 @@ export default function EventsList(props) {
        
         <div className='gridSpace'>
           <div className='headerSpace'>
-            <div className='eventsHeader'>Creepy festivals</div>
+            <div className='eventsHeader'>
+              Creepy festivals
+              <div className='eventsSubHeader'>
+                Buy and sell tickets for the best Halloween Festivals at your own risk!
+              </div>
+            </div>
+        
+           
           </div>
+         
           <div className=' eventButtonSpace2' >
             <div className='buttonField2' >
               <div className='eventText' onClick={onAdd}> ADD EVENT</div> 

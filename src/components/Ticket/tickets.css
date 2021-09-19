@@ -39,19 +39,17 @@
 }
 
 .ticketImageSpace{
- display: flex;
- justify-content: center;
+  display: flex;
+  justify-content: center;
   overflow:hidden;
   border-radius: 2px;
   margin:5px;
-  width: 150px;
   height: 150px;
   box-shadow:  0px 0px 3px 0px rgba(0, 0, 0, 0.4);
 }
 
 .ticketImage{
-  max-height:150px;
-  width: 150px;
+  height:150px;
 }
 
 .ticketInfoSpace {
