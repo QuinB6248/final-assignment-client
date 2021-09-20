@@ -171,10 +171,12 @@ class EventListContainer extends Component {
 
 ////////////PAGINATION NEXT AND PREVIOUS//////////////
   clickNext = () => {
+    // eslint-disable-next-line
     this.state.curOffset += 6
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
   clickPrevious = () => {
+    // eslint-disable-next-line
     this.state.curOffset -= 6
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
