@@ -119,6 +119,7 @@ body {
   background-size: cover;
   background-position: 50% 10%;
   background-repeat: no-repeat;
+  height: 350px;
   display: flex;
   justify-content: center;
   color: rgb(255, 255, 255);
@@ -456,9 +457,6 @@ button.buttonField{
   .gridSpace {
     grid-column: span 2;
   }
-  .headerSpace{
-    height: 300px;
-  }
   
 }
 @media (min-width: 940px) {
@@ -471,9 +469,6 @@ button.buttonField{
   }
   .gridSpace {
     grid-column: span 3;
-  }
-  .headerSpace{
-    height: 300px;
   }
 }
 

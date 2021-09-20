@@ -171,13 +171,11 @@ class EventListContainer extends Component {
 
 ////////////PAGINATION NEXT AND PREVIOUS//////////////
   clickNext = () => {
-    let test = this.state.curOffset + 6
-    this.setState({ curOffset: test})
+    this.state.curOffset += 6
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
   clickPrevious = () => {
-    let test = this.state.curOffset -6
-    this.setState({ curOffset: test})
+    this.state.curOffset -= 6
     this.props.fetchEvents(this.state.eventsPerPage, this.state.curOffset)
   }
 
