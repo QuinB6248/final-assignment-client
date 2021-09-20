@@ -58,10 +58,12 @@ export default function TicketsList(props) {
         </a>)
   
   return (
-    <div className='ticketsListContainer'>
-      <div > 
+    <div className='ticketListHeaderHome'>
+      <div className='headerHome'> 
         <a  href={`/events`} className='buttonField2 allEventsLink'><span className="material-icons">castle</span></a>
       </div>
+      <div className='ticketsListContainer'>
+      
       <div>
         <div className='headerTicketsSpace'>
           <div className='headerTicket'>TICKETS</div>
@@ -70,6 +72,7 @@ export default function TicketsList(props) {
         {ticketDetails}
         {listOfTickets}
       </div>
+    </div>
     </div>
   )
 }

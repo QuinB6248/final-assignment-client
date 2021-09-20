@@ -1,3 +1,15 @@
+.ticketListHeaderHome{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:360px;
+}
+
+.headerHome{
+  width: 100%
+}
+
 .ticketsListContainer{
   width:350px;
  
@@ -127,8 +139,22 @@
   transform: translateY(50%);
 }
 
-@media (min-width: 500px) {
+@media (min-width: 640px) {
   .ticketsListContainer{
     width: 500px;
   }
+  
+}
+@media (min-width: 640px) {
+  .ticketListHeaderHome{
+    min-width: 600px;
+  }
+  
+}
+@media (min-width: 940px) {
+  .ticketListHeaderHome{
+    min-width: 900px;
+    max-width: 1140px;
+  }
+  
 }
