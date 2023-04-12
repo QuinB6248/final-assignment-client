@@ -1,6 +1,6 @@
 import request from 'superagent'
 //const baseUrl = 'http://localhost:4000'
-const baseUrl ='https://secure-dusk-52930.herokuapp.com'
+const baseUrl ='https://ticketing-app-hybe.onrender.com'
 
 
 //////////////////FETCH EVENTS ACTION//////////////////
